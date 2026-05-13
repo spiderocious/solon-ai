@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solon — System Architecture</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <style>
+      :root {
+        --forest: #1b4332;
+        --forest-2: #2d5a3d;
+        --cream: #f5efe0;
+        --ivory: #faf6ec;
+        --burnt: #c7522a;
+        --charcoal: #1f2421;
+        --muted: #6b6b6b;
+        --line: #e6dfcb;
+        --code-bg: #131613;
+        --shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--ivory);
+        color: var(--charcoal);
+        line-height: 1.55;
+        font-size: 15.5px;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Fraunces', Georgia, serif;
+        color: var(--forest);
+        letter-spacing: -0.01em;
+        margin: 0 0 0.4em;
+      }
+      h1 { font-size: 2.1rem; line-height: 1.1; }
+      h2 { font-size: 1.6rem; line-height: 1.15; margin-top: 0; }
+      h3 { font-size: 1.15rem; }
+      h4 { font-size: 1rem; color: var(--forest-2); }
+      p { margin: 0 0 1em; }
+      a { color: var(--forest-2); text-decoration: underline; text-underline-offset: 2px; }
+      code {
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.86em;
+        background: rgba(27, 67, 50, 0.08);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+      pre {
+        background: var(--code-bg);
+        color: #d8e6db;
+        padding: 14px 16px;
+        border-radius: 6px;
+        overflow-x: auto;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      pre code { background: transparent; padding: 0; color: inherit; font-size: inherit; }
+
+      /* Layout */
+      .topbar {
+        position: sticky; top: 0; z-index: 50;
+        background: var(--forest);
+        color: var(--cream);
+        padding: 14px 22px;
+        display: flex; align-items: center; gap: 16px;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+      }
+      .topbar-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 1.25rem;
+        color: var(--cream);
+        margin: 0;
+      }
+      .topbar-subtitle { color: rgba(245, 239, 224, 0.7); font-size: 0.85rem; margin-left: auto; }
+      .hamburger {
+        background: none; border: none; cursor: pointer;
+        width: 36px; height: 36px;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        gap: 4px; padding: 0;
+      }
+      .hamburger span {
+        display: block; width: 22px; height: 2px;
+        background: var(--cream);
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+      .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+      .shell { display: flex; min-height: calc(100vh - 64px); }
+      aside.sidenav {
+        width: 260px; flex-shrink: 0;
+        background: #fff;
+        border-right: 1px solid var(--line);
+        padding: 22px 0;
+        position: sticky; top: 64px; align-self: flex-start;
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+        transition: transform 0.25s ease;
+      }
+      .sidenav h5 {
+        font-family: 'Inter', sans-serif;
+        text-transform: uppercase; letter-spacing: 0.08em;
+        font-size: 0.7rem; color: var(--muted);
+        margin: 18px 22px 6px;
+      }
+      .sidenav ul { list-style: none; margin: 0; padding: 0; }
+      .sidenav a {
+        display: block; padding: 7px 22px;
+        color: var(--charcoal); text-decoration: none;
+        border-left: 3px solid transparent;
+        font-size: 0.92rem;
+      }
+      .sidenav a:hover { background: rgba(27, 67, 50, 0.05); color: var(--forest); }
+      .sidenav a.active { background: rgba(27, 67, 50, 0.08); border-left-color: var(--burnt); color: var(--forest); font-weight: 600; }
+      .sidenav a .badge { display: inline-block; margin-left: 6px; font-size: 0.65rem; padding: 1px 6px; border-radius: 8px; vertical-align: middle; }
+      .badge-keep { background: #d6e6da; color: var(--forest); }
+      .badge-trim { background: #fde2c8; color: #8a3a14; }
+      .badge-cut { background: #f5d0c5; color: #6b1f0f; text-decoration: line-through; }
+
+      main.content { flex: 1; padding: 28px 38px 80px; max-width: 1080px; }
+      section.block { margin-bottom: 28px; }
+      section.block + section.block { padding-top: 8px; }
+      section.intro { background: linear-gradient(180deg, #fff 0%, #fff8e8 100%); padding: 24px 28px; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 30px; }
+      section.intro p:last-child { margin-bottom: 0; }
+
+      /* Accordion */
+      .acc { background: #fff; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow); }
+      .acc summary {
+        list-style: none; cursor: pointer; padding: 16px 20px;
+        display: flex; align-items: center; gap: 12px;
+        font-weight: 600; color: var(--forest);
+        font-family: 'Fraunces', Georgia, serif;
+        font-size: 1.1rem;
+        background: #fff;
+        transition: background 0.15s;
+      }
+      .acc summary:hover { background: #fcfaf2; }
+      .acc summary::-webkit-details-marker { display: none; }
+      .acc summary::before {
+        content: '+';
+        font-family: 'Inter', sans-serif;
+        font-size: 1.25rem; line-height: 1;
+        color: var(--burnt);
+        width: 22px; text-align: center;
+        transition: transform 0.2s;
+      }
+      .acc[open] summary::before { content: '−'; }
+      .acc .body { padding: 4px 22px 22px; border-top: 1px solid var(--line); background: #fffefb; }
+
+      /* Cards / callouts */
+      .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 16px 0; }
+      .card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+      .card h4 { margin-top: 0; }
+      .card .meta { color: var(--muted); font-size: 0.82rem; margin-top: 8px; }
+
+      .callout { padding: 14px 16px; border-radius: 8px; margin: 14px 0; border-left: 4px solid; }
+      .callout.why { background: #f4f8f5; border-color: var(--forest); }
+      .callout.warn { background: #fdf3e9; border-color: var(--burnt); }
+      .callout.cut { background: #fbecea; border-color: #a23a23; }
+      .callout strong { font-family: 'Fraunces', serif; }
+
+      /* Tables */
+      table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { background: rgba(27, 67, 50, 0.04); font-family: 'Fraunces', serif; color: var(--forest); font-weight: 600; }
+      tr:last-child td { border-bottom: none; }
+
+      /* Mermaid container */
+      .diagram-wrap {
+        background: #fff; border: 1px solid var(--line); border-radius: 8px;
+        padding: 18px; margin: 16px 0; overflow-x: auto;
+      }
+      .diagram-caption { font-size: 0.83rem; color: var(--muted); text-align: center; margin-top: 8px; font-style: italic; }
+      .mermaid { display: flex; justify-content: center; min-height: 80px; }
+
+      /* Clickable component reveal */
+      .click-target { cursor: pointer; }
+      .reveal {
+        display: none;
+        background: #fffaf3;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--burnt);
+        border-radius: 6px;
+        padding: 12px 14px; margin: 8px 0;
+        font-size: 0.92rem;
+      }
+      .reveal.open { display: block; }
+      .reveal h5 { margin: 0 0 6px; color: var(--burnt); font-family: 'Fraunces', serif; }
+
+      /* MVP status pill */
+      .pill { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 8px; font-weight: 600; letter-spacing: 0.02em; }
+      .pill-keep { background: #d6e6da; color: var(--forest); }
+      .pill-trim { background: #fde2c8; color: #8a3a14; }
+      .pill-cut { background: #f5d0c5; color: #6b1f0f; }
+      .pill-defer { background: #e5e0d2; color: #5a513a; }
+
+      /* Tabs (for trade-off comparisons) */
+      .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 14px 0 0; }
+      .tabs button {
+        background: transparent; border: none; padding: 8px 14px;
+        cursor: pointer; font-family: inherit; font-size: 0.9rem;
+        color: var(--muted); border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+      }
+      .tabs button.active { color: var(--forest); border-bottom-color: var(--burnt); font-weight: 600; }
+      .tab-panel { display: none; padding: 14px 0; }
+      .tab-panel.active { display: block; }
+
+      /* Footer */
+      footer { padding: 22px 38px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); background: #fff; }
+
+      /* Responsive */
+      @media (max-width: 880px) {
+        aside.sidenav {
+          position: fixed; top: 64px; left: 0; bottom: 0;
+          transform: translateX(-100%);
+          z-index: 40; box-shadow: 4px 0 16px rgba(0,0,0,0.1);
+        }
+        aside.sidenav.open { transform: translateX(0); }
+        main.content { padding: 22px 18px 80px; }
+        h1 { font-size: 1.7rem; }
+        h2 { font-size: 1.35rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <h1 class="topbar-title">Solon — System Architecture</h1>
+      <span class="topbar-subtitle">v0.1 · MVP plan</span>
+    </header>
+
+    <div class="shell">
+      <aside class="sidenav" id="sidenav">
+        <h5>Orientation</h5>
+        <ul>
+          <li><a href="#start-here" class="navlink">Start here</a></li>
+          <li><a href="#big-picture" class="navlink">The big picture</a></li>
+          <li><a href="#principles" class="navlink">Design principles</a></li>
+        </ul>
+        <h5>Architecture</h5>
+        <ul>
+          <li><a href="#topology" class="navlink">System topology</a></li>
+          <li><a href="#data-model" class="navlink">Data model</a></li>
+          <li><a href="#auth" class="navlink">Auth &amp; identity</a></li>
+          <li><a href="#offline" class="navlink">Offline &amp; sync</a></li>
+          <li><a href="#realtime" class="navlink">Real-time &amp; jobs</a></li>
+          <li><a href="#audit" class="navlink">Audit &amp; compliance</a></li>
+        </ul>
+        <h5>Modules</h5>
+        <ul>
+          <li><a href="#m0" class="navlink">M0 · Simulator <span class="badge badge-keep">keep</span></a></li>
+          <li><a href="#m1" class="navlink">M1 · Voter data <span class="badge badge-trim">trim</span></a></li>
+          <li><a href="#m2" class="navlink">M2 · Agents <span class="badge badge-trim">trim</span></a></li>
+          <li><a href="#m3" class="navlink">M3 · Finance <span class="badge badge-trim">trim</span></a></li>
+          <li><a href="#m4" class="navlink">M4 · War Room <span class="badge badge-trim">trim</span></a></li>
+        </ul>
+        <h5>Operations</h5>
+        <ul>
+          <li><a href="#deploy" class="navlink">Deploy on Render</a></li>
+          <li><a href="#scale-plan" class="navlink">Scale plan</a></li>
+          <li><a href="#cuts" class="navlink">Scope cuts &amp; defers</a></li>
+          <li><a href="#roadmap" class="navlink">Roadmap</a></li>
+          <li><a href="#glossary" class="navlink">Glossary</a></li>
+        </ul>
+      </aside>
+
+      <main class="content">
+        <section class="intro" id="start-here">
+          <h2>Start here</h2>
+          <p>
+            This document is the canonical map of how <strong>Solon</strong> — a political intelligence &amp; campaign
+            platform for Nigeria — is going to be built. It pairs the product spec in
+            <code>docs/product/mvp.md</code> with concrete engineering choices: components, data flow, what we keep,
+            what we trim, and why.
+          </p>
+          <p>
+            <strong>Audience:</strong> you (the founder/lead engineer) and any engineer joining the project. Click any
+            accordion to expand. Click any diagram component label to see its rationale. Use the side nav to jump.
+          </p>
+          <p style="margin: 0">
+            <span class="pill pill-keep">keep</span> ship in MVP
+            <span class="pill pill-trim">trim</span> ship a slimmer version
+            <span class="pill pill-defer">defer</span> v2 or later
+            <span class="pill pill-cut">cut</span> remove from MVP entirely
+          </p>
+        </section>
+
+        <!-- BIG PICTURE -->
+        <section class="block" id="big-picture">
+          <h2>The big picture</h2>
+          <p>
+            Solon is a <strong>modular monolith</strong> with a handful of background workers and a public edge.
+            Five product modules share one backend, one database, one job queue, one object store. We do not split
+            services until a real reason forces the split.
+          </p>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+flowchart LR
+  classDef user fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef edge fill:#C7522A,stroke:#8a3a14,color:#fff;
+  classDef app fill:#2D5A3D,stroke:#1B4332,color:#F5EFE0;
+  classDef data fill:#1B4332,stroke:#0d2519,color:#F5EFE0;
+  classDef ext fill:#fff,stroke:#1B4332,color:#1B4332,stroke-dasharray:4 3;
+
+  CAND([Candidate / CM<br/>web]):::user
+  AGENT([Agent<br/>mobile web]):::user
+  CITIZEN([Citizen Reporter<br/>public]):::user
+  ASP([Aspirant / Strategist<br/>simulator]):::user
+
+  EDGE[Cloudflare<br/>edge + R2]:::edge
+
+  API[Solon API<br/>Express monolith]:::app
+  WORK[Workers<br/>OCR · STT · Sim · Risk]:::app
+
+  PG[(Postgres + PostGIS<br/>+ pgvector)]:::data
+  REDIS[(Redis<br/>queue + cache + pubsub)]:::data
+  R2[(R2 / object store<br/>receipts · EC8A · audio)]:::data
+
+  LLM[LLM provider<br/>OpenAI / Anthropic]:::ext
+  SMS[Termii / Africa's Talking<br/>SMS + OTP]:::ext
+  SANC[Sanctions / PEP<br/>feed]:::ext
+
+  CAND --> EDGE
+  AGENT --> EDGE
+  CITIZEN --> EDGE
+  ASP --> EDGE
+  EDGE --> API
+  API --> PG
+  API --> REDIS
+  API --> R2
+  API --> WORK
+  WORK --> PG
+  WORK --> R2
+  WORK --> LLM
+  API --> SMS
+  WORK --> SANC
+            </div>
+            <div class="diagram-caption">Logical system overview — one app, one DB, workers for heavy lifts.</div>
+          </div>
+
+          <div class="callout why">
+            <strong>Why a modular monolith?</strong> Microservices add latency, deploy complexity, and a
+            cross-service type-safety tax for zero benefit at MVP scale. Five product modules sharing one Postgres
+            with proper schemas costs you nothing today and lets you split <em>later</em> exactly where the seams
+            actually appear. The cost of premature splitting (today's <code>data-layer</code>) is real; the cost
+            of deferring the split is near zero if you keep clean module boundaries.
+          </div>
+        </section>
+
+        <!-- PRINCIPLES -->
+        <section class="block" id="principles">
+          <h2>Design principles</h2>
+          <div class="grid">
+            <div class="card">
+              <h4>1. Boring tech, audit-first</h4>
+              <p>Postgres, Express, Redis, an object store. Every write is an append to an <code>audit_log</code> row. NDPR compliance is a feature.</p>
+            </div>
+            <div class="card">
+              <h4>2. Module per directory, one DB</h4>
+              <p>Each MVP module lives at <code>src/modules/&lt;name&gt;</code>. Schemas are namespaced (<code>sim.*</code>, <code>voter.*</code>, <code>fin.*</code>). Splitting later means moving a directory + a schema.</p>
+            </div>
+            <div class="card">
+              <h4>3. Idempotency on every write</h4>
+              <p>2G/3G + offline queueing means duplicate submissions are <em>normal</em>. Every state-changing endpoint accepts <code>Idempotency-Key</code> and dedupes server-side.</p>
+            </div>
+            <div class="card">
+              <h4>4. Workers do the slow stuff</h4>
+              <p>OCR, STT, scenario simulation, donor screening, weekly digests — all queue jobs. The HTTP path stays under 200ms.</p>
+            </div>
+            <div class="card">
+              <h4>5. Buy ML, build the model</h4>
+              <p>Whisper for STT. GPT-4o vision for EC8A OCR. Termii for SMS. ComplyAdvantage for PEP. The <em>political model</em> in Module 0 is the only ML we own.</p>
+            </div>
+            <div class="card">
+              <h4>6. Citizen path is rate-limited at the edge</h4>
+              <p>Public Citizen Reporter traffic terminates at Cloudflare with rate limits + trust scoring before reaching origin. Origin never sees abusive traffic.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- TOPOLOGY -->
+        <section class="block" id="topology">
+          <h2>System topology</h2>
+          <p>The runtime split is intentionally minimal. Three deployable units: the API, the workers, and the edge.</p>
+
+          <details class="acc" open>
+            <summary>Logical components &amp; what each owns</summary>
+            <div class="body">
+              <div class="diagram-wrap">
+                <div class="mermaid">
+flowchart TB
+  classDef web fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef app fill:#2D5A3D,stroke:#1B4332,color:#F5EFE0;
+  classDef worker fill:#C7522A,stroke:#8a3a14,color:#fff;
+  classDef data fill:#1B4332,stroke:#0d2519,color:#F5EFE0;
+
+  subgraph CLIENTS["Clients (existing apps)"]
+    SW[solon-web<br/>candidates · CMs · simulator]:::web
+    SAW[solon-admin-web<br/>platform ops]:::web
+    SWEB[solon-website<br/>marketing + public WR]:::web
+    PWA[agent / citizen PWA<br/>offline-first]:::web
+  end
+
+  subgraph EDGE_LAYER["Cloudflare (edge)"]
+    CF[Workers<br/>rate-limit + trust score]:::worker
+    R2[(R2 object store)]:::data
+  end
+
+  subgraph ORIGIN["Render (origin)"]
+    API[main-backend<br/>Express modular monolith]:::app
+    WORKERS[workers process<br/>BullMQ consumers]:::worker
+    PG[(Postgres<br/>+ PostGIS + pgvector)]:::data
+    REDIS[(Redis<br/>queue · cache · pubsub)]:::data
+  end
+
+  CLIENTS --> CF
+  CF --> API
+  CF --> R2
+  API --> PG
+  API --> REDIS
+  API --> R2
+  API -- enqueue --> REDIS
+  REDIS -- jobs --> WORKERS
+  WORKERS --> PG
+  WORKERS --> R2
+  API -- SSE --> CLIENTS
+                </div>
+                <div class="diagram-caption">Three deploy units — edge, API, workers. One DB. One Redis.</div>
+              </div>
+
+              <h4>Component responsibilities</h4>
+              <table>
+                <thead><tr><th>Component</th><th>Owns</th><th>Click for details</th></tr></thead>
+                <tbody>
+                  <tr><td><code>main-backend</code></td><td>HTTP API, request validation, authz, module routes, SSE fan-out</td><td><button class="click-target btn-reveal" data-target="rv-api">why one API</button></td></tr>
+                  <tr><td><code>workers</code></td><td>OCR, STT, simulation runs, weekly digests, PEP screening, audit rollups</td><td><button class="click-target btn-reveal" data-target="rv-workers">why a separate process</button></td></tr>
+                  <tr><td><code>Postgres</code></td><td>All persistent state. PostGIS for polling unit geo. pgvector for issue embeddings.</td><td><button class="click-target btn-reveal" data-target="rv-pg">why one DB</button></td></tr>
+                  <tr><td><code>Redis</code></td><td>BullMQ queue, hot cache, pub/sub for live war-room SSE.</td><td><button class="click-target btn-reveal" data-target="rv-redis">why Redis</button></td></tr>
+                  <tr><td><code>R2 / object store</code></td><td>EC8A photos, receipts, voice notes, exported PDFs.</td><td><button class="click-target btn-reveal" data-target="rv-r2">why R2</button></td></tr>
+                  <tr><td><code>Cloudflare Workers</code></td><td>Public edge: TLS, rate limiting, geo block, image auth pre-check, presigned R2 uploads.</td><td><button class="click-target btn-reveal" data-target="rv-cf">why an edge tier</button></td></tr>
+                </tbody>
+              </table>
+
+              <div class="reveal" id="rv-api">
+                <h5>Why one API process</h5>
+                Five product modules at MVP scale fit comfortably in one Node process. Module boundaries are
+                enforced by directory structure and DB schemas, not network calls. If the Simulator's load profile
+                ever diverges hard from War Room's, you split <em>then</em> — moving a folder and rotating a secret.
+              </div>
+              <div class="reveal" id="rv-workers">
+                <h5>Why a separate workers process</h5>
+                OCR, STT, and simulation runs take seconds-to-minutes. Running them in the HTTP process would
+                exhaust the event loop, blow your p99, and crash on a single bad image. A separate process with its
+                own scaling lever (Render worker service) is non-negotiable.
+              </div>
+              <div class="reveal" id="rv-pg">
+                <h5>Why one Postgres</h5>
+                Cross-module joins are real: finance needs to know which campaign, which constituency; war room
+                needs polling-unit history from voter-data; the simulator needs every cycle's results. Splitting
+                DBs means rebuilding those joins as HTTP calls. PostGIS handles geo, pgvector handles embeddings,
+                JSONB handles AI extraction blobs — all in one engine.
+              </div>
+              <div class="reveal" id="rv-redis">
+                <h5>Why Redis</h5>
+                BullMQ (queue) + simple cache + pub/sub for SSE fan-out, all in one box. Render hosts it. We are
+                not introducing Kafka/NATS for an MVP — Redis pub/sub is enough for the war-room subscriber count
+                we'll see in 2027 cycles.
+              </div>
+              <div class="reveal" id="rv-r2">
+                <h5>Why R2 / object store</h5>
+                EC8A images can be megabytes; one polling unit can generate dozens of submissions; receipts pile
+                up. We never put binary blobs in Postgres. R2's free egress beats S3 hard for a Nigeria-served
+                app — though if you'd rather keep everything on Render, Render's persistent disks + an S3-compatible
+                add-on works for v1.
+              </div>
+              <div class="reveal" id="rv-cf">
+                <h5>Why an edge tier</h5>
+                Citizen Reporter is publicly accessible (<code>mvp.md</code> §4 line 247). That's an abuse magnet.
+                Cloudflare's free tier gives you DDoS protection, rate limiting per IP/phone, and the option of
+                running cheap trust-scoring at the edge before traffic reaches Render. Render alone doesn't have
+                this. <em>If</em> we drop Cloudflare we accept higher exposure to junk traffic on election day.
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Request lifecycle (the path of one HTTP call)</summary>
+            <div class="body">
+              <div class="diagram-wrap">
+                <div class="mermaid">
+sequenceDiagram
+  autonumber
+  participant U as User browser
+  participant CF as Cloudflare
+  participant API as Express
+  participant PG as Postgres
+  participant Q as Redis queue
+  participant W as Worker
+
+  U->>CF: POST /api/v1/agents/submissions (photo)
+  CF->>CF: rate limit + WAF + trust score
+  CF->>API: forward + add x-trust-score header
+  API->>API: authn (JWT) + authz (role)
+  API->>API: validate (zod)
+  API->>R2: stash photo (presigned)
+  API->>PG: BEGIN; insert submission(status=pending); audit_log; COMMIT
+  API->>Q: enqueue ocr.extract_ec8a
+  API-->>U: 202 Accepted { submission_id }
+  Q->>W: pull job
+  W->>R2: fetch photo
+  W->>LLM: vision call (OCR)
+  W->>PG: BEGIN; update submission(status=extracted, data=...); audit_log; COMMIT
+  W->>Q: enqueue reconciliation.match
+  W->>API: pub/sub: war_room.update
+  API-->>U: SSE event { submission_id, status: extracted }
+                </div>
+                <div class="diagram-caption">202-first pattern: HTTP returns fast, workers do the slow lift, SSE pushes the result back.</div>
+              </div>
+              <div class="callout why">
+                <strong>Why 202-first?</strong> Agent on a 2G connection cannot wait 8 seconds for an LLM call.
+                We acknowledge the submission, queue the work, push the result over SSE when the worker
+                finishes. This same pattern is reused for every module: simulator runs, donor screening,
+                voice note transcription, weekly digests.
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <!-- DATA MODEL -->
+        <section class="block" id="data-model">
+          <h2>Data model</h2>
+          <p>One Postgres, schemas per module, plus three cross-cutting schemas (<code>iam</code>, <code>audit</code>, <code>geo</code>).</p>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+erDiagram
+  iam_users ||--o{ iam_memberships : "belongs to"
+  iam_campaigns ||--o{ iam_memberships : "has"
+  iam_campaigns ||--o{ voter_constituencies : "targets"
+  geo_states ||--o{ geo_lgas : "contains"
+  geo_lgas ||--o{ geo_wards : "contains"
+  geo_wards ||--o{ geo_polling_units : "contains"
+  geo_polling_units ||--o{ voter_pu_results : "has"
+  voter_constituencies ||--o{ voter_clusters : "segmented into"
+  iam_campaigns ||--o{ sim_scenarios : "saves"
+  sim_scenarios ||--o{ sim_runs : "executes"
+  iam_campaigns ||--o{ agent_agents : "recruits"
+  agent_agents ||--o{ wr_submissions : "submits"
+  geo_polling_units ||--o{ wr_submissions : "for"
+  iam_campaigns ||--o{ fin_expenses : "logs"
+  iam_campaigns ||--o{ fin_donors : "receives from"
+  fin_donors ||--o{ fin_donations : "gives"
+  audit_log }o--|| iam_users : "actor"
+
+  iam_users {
+    uuid id PK
+    text phone
+    text email
+    text role
+    timestamptz created_at
+  }
+  iam_campaigns {
+    uuid id PK
+    text office
+    text constituency_id FK
+    uuid owner_user_id FK
+  }
+  geo_polling_units {
+    text code PK
+    text ward_id FK
+    geography(point) location
+    int registered
+  }
+  wr_submissions {
+    uuid id PK
+    text pu_code FK
+    text source
+    text status
+    jsonb extracted
+    text idempotency_key
+  }
+            </div>
+            <div class="diagram-caption">Core ER — abbreviated. Schemas are namespaced (<code>iam.*</code>, <code>geo.*</code>, <code>voter.*</code>, <code>sim.*</code>, <code>agent.*</code>, <code>wr.*</code>, <code>fin.*</code>, <code>audit.*</code>).</div>
+          </div>
+
+          <details class="acc">
+            <summary>Schema-by-schema breakdown</summary>
+            <div class="body">
+              <table>
+                <thead><tr><th>Schema</th><th>Owns</th><th>Key tables</th></tr></thead>
+                <tbody>
+                  <tr><td><code>iam</code></td><td>Identity, campaigns, memberships, roles</td><td><code>users</code>, <code>campaigns</code>, <code>memberships</code>, <code>otp_attempts</code>, <code>sessions</code></td></tr>
+                  <tr><td><code>geo</code></td><td>Reference geography. Loaded once from INEC + boundary data.</td><td><code>states</code>, <code>lgas</code>, <code>wards</code>, <code>polling_units</code> (PostGIS point + ward boundary polygon)</td></tr>
+                  <tr><td><code>voter</code></td><td>Historical results, win-probability scores, clusters, issue salience</td><td><code>pu_results</code>, <code>pu_scores</code>, <code>constituencies</code>, <code>clusters</code>, <code>issues</code> (with pgvector embedding)</td></tr>
+                  <tr><td><code>sim</code></td><td>Simulator scenarios, runs, baseline projections</td><td><code>races</code>, <code>scenarios</code>, <code>runs</code>, <code>candidate_profiles</code>, <code>shocks</code></td></tr>
+                  <tr><td><code>agent</code></td><td>Agent roster, training, verification, tasks</td><td><code>agents</code>, <code>verifications</code>, <code>training_attempts</code>, <code>tasks</code></td></tr>
+                  <tr><td><code>wr</code></td><td>War-room submissions, incidents, reconciliations</td><td><code>submissions</code>, <code>incidents</code>, <code>reconciliations</code>, <code>public_war_rooms</code></td></tr>
+                  <tr><td><code>fin</code></td><td>Expenses, donors, donations, compliance reports</td><td><code>expenses</code>, <code>donors</code>, <code>donations</code>, <code>risk_screens</code>, <code>statutory_caps</code></td></tr>
+                  <tr><td><code>audit</code></td><td>Append-only NDPR audit log</td><td><code>events</code> (actor, action, target, before/after JSONB)</td></tr>
+                </tbody>
+              </table>
+              <div class="callout why">
+                <strong>Why namespaced schemas instead of separate DBs?</strong> Same physical DB, but the schema
+                boundary forces every cross-module read to be deliberate. If you later split a service out, the
+                migration is mechanical — copy the schema. No global table soup.
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Tenancy: campaigns never see each other's data</summary>
+            <div class="body">
+              <p>Every campaign-scoped row carries a <code>campaign_id</code>. A request-scoped guard reads the user's
+                membership and refuses any query without a matching <code>campaign_id</code> filter. Implementation:
+                a per-request Postgres <code>SET LOCAL app.current_campaign = ...</code> and a small repo helper
+                that injects the filter into every query.</p>
+              <p>We are <em>not</em> using Postgres Row-Level Security in v1. Why: operational cost (every connection
+                pooler config, every migration, every test) outweighs the marginal safety over app-layer enforcement
+                when you have a single API process. Revisit at v2 if a second service joins the trust zone.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- AUTH -->
+        <section class="block" id="auth">
+          <h2>Auth &amp; identity</h2>
+          <p>Five distinct identity flows with very different trust levels. Don't conflate them.</p>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+flowchart LR
+  classDef low fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef mid fill:#fde2c8,stroke:#8a3a14,color:#8a3a14;
+  classDef high fill:#C7522A,stroke:#8a3a14,color:#fff;
+  classDef crit fill:#1B4332,stroke:#0d2519,color:#F5EFE0;
+
+  CIT[Citizen Reporter<br/>phone OTP only]:::low
+  ASP[Aspirant / Strategist<br/>phone + email + OTP]:::low
+  AGT[Agent<br/>phone OTP + selfie + geotag]:::mid
+  CM[Campaign Manager<br/>invited + email + 2FA]:::mid
+  CAND[Candidate<br/>full KYC: NIN or INEC receipt]:::high
+  FO[Finance Officer<br/>invited + 2FA + scoped role]:::mid
+  ADMIN[Platform Admin<br/>2FA + IP allowlist + audit]:::crit
+
+  CIT --> Submit[/submit to public endpoints/]
+  ASP --> Sim[/run simulator/]
+  AGT --> Agent[/submit EC8A · incidents/]
+  CM --> Manage[/manage campaign/]
+  CAND --> Upgrade[/upgrade to Candidate account/]
+  FO --> Money[/log money/]
+  ADMIN --> Ops[/platform ops · suspend accounts/]
+            </div>
+            <div class="diagram-caption">Five identity tiers — different verification, different scopes.</div>
+          </div>
+
+          <details class="acc">
+            <summary>Why JWT + refresh, not sessions</summary>
+            <div class="body">
+              <p>The agent and citizen flows are mobile-first on flaky networks. A bearer token in localStorage (web)
+                or secure storage (PWA) survives reconnects better than a cookie session. Refresh tokens rotate.
+                Access tokens are short (15m) and contain only <code>{user_id, role, memberships[]}</code>; the
+                authz layer re-checks on every request against the membership table — so revoking access doesn't
+                require token blacklists.</p>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>OTP throttling — the abuse vector you'll forget</summary>
+            <div class="body">
+              <p>SMS costs money and OTP endpoints are the #1 way bad actors burn your runway. Hard caps in
+                <code>iam.otp_attempts</code>: 3 attempts per phone per 15 minutes, 10 per phone per day, 200 per
+                IP per hour. Cloudflare adds a global rate limit on top. Every blocked attempt is logged to
+                <code>audit.events</code>.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- OFFLINE -->
+        <section class="block" id="offline">
+          <h2>Offline &amp; sync (Modules 2 + 4)</h2>
+          <p>2G/3G submission queueing is a hard MVP requirement (<code>mvp.md</code> line 280). The protocol:</p>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+sequenceDiagram
+  participant App as Agent PWA
+  participant SW as Service Worker
+  participant API as Solon API
+  participant PG as Postgres
+
+  Note over App,SW: User photographs EC8A while offline
+  App->>SW: store submission in IndexedDB<br/>+ generate idempotency_key (uuid)
+  Note over SW: Network returns
+  SW->>API: POST /submissions w/ Idempotency-Key header
+  alt First time seeing key
+    API->>PG: INSERT submission(idempotency_key, ...) ON CONFLICT DO NOTHING
+    PG-->>API: inserted
+    API-->>SW: 202 { id, status: pending }
+  else Key already exists
+    API->>PG: SELECT by idempotency_key
+    PG-->>API: existing row
+    API-->>SW: 202 { id, status: <current> }  // idempotent replay
+  end
+  SW->>App: mark queued submission as synced
+            </div>
+            <div class="diagram-caption">Idempotent submission protocol — duplicates from retries collapse server-side.</div>
+          </div>
+
+          <div class="callout why">
+            <strong>Why client-generated idempotency keys?</strong> The client has the only stable identity for a
+            submission across retries. If the server generated IDs, a retried request would create duplicates. The
+            client generates a UUID v4 once when the submission is captured, stores it in IndexedDB next to the
+            payload, and sends it on every retry. The DB has a unique index on <code>(idempotency_key, campaign_id)</code>.
+          </div>
+        </section>
+
+        <!-- REALTIME -->
+        <section class="block" id="realtime">
+          <h2>Real-time &amp; background jobs</h2>
+          <p>The war room (Module 4) and the simulator (Module 0) need different real-time models.</p>
+
+          <div class="grid">
+            <div class="card">
+              <h4>War Room: SSE + Redis pub/sub</h4>
+              <p>Every CM connected to <code>GET /war-room/:id/stream</code> opens a Server-Sent Events connection.
+                Workers publish updates to a Redis channel. The API subscribes and fans out. <em>Why SSE not WebSocket:</em>
+                one-way push is enough for war-room data; SSE auto-reconnects; works through every proxy.</p>
+            </div>
+            <div class="card">
+              <h4>Simulator: BullMQ + polling</h4>
+              <p>Scenario runs take 1–10s. Submit returns <code>202 { runId }</code>. Client polls <code>GET /runs/:id</code>
+                every 1s, or — if already on a war-room SSE channel — receives push. <em>Why a queue at all:</em>
+                isolates the model from HTTP, lets us run scenarios on different worker instances later.</p>
+            </div>
+            <div class="card">
+              <h4>Weekly digests &amp; anomalies</h4>
+              <p>BullMQ <code>repeatable</code> jobs. Issue salience weekly. Donor anomaly weekly. PEP screening
+                on-write + nightly re-screen. All log to <code>audit.events</code>.</p>
+            </div>
+          </div>
+
+          <details class="acc">
+            <summary>Job catalogue (every background task in MVP)</summary>
+            <div class="body">
+              <table>
+                <thead><tr><th>Queue</th><th>Trigger</th><th>SLA</th></tr></thead>
+                <tbody>
+                  <tr><td><code>ocr.extract_ec8a</code></td><td>on submission insert</td><td>p95 &lt; 15s</td></tr>
+                  <tr><td><code>ocr.extract_receipt</code></td><td>on expense insert</td><td>p95 &lt; 10s</td></tr>
+                  <tr><td><code>stt.transcribe_voice</code></td><td>on voice note insert</td><td>p95 &lt; 20s</td></tr>
+                  <tr><td><code>sim.run_scenario</code></td><td>POST /sim/runs</td><td>p95 &lt; 10s</td></tr>
+                  <tr><td><code>fin.screen_donor</code></td><td>on donor insert</td><td>p95 &lt; 5s</td></tr>
+                  <tr><td><code>fin.anomaly_weekly</code></td><td>cron Sun 02:00 WAT</td><td>completes &lt; 5min</td></tr>
+                  <tr><td><code>voter.digest_weekly</code></td><td>cron Mon 06:00 WAT</td><td>completes &lt; 10min</td></tr>
+                  <tr><td><code>wr.reconcile</code></td><td>on submission extracted</td><td>p95 &lt; 2s</td></tr>
+                  <tr><td><code>audit.rollup_daily</code></td><td>cron 01:00 WAT</td><td>completes &lt; 5min</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </section>
+
+        <!-- AUDIT -->
+        <section class="block" id="audit">
+          <h2>Audit &amp; compliance (NDPR)</h2>
+          <p><code>mvp.md</code> §cross-cutting line 282 mandates audit of every data access and admin action. This is not optional and not retrofittable.</p>
+
+          <details class="acc" open>
+            <summary>How we log every meaningful event</summary>
+            <div class="body">
+              <p>Two layers:</p>
+              <ol>
+                <li><strong>Application-level:</strong> a thin <code>audit()</code> helper called from every mutating
+                  service method. Writes one row to <code>audit.events</code> in the same transaction as the business
+                  write. If the audit insert fails, the business write rolls back. This is the only way to guarantee
+                  no "silent" mutation.</li>
+                <li><strong>DB-level safety net:</strong> Postgres trigger on sensitive tables (<code>iam.users</code>,
+                  <code>fin.donations</code>, <code>fin.expenses</code>, <code>wr.submissions</code>) writes a
+                  before/after JSONB delta to <code>audit.events</code>. Belt-and-braces — catches anything the
+                  application layer forgets.</li>
+              </ol>
+              <p>Reads of voter data also log: every <code>SELECT</code> against <code>voter.*</code> goes through a
+                repo helper that records <code>(user_id, query_shape, row_count, requested_at)</code>. Performance
+                cost is one append per query — acceptable.</p>
+              <div class="callout why">
+                <strong>Why both layers?</strong> The app layer gives you semantic context ("user X approved
+                donation Y"). The DB trigger gives you tamper-proofing — you cannot mutate a row through
+                <code>psql</code> without leaving a trace. NDPR auditors will ask for the latter.
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Data export &amp; deletion (line 283)</summary>
+            <div class="body">
+              <p>Per-campaign export: a worker assembles every row touching that <code>campaign_id</code> into a
+                signed ZIP in R2, emails the campaign owner a 7-day link. Deletion: 30-day grace window after
+                request; rows are soft-deleted with <code>deleted_at</code>, then hard-purged by a nightly worker,
+                except <code>audit.events</code> which is retained for the statutory minimum (default 7 years).</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- MODULE 0 -->
+        <section class="block" id="m0">
+          <h2>Module 0 — Election Simulator <span class="pill pill-keep">keep full</span></h2>
+          <p>This is your flagship and entry product. <strong>Do not trim it.</strong> It's also the lowest data-risk
+            module — no voter PII, no money — which means we ship it first and use it to fund the rest.</p>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+flowchart LR
+  classDef in fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef proc fill:#2D5A3D,stroke:#1B4332,color:#F5EFE0;
+  classDef out fill:#C7522A,stroke:#8a3a14,color:#fff;
+
+  U[Aspirant / Strategist]:::in
+  NL[NL scenario prompt]:::in
+  STRUCT[Structured scenario form]:::in
+
+  COPILOT[LLM Copilot<br/>parse NL → JSON inputs]:::proc
+  GUARD[Ethical guard<br/>blocks suppression scenarios]:::proc
+  SIM[Simulation engine<br/>baseline + levers + shocks]:::proc
+
+  REP[Vote-share bars · PU map · crosstabs]:::out
+  PDF[Branded PDF export]:::out
+  AUDIT[audit.events row]:::out
+
+  U --> NL --> COPILOT --> GUARD --> STRUCT
+  U --> STRUCT --> GUARD --> SIM --> REP
+  SIM --> PDF
+  GUARD --> AUDIT
+  SIM --> AUDIT
+            </div>
+            <div class="diagram-caption">Module 0 flow — NL or structured input, ethical guard, sim engine, exports.</div>
+          </div>
+
+          <details class="acc" open>
+            <summary>What "simulation engine" actually is</summary>
+            <div class="body">
+              <p>For v1 keep it deliberately simple — a ridge regression / gradient-boosted model trained on
+                2015/2019/2023 INEC results + demographic data per polling unit, predicting per-party vote share.
+                Levers (turnout, defection, withdrawal) apply as multiplicative adjustments with learned coefficients.
+                Issue shocks apply as additive deltas with a decay function.</p>
+              <p>This lives in a Python <code>workers/sim</code> sub-process called by BullMQ, not in Node. Reason:
+                pandas/scikit/numpy are non-negotiable for this kind of model and rewriting them in TS is foolish.
+                The Node worker shells out to Python via a tiny HTTP server on localhost or a child-process IPC.</p>
+              <div class="callout why">
+                <strong>Why not a fancier model?</strong> Because the value is in <em>explainability</em>: top-5
+                drivers per projection, written rationale, confidence band. A simple model whose features you can
+                cite beats a deep net you can't. v2 can add ensembles and Bayesian intervals — v1 needs to be
+                defensible in print.
+              </div>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>The NL Copilot — RAG over your own model, not the web</summary>
+            <div class="body">
+              <p>The copilot doesn't answer freeform political questions. It does two things:</p>
+              <ol>
+                <li><strong>Parse:</strong> map natural-language scenarios to structured inputs (<code>{candidates, levers, shocks}</code>) using a tool-calling LLM. Failures fall back to "I couldn't parse that — please use the form".</li>
+                <li><strong>Explain:</strong> given a run's outputs + top features, generate a one-paragraph rationale. Inputs to the LLM are the model's actual numbers, not the user's prose — grounded explanation, no hallucinated facts.</li>
+              </ol>
+              <p>"Why did LP get a 6-point bump?" routes to the second prompt with the run's feature importances
+                attached. The LLM has no internet access, no other data — just the run's JSON.</p>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>Ethical guardrails — what we actually block</summary>
+            <div class="body">
+              <p>A small classifier (regex + zero-shot LLM check) on every scenario input. Blocks:</p>
+              <ul>
+                <li>Negative turnout adjustments targeted at named demographics in opposition strongholds.</li>
+                <li>"How do I depress …" / "how do I suppress …" NL prompts.</li>
+                <li>Scenarios that request individual voter targeting (we don't have the data anyway, but we log the attempt).</li>
+              </ul>
+              <p>Every block writes to <code>audit.events</code> with the raw prompt. Repeat offenders get the
+                account flagged for admin review.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- MODULE 1 -->
+        <section class="block" id="m1">
+          <h2>Module 1 — Voter Data &amp; Segmentation <span class="pill pill-trim">trim</span></h2>
+          <p>The most data-heavy module. Trim ruthlessly inside it, keep the headline features.</p>
+
+          <div class="callout warn">
+            <strong>MVP trims for Module 1:</strong>
+            <ul style="margin: 6px 0 0">
+              <li><span class="pill pill-keep">keep</span> PU map with historical results (2015/2019/2023), win-probability tier, top-3 drivers, segmentation clusters, CSV export.</li>
+              <li><span class="pill pill-trim">trim</span> Message generation: <strong>English + Pidgin only in v1</strong>. Hausa/Yoruba/Igbo defer to v1.1. Rationale: each language needs prompt-engineering + a small eval set we can't build in MVP timeframe for all five.</li>
+              <li><span class="pill pill-trim">trim</span> Issue salience: <strong>X + Nairaland only</strong>. Defer radio call-in transcripts and public WhatsApp scraping — both require ingestion infra we don't have.</li>
+              <li><span class="pill pill-cut">cut</span> 👍/👎 rating loop that "improves future generations". Keep the rating UI, but feed it into a manual review queue, not an online learning loop. ML loop is v2.</li>
+            </ul>
+          </div>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+flowchart TB
+  classDef src fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef proc fill:#2D5A3D,stroke:#1B4332,color:#F5EFE0;
+  classDef store fill:#1B4332,stroke:#0d2519,color:#F5EFE0;
+
+  INEC[INEC results 2015 · 2019 · 2023]:::src
+  CEN[Census / demographic data]:::src
+  XAPI[X API · Nairaland scraper]:::src
+
+  ETL[ETL · weekly cron]:::proc
+  CLUSTER[K-means / topic model<br/>per constituency]:::proc
+  EMB[pgvector embeddings<br/>for issue text]:::proc
+
+  PG[(voter.* schema)]:::store
+
+  INEC --> ETL --> PG
+  CEN --> ETL
+  XAPI --> EMB --> PG
+  PG --> CLUSTER --> PG
+            </div>
+            <div class="diagram-caption">Module 1 — periodic ETL into the voter schema, on-demand clustering, embeddings for issue search.</div>
+          </div>
+        </section>
+
+        <!-- MODULE 2 -->
+        <section class="block" id="m2">
+          <h2>Module 2 — Agent &amp; Volunteer Coordination <span class="pill pill-trim">trim</span></h2>
+
+          <div class="callout warn">
+            <strong>MVP trims for Module 2:</strong>
+            <ul style="margin: 6px 0 0">
+              <li><span class="pill pill-keep">keep</span> Agent roster CSV upload, WhatsApp/SMS invite, 3-step verification, agent coverage map, EC8A photo capture with AI extraction + flagging.</li>
+              <li><span class="pill pill-trim">trim</span> Training modules: <strong>1 video + 1 quiz per role</strong>, not 5-10 per role. Quiz cut-off at 70%.</li>
+              <li><span class="pill pill-trim">trim</span> Voice incident reporting: <strong>English + Pidgin transcription only</strong> in v1 (Whisper handles both well). Hausa/Yoruba/Igbo via Whisper-large in v1.1.</li>
+              <li><span class="pill pill-cut">cut</span> Task dispatch system with accept/decline. Replace with a simpler shared task list (Coordinator marks done). Real dispatch is v2.</li>
+              <li><span class="pill pill-cut">cut</span> Self-reported "working data plan" check. Just-noise.</li>
+            </ul>
+          </div>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+sequenceDiagram
+  participant Agent as Agent PWA
+  participant CF as Cloudflare
+  participant API
+  participant R2
+  participant W as Worker
+  participant CM as CM browser
+
+  Agent->>CF: POST /submissions (multipart)<br/>idempotency_key + photo
+  CF->>API: forward
+  API->>R2: stash photo (presigned)
+  API->>PG: insert submission(pending)
+  API-->>Agent: 202
+  API->>Q: enqueue ocr.extract_ec8a
+  W->>R2: fetch
+  W->>LLM: vision OCR
+  W->>PG: update submission(extracted)
+  W->>PG: insert flags (totals mismatch, etc.)
+  W->>Redis: publish wr.update
+  Redis-->>API: fan-out
+  API-->>CM: SSE event
+  CM->>API: GET /submissions/:id (review)
+  CM->>API: PATCH /submissions/:id (verified)
+            </div>
+          </div>
+        </section>
+
+        <!-- MODULE 3 -->
+        <section class="block" id="m3">
+          <h2>Module 3 — Finance &amp; Compliance <span class="pill pill-trim">trim</span></h2>
+
+          <div class="callout warn">
+            <strong>MVP trims for Module 3:</strong>
+            <ul style="margin: 6px 0 0">
+              <li><span class="pill pill-keep">keep</span> Receipt OCR, expense category tagging, statutory cap dashboard, donor risk screening, anomaly weekly report, draft INEC PDF.</li>
+              <li><span class="pill pill-trim">trim</span> PEP/sanctions: <strong>start with a single provider (ComplyAdvantage or Sayari)</strong>. Don't build a multi-feed aggregator.</li>
+              <li><span class="pill pill-cut">cut</span> Anomaly category "coordinators whose claimed expenses diverge from peers" — needs more peer data than we'll have in MVP. Keep the other three anomaly types.</li>
+              <li><span class="pill pill-cut">cut</span> Multi-currency. NGN only in v1.</li>
+            </ul>
+          </div>
+
+          <div class="callout why">
+            <strong>Why finance gets its own sub-section here:</strong> it's the only module with strict transactional
+            guarantees. Every expense / donation insert is in a transaction with an <code>audit.events</code> insert
+            and a statutory-cap check trigger. We <em>never</em> "fix it in application code later" for money.
+          </div>
+        </section>
+
+        <!-- MODULE 4 -->
+        <section class="block" id="m4">
+          <h2>Module 4 — Election Day War Room <span class="pill pill-trim">trim</span></h2>
+          <p>The hardest engineering in the MVP. <strong>Take this seriously even if you cut features elsewhere.</strong></p>
+
+          <div class="callout warn">
+            <strong>MVP trims for Module 4:</strong>
+            <ul style="margin: 6px 0 0">
+              <li><span class="pill pill-keep">keep</span> Live constituency map, vote tally, incident feed, AI anomaly flags, drill-into-PU, snapshot PDF, citizen reporter mode, public war-room toggle.</li>
+              <li><span class="pill pill-trim">trim</span> AI War Room copilot: <strong>3 canned question types in v1</strong> ("which LGAs underperform model?", "severity-5 last hour", "projected final margin?"). Don't let users freeform-query at MVP — too much room for grounded-answer failure.</li>
+              <li><span class="pill pill-trim">trim</span> Trust scoring for citizen submissions: <strong>4 signals in v1</strong> (phone history, geotag plausibility, image dup-detect, corroboration count). Skip image authenticity (deepfake detection) — too new, too noisy.</li>
+              <li><span class="pill pill-cut">cut</span> USSD access. SMS/web only in v1. USSD partner integrations take 6-12 weeks of telco approval.</li>
+            </ul>
+          </div>
+
+          <div class="diagram-wrap">
+            <div class="mermaid">
+flowchart LR
+  classDef agent fill:#fde2c8,stroke:#8a3a14,color:#8a3a14;
+  classDef citizen fill:#F5EFE0,stroke:#1B4332,color:#1B4332;
+  classDef trust fill:#C7522A,stroke:#8a3a14,color:#fff;
+  classDef wr fill:#2D5A3D,stroke:#1B4332,color:#F5EFE0;
+
+  AGT[Agent submission]:::agent
+  CIT[Citizen submission]:::citizen
+
+  TS[Trust scorer<br/>4 signals]:::trust
+  RECON[Reconciler<br/>auto-confirm on 2+ match]:::wr
+
+  WR[(wr.submissions)]:::wr
+  PUB[Public war room<br/>opt-in mode]:::wr
+  INT[Internal war room<br/>CM dashboard]:::wr
+
+  AGT --> WR
+  CIT --> TS --> WR
+  WR --> RECON --> WR
+  WR --> INT
+  WR -. opt-in toggle .-> PUB
+            </div>
+            <div class="diagram-caption">Module 4 — both sources land in <code>wr.submissions</code>, reconciler auto-confirms matches, opt-in public projection.</div>
+          </div>
+
+          <details class="acc">
+            <summary>The election-day load curve</summary>
+            <div class="body">
+              <p>Nigeria has ~176k polling units. Realistic MVP target: support a single Senate / gubernatorial race
+                with ~2k-5k polling units of interest. Even at 10x submission redundancy that's 20k-50k inbound
+                events in a 4-6 hour window — roughly 2-3 writes/sec sustained, with bursts of 20-50/sec.</p>
+              <p>One Render Standard instance + Postgres + a 2-worker pool handles this easily. The constraint is
+                not throughput, it's the LLM rate limit on OCR — solve via batch queueing and a vendor with high
+                concurrent limits (OpenAI Tier 4, Anthropic prod tier).</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- DEPLOY -->
+        <section class="block" id="deploy">
+          <h2>Deploy on Render</h2>
+          <p>You picked Render/Railway. Here's the concrete Render layout (Railway maps 1:1).</p>
+
+          <table>
+            <thead><tr><th>Render service</th><th>Type</th><th>Plan (start)</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td><code>solon-api</code></td><td>Web Service (Node)</td><td>Standard ($25/mo)</td><td>Auto-scales 1 → 3. Health check on <code>/healthz</code>.</td></tr>
+              <tr><td><code>solon-workers</code></td><td>Background Worker</td><td>Standard ($25/mo)</td><td>Runs BullMQ consumers. Scale independently from API.</td></tr>
+              <tr><td><code>solon-sim</code></td><td>Background Worker (Python)</td><td>Starter ($7/mo)</td><td>Python sim engine. Only spun up when sim jobs hit the queue.</td></tr>
+              <tr><td><code>solon-pg</code></td><td>Postgres</td><td>Standard ($20/mo)</td><td>Enable PostGIS + pgvector extensions on first migration.</td></tr>
+              <tr><td><code>solon-redis</code></td><td>Key Value (Redis)</td><td>Starter ($10/mo)</td><td>Queue + cache + pub/sub.</td></tr>
+              <tr><td><code>solon-web</code></td><td>Static Site</td><td>Free</td><td>Vite build.</td></tr>
+              <tr><td><code>solon-admin-web</code></td><td>Static Site</td><td>Free</td><td>Vite build.</td></tr>
+              <tr><td><code>solon-website</code></td><td>Web Service (Node)</td><td>Starter ($7/mo)</td><td>Next.js. Free tier sleeps — pay $7 to keep warm.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="callout why">
+            <strong>Total starting cost: ~$94/month of infra</strong>, before Cloudflare ($0 on free tier), R2 (~$0.015/GB),
+            LLM usage, and SMS. Plan for $300-500/month all-in for a small MVP load — most of that is LLM + SMS.
+          </div>
+
+          <details class="acc">
+            <summary>What about object storage on Render?</summary>
+            <div class="body">
+              <p>Render doesn't offer S3-compatible object storage. Two options:</p>
+              <ol>
+                <li><strong>Cloudflare R2</strong> (recommended) — free egress, S3-compatible API, $0.015/GB-month storage. Set up presigned uploads from the API; agents/citizens upload direct to R2, never proxy through your API. Saves bandwidth and CPU.</li>
+                <li><strong>Backblaze B2</strong> — also S3-compatible, slightly cheaper storage, ~$0.01/GB egress (vs R2's free). Fine fallback.</li>
+              </ol>
+              <p>Do not use Render persistent disks for user uploads. They don't autoscale and the pricing model is bad.</p>
+            </div>
+          </details>
+
+          <details class="acc">
+            <summary>CI/CD shape</summary>
+            <div class="body">
+              <p>GitHub Actions → on push to main, Render auto-deploys the service whose path was touched (Render
+                supports per-service path filters). Migrations run on deploy via a pre-deploy script. Add a single
+                end-to-end smoke test that hits <code>/healthz</code> + one simulator run on every deploy.</p>
+            </div>
+          </details>
+        </section>
+
+        <!-- SCALE -->
+        <section class="block" id="scale-plan">
+          <h2>Scale plan — three thresholds</h2>
+          <div class="grid">
+            <div class="card">
+              <h4>Tier 1 — MVP (now → first paying campaign)</h4>
+              <p>1 API instance, 1 worker, 1 Postgres, 1 Redis. ~100 users, &lt;5 campaigns. ~$100/mo infra.</p>
+              <p class="meta">Action: nothing. Watch p95 latency and queue depth.</p>
+            </div>
+            <div class="card">
+              <h4>Tier 2 — First election cycle (10-50 campaigns)</h4>
+              <p>2-3 API instances, 2-4 workers, Postgres Pro plan, Redis Pro. ~$400-800/mo infra.</p>
+              <p class="meta">Action: add read replicas for the war-room dashboard reads. Add Cloudflare cache rules for static reads.</p>
+            </div>
+            <div class="card">
+              <h4>Tier 3 — National coverage (100+ campaigns, multi-state war rooms)</h4>
+              <p>Split workers by queue. Split <code>data-layer</code> back out — this time with a real reason. Consider Postgres logical replication for analytics. Move OCR to Anthropic + OpenAI in parallel for rate-limit resilience.</p>
+              <p class="meta">Action: re-architect. This is a happy problem to have.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CUTS -->
+        <section class="block" id="cuts">
+          <h2>Scope cuts &amp; defers (master list)</h2>
+          <p>Every item you can drop, in one place. Use this for stand-up conversations.</p>
+          <table>
+            <thead><tr><th>Item</th><th>Module</th><th>Status</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>Hausa / Yoruba / Igbo message generation</td><td>M1</td><td><span class="pill pill-trim">trim</span></td><td>English + Pidgin only in v1. Add languages with vetted prompt sets in v1.1.</td></tr>
+              <tr><td>Radio call-in + WhatsApp issue ingestion</td><td>M1</td><td><span class="pill pill-trim">trim</span></td><td>X + Nairaland only. Other ingestion is its own infra project.</td></tr>
+              <tr><td>Online-learning rating feedback loop</td><td>M1</td><td><span class="pill pill-cut">cut</span></td><td>Keep UI. Feed into manual review queue, not model.</td></tr>
+              <tr><td>5-10 training videos per role</td><td>M2</td><td><span class="pill pill-trim">trim</span></td><td>1 per role. Content production is the bottleneck, not engineering.</td></tr>
+              <tr><td>Hausa/Yoruba/Igbo voice transcription</td><td>M2</td><td><span class="pill pill-trim">trim</span></td><td>Whisper handles English + Pidgin reliably; others need prompt tuning we don't have.</td></tr>
+              <tr><td>Task accept/decline dispatch</td><td>M2</td><td><span class="pill pill-cut">cut</span></td><td>Simple shared list with coordinator-marks-done. Real dispatch is v2.</td></tr>
+              <tr><td>Self-reported data-plan check</td><td>M2</td><td><span class="pill pill-cut">cut</span></td><td>Noise. The 3-step verification already gates readiness.</td></tr>
+              <tr><td>Multi-currency finance</td><td>M3</td><td><span class="pill pill-cut">cut</span></td><td>NGN only. Add USD/GBP if a customer pays for it.</td></tr>
+              <tr><td>Peer-divergence anomaly detection</td><td>M3</td><td><span class="pill pill-cut">cut</span></td><td>Not enough peer data in MVP to be meaningful.</td></tr>
+              <tr><td>Freeform AI war-room copilot</td><td>M4</td><td><span class="pill pill-trim">trim</span></td><td>3 canned questions in v1. Freeform with grounding in v2.</td></tr>
+              <tr><td>USSD citizen reporter access</td><td>M4</td><td><span class="pill pill-cut">cut</span></td><td>Telco partner approval is 6-12 weeks. SMS/web only.</td></tr>
+              <tr><td>Image authenticity / deepfake detection</td><td>M4</td><td><span class="pill pill-trim">trim</span></td><td>Use the other 4 trust signals; revisit when detection vendors mature.</td></tr>
+              <tr><td><code>apps/data-layer</code> as a separate service</td><td>—</td><td><span class="pill pill-cut">cut</span></td><td>Collapse into <code>@solon/data</code> package. Re-split at Tier 3 scale.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- ROADMAP -->
+        <section class="block" id="roadmap">
+          <h2>Roadmap — order of operations</h2>
+          <div class="diagram-wrap">
+            <div class="mermaid">
+gantt
+  title Solon MVP build order (illustrative)
+  dateFormat YYYY-MM-DD
+  axisFormat %b
+  section Foundations
+  Collapse data-layer + Postgres + migrations :a1, 2026-05-15, 14d
+  Auth (OTP + sessions + roles) :a2, after a1, 14d
+  Object store + presigned uploads :a3, after a1, 7d
+  BullMQ + workers + audit log :a4, after a2, 10d
+  section Module 0 (Simulator)
+  ETL + voter schema + race seed :b1, after a3, 14d
+  Python sim engine + scenario API :b2, after b1, 21d
+  NL Copilot + ethical guard :b3, after b2, 14d
+  M0 PDF export + share :b4, after b3, 7d
+  section Module 1 (Voter Data)
+  PU map + win-prob + clusters :c1, after b2, 21d
+  Message gen (EN + Pidgin) :c2, after c1, 14d
+  Issue salience (X + Nairaland) :c3, after c1, 21d
+  section Module 2 (Agents)
+  Agent roster + 3-step verify :d1, after a4, 14d
+  EC8A OCR pipeline :d2, after d1, 14d
+  Voice incident (EN/Pidgin) :d3, after d2, 10d
+  section Module 3 (Finance)
+  Expense + receipt OCR :e1, after d2, 14d
+  Donor + PEP screening :e2, after e1, 14d
+  Compliance dashboard + INEC PDF :e3, after e2, 10d
+  section Module 4 (War Room)
+  Reconciler + SSE :f1, after d3, 14d
+  Citizen reporter (web/SMS) :f2, after f1, 14d
+  Public war-room toggle :f3, after f2, 7d
+  Election-day dry run :f4, after f3, 14d
+            </div>
+            <div class="diagram-caption">Order of operations — Module 0 ships first as the revenue product, M1-4 layer on.</div>
+          </div>
+
+          <div class="callout why">
+            <strong>Why Module 0 first?</strong> It's the lowest-risk, highest-funnel product. Aspirants pay before
+            they're declared candidates. Strategists/journalists/consultancies are a broader buyer base than
+            campaigns. Shipping M0 standalone funds the build of M1-4 and de-risks the model.
+          </div>
+        </section>
+
+        <!-- GLOSSARY -->
+        <section class="block" id="glossary">
+          <h2>Glossary</h2>
+          <table>
+            <tbody>
+              <tr><td><strong>BVAS</strong></td><td>Bimodal Voter Accreditation System — INEC's biometric accreditation device.</td></tr>
+              <tr><td><strong>Form EC8A</strong></td><td>Official polling-unit-level result sheet signed by agents on election day.</td></tr>
+              <tr><td><strong>IReV</strong></td><td>INEC Result Viewing portal — public upload of EC8A photos.</td></tr>
+              <tr><td><strong>NIN</strong></td><td>National Identification Number.</td></tr>
+              <tr><td><strong>NDPR</strong></td><td>Nigeria Data Protection Regulation — Solon's regulatory baseline.</td></tr>
+              <tr><td><strong>PEP</strong></td><td>Politically Exposed Person — sanctions/risk screening category.</td></tr>
+              <tr><td><strong>PU</strong></td><td>Polling Unit — smallest electoral geography (~750 voters).</td></tr>
+              <tr><td><strong>LGA</strong></td><td>Local Government Area — Nigeria's second-level admin unit.</td></tr>
+              <tr><td><strong>SSE</strong></td><td>Server-Sent Events — one-way HTTP push from server to client.</td></tr>
+              <tr><td><strong>BullMQ</strong></td><td>Redis-backed job queue for Node.</td></tr>
+              <tr><td><strong>PostGIS</strong></td><td>Postgres extension for geospatial data.</td></tr>
+              <tr><td><strong>pgvector</strong></td><td>Postgres extension for vector similarity search (for issue embeddings).</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      Solon architecture — v0.1 · paired with <a href="product/mvp.md">docs/product/mvp.md</a>.
+      Update this doc when an architectural decision changes.
+    </footer>
+
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        themeVariables: {
+          primaryColor: '#F5EFE0',
+          primaryTextColor: '#1B4332',
+          primaryBorderColor: '#1B4332',
+          lineColor: '#2D5A3D',
+          secondaryColor: '#2D5A3D',
+          tertiaryColor: '#fffefb',
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '13px',
+        },
+        flowchart: { curve: 'basis', padding: 14 },
+        sequence: { actorMargin: 60, messageMargin: 36 },
+        gantt: { fontSize: 12, sectionFontSize: 13 },
+      });
+
+      // Hamburger toggle
+      const hamburger = document.getElementById('hamburger');
+      const sidenav = document.getElementById('sidenav');
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        sidenav.classList.toggle('open');
+      });
+
+      // Active section highlighting on scroll
+      const navlinks = Array.from(document.querySelectorAll('.navlink'));
+      const sections = navlinks
+        .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+        .filter(Boolean);
+
+      const setActive = (id) => {
+        navlinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          if (visible[0]) setActive(visible[0].target.id);
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.25, 0.5, 1] },
+      );
+      sections.forEach((s) => observer.observe(s));
+
+      // Close mobile nav on link click
+      navlinks.forEach((a) =>
+        a.addEventListener('click', () => {
+          if (window.innerWidth <= 880) {
+            sidenav.classList.remove('open');
+            hamburger.classList.remove('open');
+          }
+        }),
+      );
+
+      // Click-to-reveal
+      document.querySelectorAll('.btn-reveal').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          document.querySelectorAll('.reveal.open').forEach((el) => {
+            if (el !== target) el.classList.remove('open');
+          });
+          target.classList.toggle('open');
+          if (target.classList.contains('open')) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
