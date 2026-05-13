@@ -1,9 +1,9 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # compiled output
 dist
 tmp
 out-tsc
+build
+.next
 
 # dependencies
 node_modules
@@ -51,3 +51,11 @@ test-output
 .claude/settings.local.json
 .nx/polygraph
 .nx/self-healing
+
+# env
+.env
+.env.*
+!.env.example
+
+# tsbuildinfo
+*.tsbuildinfo
