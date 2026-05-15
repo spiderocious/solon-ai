@@ -1,0 +1,667 @@
+[
+  {
+    "key": "simulator.baseline",
+    "label": "Simulator: Baseline Projections",
+    "editable": true,
+    "data": {
+      "bello_share": 29.0,
+      "opposition_share": 32.0,
+      "undecided_share": 24.0,
+      "turnout_rate": 38.5,
+      "swing_states": ["Kano", "Rivers", "Oyo", "Borno", "Delta"],
+      "candidates": [
+        {
+          "id": "bello_afp",
+          "name": "Emeka Adeyemi Bello",
+          "party": "AFP",
+          "party_colour": "#1D4ED8",
+          "share": 29.0,
+          "margin_of_error": 4.0,
+          "confidence": "Medium"
+        },
+        {
+          "id": "apc_incumbent",
+          "name": "Incumbent (APC)",
+          "party": "APC",
+          "party_colour": "#16A34A",
+          "share": 32.0,
+          "margin_of_error": 3.0,
+          "confidence": "High"
+        },
+        {
+          "id": "pdp_candidate",
+          "name": "Candidate TBA (PDP)",
+          "party": "PDP",
+          "party_colour": "#DC2626",
+          "share": 26.0,
+          "margin_of_error": 5.0,
+          "confidence": "Low"
+        },
+        {
+          "id": "lp_obi",
+          "name": "Peter Obi (LP)",
+          "party": "LP",
+          "party_colour": "#B45309",
+          "share": 10.0,
+          "margin_of_error": 3.0,
+          "confidence": "Medium"
+        },
+        {
+          "id": "others",
+          "name": "Others",
+          "party": "Others",
+          "party_colour": "#6B7280",
+          "share": 3.0,
+          "margin_of_error": 2.0,
+          "confidence": "Low"
+        }
+      ],
+      "top_variables": [
+        { "rank": 1, "name": "Incumbent advantage (APC)", "impact": "−3.8pts for challengers", "direction": "negative" },
+        { "rank": 2, "name": "South-West sentiment shift", "impact": "+2.1pts AFP in Lagos/Ogun", "direction": "positive" },
+        { "rank": 3, "name": "Youth turnout trajectory", "impact": "±3.5pts if 18-35 turnout swings", "direction": "neutral" },
+        { "rank": 4, "name": "Ethnic bloc alignment", "impact": "North-East APC lock costing AFP 1.4pts", "direction": "negative" },
+        { "rank": 5, "name": "Economic shock exposure", "impact": "+4.2pts to challengers if naira falls 30%+", "direction": "positive" }
+      ]
+    }
+  },
+  {
+    "key": "simulator.saved_scenarios",
+    "label": "Simulator: Saved Scenarios",
+    "editable": false,
+    "data": [
+      {
+        "id": "sc_001",
+        "name": "NLC Endorsement + Kano Flip",
+        "created_at": "2026-04-12",
+        "summary": { "bello_share": 36.1, "apc_share": 28.4, "pdp_share": 24.7, "lp_share": 8.9 }
+      },
+      {
+        "id": "sc_002",
+        "name": "Fuel Subsidy Restored",
+        "created_at": "2026-04-18",
+        "summary": { "bello_share": 32.2, "apc_share": 30.1, "pdp_share": 25.3, "lp_share": 9.6 }
+      },
+      {
+        "id": "sc_003",
+        "name": "Opposition Merger (APC+PDP)",
+        "created_at": "2026-05-01",
+        "summary": { "bello_share": 22.8, "apc_share": 54.6, "pdp_share": 0.0, "lp_share": 11.2 }
+      },
+      {
+        "id": "sc_004",
+        "name": "Economic Crisis Scenario",
+        "created_at": "2026-05-10",
+        "summary": { "bello_share": 36.1, "apc_share": 25.0, "pdp_share": 27.4, "lp_share": 8.9 }
+      }
+    ]
+  },
+  {
+    "key": "voter_intelligence.constituency_map",
+    "label": "Voter Intelligence: Constituency Map Data",
+    "editable": false,
+    "data": {
+      "states": [
+        { "name": "Abia", "zone": "South-East", "registered_voters": 1876432, "turnout_2023": 0.22, "winner_2023": "LP", "afp_tier": "Strong Opponent" },
+        { "name": "Adamawa", "zone": "North-East", "registered_voters": 2134567, "turnout_2023": 0.41, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Akwa Ibom", "zone": "South-South", "registered_voters": 2765432, "turnout_2023": 0.31, "winner_2023": "PDP", "afp_tier": "Toss-up" },
+        { "name": "Anambra", "zone": "South-East", "registered_voters": 2321098, "turnout_2023": 0.17, "winner_2023": "LP", "afp_tier": "Strong Opponent" },
+        { "name": "Bauchi", "zone": "North-East", "registered_voters": 2876543, "turnout_2023": 0.45, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Bayelsa", "zone": "South-South", "registered_voters": 987654, "turnout_2023": 0.28, "winner_2023": "PDP", "afp_tier": "Lean Opponent" },
+        { "name": "Benue", "zone": "North-Central", "registered_voters": 2654321, "turnout_2023": 0.38, "winner_2023": "PDP", "afp_tier": "Toss-up" },
+        { "name": "Borno", "zone": "North-East", "registered_voters": 2987654, "turnout_2023": 0.43, "winner_2023": "APC", "afp_tier": "Toss-up" },
+        { "name": "Cross River", "zone": "South-South", "registered_voters": 1987654, "turnout_2023": 0.33, "winner_2023": "APC", "afp_tier": "Toss-up" },
+        { "name": "Delta", "zone": "South-South", "registered_voters": 3124567, "turnout_2023": 0.35, "winner_2023": "PDP", "afp_tier": "Toss-up" },
+        { "name": "Ebonyi", "zone": "South-East", "registered_voters": 1543210, "turnout_2023": 0.24, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Edo", "zone": "South-South", "registered_voters": 2398765, "turnout_2023": 0.36, "winner_2023": "LP", "afp_tier": "Toss-up" },
+        { "name": "Ekiti", "zone": "South-West", "registered_voters": 876543, "turnout_2023": 0.42, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Enugu", "zone": "South-East", "registered_voters": 2087654, "turnout_2023": 0.19, "winner_2023": "LP", "afp_tier": "Strong Opponent" },
+        { "name": "FCT", "zone": "North-Central", "registered_voters": 1765432, "turnout_2023": 0.27, "winner_2023": "LP", "afp_tier": "Lean Hold" },
+        { "name": "Gombe", "zone": "North-East", "registered_voters": 1654321, "turnout_2023": 0.47, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Imo", "zone": "South-East", "registered_voters": 2143210, "turnout_2023": 0.26, "winner_2023": "LP", "afp_tier": "Strong Opponent" },
+        { "name": "Jigawa", "zone": "North-West", "registered_voters": 2543210, "turnout_2023": 0.52, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Kaduna", "zone": "North-West", "registered_voters": 4321098, "turnout_2023": 0.48, "winner_2023": "APC", "afp_tier": "Toss-up" },
+        { "name": "Kano", "zone": "North-West", "registered_voters": 7876543, "turnout_2023": 0.41, "winner_2023": "NNPP", "afp_tier": "Toss-up" },
+        { "name": "Katsina", "zone": "North-West", "registered_voters": 3654321, "turnout_2023": 0.46, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Kebbi", "zone": "North-West", "registered_voters": 1876543, "turnout_2023": 0.49, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Kogi", "zone": "North-Central", "registered_voters": 1987654, "turnout_2023": 0.44, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Kwara", "zone": "North-Central", "registered_voters": 1654321, "turnout_2023": 0.40, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Lagos", "zone": "South-West", "registered_voters": 8765432, "turnout_2023": 0.21, "winner_2023": "APC", "afp_tier": "Toss-up" },
+        { "name": "Nasarawa", "zone": "North-Central", "registered_voters": 1543210, "turnout_2023": 0.43, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Niger", "zone": "North-Central", "registered_voters": 2876543, "turnout_2023": 0.45, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Ogun", "zone": "South-West", "registered_voters": 2987654, "turnout_2023": 0.29, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Ondo", "zone": "South-West", "registered_voters": 1876543, "turnout_2023": 0.33, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Osun", "zone": "South-West", "registered_voters": 1765432, "turnout_2023": 0.35, "winner_2023": "APC", "afp_tier": "Lean Hold" },
+        { "name": "Oyo", "zone": "South-West", "registered_voters": 3543210, "turnout_2023": 0.32, "winner_2023": "PDP", "afp_tier": "Toss-up" },
+        { "name": "Plateau", "zone": "North-Central", "registered_voters": 2198765, "turnout_2023": 0.46, "winner_2023": "LP", "afp_tier": "Lean Hold" },
+        { "name": "Rivers", "zone": "South-South", "registered_voters": 3765432, "turnout_2023": 0.30, "winner_2023": "LP", "afp_tier": "Toss-up" },
+        { "name": "Sokoto", "zone": "North-West", "registered_voters": 1987654, "turnout_2023": 0.50, "winner_2023": "PDP", "afp_tier": "Toss-up" },
+        { "name": "Taraba", "zone": "North-East", "registered_voters": 1765432, "turnout_2023": 0.38, "winner_2023": "PDP", "afp_tier": "Lean Hold" },
+        { "name": "Yobe", "zone": "North-East", "registered_voters": 1543210, "turnout_2023": 0.44, "winner_2023": "APC", "afp_tier": "Lean Opponent" },
+        { "name": "Zamfara", "zone": "North-West", "registered_voters": 1876543, "turnout_2023": 0.48, "winner_2023": "APC", "afp_tier": "Lean Opponent" }
+      ]
+    }
+  },
+  {
+    "key": "voter_intelligence.clusters",
+    "label": "Voter Intelligence: Voter Clusters",
+    "editable": false,
+    "data": [
+      {
+        "id": "cluster_1",
+        "name": "Persuadable Urban South-West Youth",
+        "description": "Low turnout history, Lagos + Ibadan + Abeokuta concentrated",
+        "size_millions": 4.2,
+        "dominant_states": ["Lagos", "Oyo", "Ogun"],
+        "top_issues": ["Cost of living", "Unemployment", "Education quality"],
+        "recommended_channel": "Instagram/TikTok, street activations, NYSC networks",
+        "afp_reach_pct": 31
+      },
+      {
+        "id": "cluster_2",
+        "name": "Rural North-West Party-Loyal",
+        "description": "High turnout, historically APC/NNPP, mosque network influence",
+        "size_millions": 8.7,
+        "dominant_states": ["Kano", "Kaduna", "Katsina", "Zamfara"],
+        "top_issues": ["Security/banditry", "Agricultural support", "Islamic governance"],
+        "recommended_channel": "Traditional rulers, radio (Hausa), mosque announcements",
+        "afp_reach_pct": 18
+      },
+      {
+        "id": "cluster_3",
+        "name": "South-East Mobilised Opposition",
+        "description": "LP/ADC cross-voters, IPOB-influenced, historically low presidential turnout",
+        "size_millions": 3.8,
+        "dominant_states": ["Anambra", "Imo", "Abia", "Enugu"],
+        "top_issues": ["Igbo presidency", "Security (IPOB/ESN)", "Economic marginalisation"],
+        "recommended_channel": "Ohaneze networks, social media, diaspora remittance links",
+        "afp_reach_pct": 9
+      },
+      {
+        "id": "cluster_4",
+        "name": "Middle Belt Swing",
+        "description": "Security-sensitive, PDP legacy stronghold, farmer-herder conflict primary driver",
+        "size_millions": 5.1,
+        "dominant_states": ["Benue", "Plateau", "Nasarawa", "Taraba"],
+        "top_issues": ["Farmer-herder conflict", "Security", "Infrastructure"],
+        "recommended_channel": "Church networks, community radio, local chieftaincy",
+        "afp_reach_pct": 28
+      },
+      {
+        "id": "cluster_5",
+        "name": "Urban North-Central Professionals",
+        "description": "Economy-first, volatile, Abuja-based civil servants + SME owners",
+        "size_millions": 2.3,
+        "dominant_states": ["FCT", "Niger", "Kogi", "Kwara"],
+        "top_issues": ["Naira stability", "Business environment", "Public sector salaries"],
+        "recommended_channel": "LinkedIn, professional associations, business clubs",
+        "afp_reach_pct": 42
+      }
+    ]
+  },
+  {
+    "key": "voter_intelligence.message_variants",
+    "label": "Voter Intelligence: Message Variants (Fuel Subsidy)",
+    "editable": false,
+    "data": {
+      "talking_point": "Bello will restore the fuel subsidy for the poorest 40% of Nigerians",
+      "cluster_1": {
+        "cluster_name": "Persuadable Urban South-West Youth",
+        "variants": [
+          { "id": 1, "text": "Bello's plan puts ₦18,000/month back in the pockets of the 40% who need it most — not oil traders.", "disclaimer": false },
+          { "id": 2, "text": "While others talk, AFP has a number: 40% of Nigerians get direct subsidy relief from day one.", "disclaimer": false },
+          { "id": 3, "text": "The subsidy wasn't the problem. Who it went to was. Bello fixes the targeting, not the people.", "disclaimer": true },
+          { "id": 4, "text": "No more subsidy for the rich. Under AFP, fuel relief goes to those earning below ₦150k/month — automatically.", "disclaimer": false },
+          { "id": 5, "text": "Bello 2027: restore the subsidy where it belongs — the bottom 40%, verified by BVN.", "disclaimer": false }
+        ]
+      },
+      "cluster_2": {
+        "cluster_name": "Rural North-West Party-Loyal",
+        "variants": [
+          { "id": 1, "text": "Bello ya yi alkawari: tallafin mai zai koma ga talakawa 40% — ba 'yan kasuwa ba.", "disclaimer": false },
+          { "id": 2, "text": "AFP ta san ciwon talaka. Zai mayar da tallafin man fetur ga waɗanda suka cancanta.", "disclaimer": false },
+          { "id": 3, "text": "Ba siyasa ba ce — lissafi ne. Kashi 40 cikin ɗari na Najeriya za su sami tallafi kai tsaye.", "disclaimer": true },
+          { "id": 4, "text": "Bello: man fetur mai araha ga iyalai masu ƙarancin kuɗi — farawa daga rana ta farko.", "disclaimer": false },
+          { "id": 5, "text": "Tallafi ba ya tafiya zuwa manyan kamfanoni. Yana zuwa gidanku. Wannan alkawarin AFP ne.", "disclaimer": false }
+        ]
+      },
+      "cluster_3": {
+        "cluster_name": "South-East Mobilised Opposition",
+        "variants": [
+          { "id": 1, "text": "Ndi Igbo deserve a president who sees them. Bello's fuel plan puts real money back in Aba, Onitsha and Owerri markets — starting day one.", "disclaimer": false },
+          { "id": 2, "text": "40% of Nigerians left behind by the subsidy removal. Bello's plan: targeted cash relief, no brokers, no middlemen.", "disclaimer": false },
+          { "id": 3, "text": "The South-East was hardest hit by fuel prices. AFP's targeted subsidy plan starts with the states that suffered most.", "disclaimer": true },
+          { "id": 4, "text": "Market women, traders, transporters — the 40% who carry this economy deserve fuel they can afford. Bello's plan delivers.", "disclaimer": false },
+          { "id": 5, "text": "Not another empty promise. AFP has the BVN infrastructure to put subsidy relief directly in your account — not through government agents.", "disclaimer": false }
+        ]
+      },
+      "cluster_4": {
+        "cluster_name": "Middle Belt Swing",
+        "variants": [
+          { "id": 1, "text": "Farmers in Benue, Plateau and Taraba spend the most on diesel for pumps and tractors. Bello's plan caps their fuel costs in year one.", "disclaimer": false },
+          { "id": 2, "text": "The Middle Belt sacrificed most during the subsidy removal. AFP's targeted plan starts recovery here.", "disclaimer": false },
+          { "id": 3, "text": "Transport costs drove food prices up 80% in rural communities. Bello reverses that with a targeted subsidy that works.", "disclaimer": true },
+          { "id": 4, "text": "40% of Nigerians. That's every farmer, teacher, and trader who earns below ₦150k. AFP's subsidy plan covers them all.", "disclaimer": false },
+          { "id": 5, "text": "When the subsidy was removed, your transport costs doubled. Under AFP, Bello brings targeted relief — verified, direct, no leakage.", "disclaimer": false }
+        ]
+      },
+      "cluster_5": {
+        "cluster_name": "Urban North-Central Professionals",
+        "variants": [
+          { "id": 1, "text": "Smart policy, not populism: AFP's targeted subsidy reaches the bottom 40% via BVN — the same infrastructure we use for tax ID.", "disclaimer": false },
+          { "id": 2, "text": "Bello's fuel subsidy is means-tested, BVN-verified, and capped — a fiscal model that works without blowing the budget.", "disclaimer": false },
+          { "id": 3, "text": "The old subsidy was a leaking pipe. Bello installs a smart valve — 40% of Nigerians get relief, not oil companies.", "disclaimer": true },
+          { "id": 4, "text": "For Abuja professionals who know the numbers: AFP's subsidy plan is ₦1.2tn targeted vs ₦4.7tn blanket. That's the difference.", "disclaimer": false },
+          { "id": 5, "text": "Evidence-based governance. AFP's subsidy plan is modelled on Brazil's Bolsa Família — adapted for Nigeria's BVN infrastructure.", "disclaimer": false }
+        ]
+      }
+    }
+  },
+  {
+    "key": "voter_intelligence.issue_monitor",
+    "label": "Voter Intelligence: Issue Monitor",
+    "editable": false,
+    "data": {
+      "week": "May 12–18, 2026",
+      "top_issues": [
+        {
+          "rank": 1,
+          "name": "Fuel price increase",
+          "trend": "rising",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 84320,
+          "quotes": [
+            "This pump price is killing us o, I can't afford to run my keke anymore",
+            "Government promised relief and now price goes up again — chai"
+          ],
+          "source_breakdown": { "twitter_x_pct": 67, "nairaland_pct": 33 },
+          "suggested_response": "Acknowledge pain, cite AFP's targeted subsidy plan, contrast with incumbents' track record"
+        },
+        {
+          "rank": 2,
+          "name": "Naira depreciation",
+          "trend": "rising",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 71240,
+          "quotes": [
+            "Dollar is now ₦1,800 in the black market. How will small businesses survive?",
+            "FX policy is a mess. When Okonjo-Iweala left we lost our way"
+          ],
+          "source_breakdown": { "twitter_x_pct": 72, "nairaland_pct": 28 },
+          "suggested_response": "Lead with economic competence narrative, Bello's economic advisory team credentials"
+        },
+        {
+          "rank": 3,
+          "name": "Insecurity (North-West banditry)",
+          "trend": "steady",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 53180,
+          "quotes": [
+            "Three more farmers killed in Zamfara this week. Nothing from Abuja.",
+            "State governors are on their own because FG has abandoned the North"
+          ],
+          "source_breakdown": { "twitter_x_pct": 55, "nairaland_pct": 45 },
+          "suggested_response": "Bello's security compact — community policing + military coordination framework"
+        },
+        {
+          "rank": 4,
+          "name": "Electricity tariff hike",
+          "trend": "rising",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 42760,
+          "quotes": [
+            "NERC just approved another tariff increase while supply is still 4hrs/day. Madness.",
+            "My business spends more on diesel than salaries. This cannot continue"
+          ],
+          "source_breakdown": { "twitter_x_pct": 63, "nairaland_pct": 37 },
+          "suggested_response": "Power sector privatisation reform plan, solar micro-grid rollout commitment"
+        },
+        {
+          "rank": 5,
+          "name": "ASUU vs university closures",
+          "trend": "falling",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 31450,
+          "quotes": [
+            "My son has been out of school 6 months. This government doesn't care about education.",
+            "ASUU strike is always the same story — they agree, nothing happens, strike again"
+          ],
+          "source_breakdown": { "twitter_x_pct": 60, "nairaland_pct": 40 },
+          "suggested_response": "Education compact — ASUU salary arrears clearance in first 90 days, binding IPPIS fix"
+        },
+        {
+          "rank": 6,
+          "name": "Unemployment (youth)",
+          "trend": "steady",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 28930,
+          "quotes": [
+            "NYSC certificate but no job for 3 years. What is the government doing?",
+            "My degree is useless. I'm driving Bolt now just to survive"
+          ],
+          "source_breakdown": { "twitter_x_pct": 70, "nairaland_pct": 30 },
+          "suggested_response": "1 million jobs compact — tech hubs, agri-processing, infrastructure labour pipeline"
+        },
+        {
+          "rank": 7,
+          "name": "Flood displacement (South-South)",
+          "trend": "steady",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 19870,
+          "quotes": [
+            "My farm is underwater for the third year in a row. Where is NEMA?",
+            "Lagos and Abuja get attention. Delta and Bayelsa drown every year and nobody cares"
+          ],
+          "source_breakdown": { "twitter_x_pct": 48, "nairaland_pct": 52 },
+          "suggested_response": "Climate adaptation infrastructure fund, South-South coastal protection commitment"
+        },
+        {
+          "rank": 8,
+          "name": "Healthcare (maternity mortality)",
+          "trend": "steady",
+          "sentiment_toward_govt": "negative",
+          "mentions_this_week": 15340,
+          "quotes": [
+            "My cousin died in labour because there was no blood in the bank. In 2026.",
+            "Primary healthcare in the North is collapsing. This is a humanitarian crisis."
+          ],
+          "source_breakdown": { "twitter_x_pct": 54, "nairaland_pct": 46 },
+          "suggested_response": "300 primary healthcare centres in first year, maternal health emergency fund"
+        },
+        {
+          "rank": 9,
+          "name": "2027 election security fears",
+          "trend": "rising",
+          "sentiment_toward_govt": "mixed",
+          "mentions_this_week": 12870,
+          "quotes": [
+            "INEC must be independent. We cannot have 2023 repeat.",
+            "The thugs are already being recruited in some states, I hear"
+          ],
+          "source_breakdown": { "twitter_x_pct": 74, "nairaland_pct": 26 },
+          "suggested_response": "AFP electoral integrity pledge — INEC support, BVAS defence, parallel vote tabulation"
+        },
+        {
+          "rank": 10,
+          "name": "Tinubu 2027 second-term speculation",
+          "trend": "rising",
+          "sentiment_toward_govt": "mixed",
+          "mentions_this_week": 11240,
+          "quotes": [
+            "Is he really running again? After all this suffering?",
+            "APC will present him whether we like it or not, they control INEC"
+          ],
+          "source_breakdown": { "twitter_x_pct": 78, "nairaland_pct": 22 },
+          "suggested_response": "Contrast positioning — Bello as change vs continuity narrative"
+        }
+      ]
+    }
+  },
+  {
+    "key": "agents.readiness",
+    "label": "Agents & Field: Readiness Data",
+    "editable": true,
+    "data": {
+      "total_agents": 30,
+      "verified": 16,
+      "election_ready": 20,
+      "trained": 20,
+      "pending_verification": 8,
+      "failed_verification": 6,
+      "total_pus_covered": 1240,
+      "total_pus_nationwide": 176846,
+      "coverage_pct": 0.70,
+      "agents": [
+        { "id": "ag_001", "name": "Aminu Suleiman", "phone": "+2348012345671", "lga": "Kano Municipal", "pu": "KN001/005/001", "verified": true, "election_ready": true },
+        { "id": "ag_002", "name": "Chidinma Okafor", "phone": "+2348012345672", "lga": "Surulere", "pu": "LA001/012/003", "verified": true, "election_ready": true },
+        { "id": "ag_003", "name": "Rasheed Adeyemi", "phone": "+2348012345673", "lga": "Ibadan North", "pu": "OY001/007/002", "verified": true, "election_ready": true },
+        { "id": "ag_004", "name": "Grace Nwosu", "phone": "+2348012345674", "lga": "Port Harcourt", "pu": "RV001/003/005", "verified": true, "election_ready": true },
+        { "id": "ag_005", "name": "Musa Abubakar", "phone": "+2348012345675", "lga": "Kaduna South", "pu": "KD001/009/001", "verified": false, "election_ready": false },
+        { "id": "ag_006", "name": "Blessing Eze", "phone": "+2348012345676", "lga": "Onitsha North", "pu": "AN001/014/002", "verified": true, "election_ready": true },
+        { "id": "ag_007", "name": "Ibrahim Danbaba", "phone": "+2348012345677", "lga": "Kano Municipal", "pu": "KN001/005/007", "verified": false, "election_ready": false },
+        { "id": "ag_008", "name": "Funmi Adebayo", "phone": "+2348012345678", "lga": "Lagos Island", "pu": "LA001/002/011", "verified": true, "election_ready": true },
+        { "id": "ag_009", "name": "Chukwuemeka Ike", "phone": "+2348012345679", "lga": "Enugu North", "pu": "EN001/006/004", "verified": false, "election_ready": false },
+        { "id": "ag_010", "name": "Zainab Mohammed", "phone": "+2348012345680", "lga": "Maiduguri MC", "pu": "BO001/001/009", "verified": true, "election_ready": true },
+        { "id": "ag_011", "name": "Tunde Bakare", "phone": "+2348012345681", "lga": "Abeokuta South", "pu": "OG001/004/006", "verified": true, "election_ready": true },
+        { "id": "ag_012", "name": "Ngozi Uche", "phone": "+2348012345682", "lga": "Aba North", "pu": "AB001/002/003", "verified": false, "election_ready": false },
+        { "id": "ag_013", "name": "Yakubu Tanko", "phone": "+2348012345683", "lga": "Jos North", "pu": "PL001/003/008", "verified": true, "election_ready": true },
+        { "id": "ag_014", "name": "Adaeze Obi", "phone": "+2348012345684", "lga": "Owerri MC", "pu": "IM001/008/002", "verified": true, "election_ready": false },
+        { "id": "ag_015", "name": "Haruna Bello", "phone": "+2348012345685", "lga": "Birnin Kebbi", "pu": "KB001/001/005", "verified": false, "election_ready": false },
+        { "id": "ag_016", "name": "Stella Okonkwo", "phone": "+2348012345686", "lga": "Anambra West", "pu": "AN002/017/001", "verified": true, "election_ready": true },
+        { "id": "ag_017", "name": "Babatunde Oyelaran", "phone": "+2348012345687", "lga": "Ikeja", "pu": "LA001/006/014", "verified": true, "election_ready": true },
+        { "id": "ag_018", "name": "Fatima Garba", "phone": "+2348012345688", "lga": "Daura", "pu": "KT001/005/003", "verified": false, "election_ready": false },
+        { "id": "ag_019", "name": "Emmanuel Ogar", "phone": "+2348012345689", "lga": "Calabar MC", "pu": "CR001/002/007", "verified": true, "election_ready": true },
+        { "id": "ag_020", "name": "Hadiza Usman", "phone": "+2348012345690", "lga": "Sokoto North", "pu": "SO001/003/002", "verified": true, "election_ready": true },
+        { "id": "ag_021", "name": "Obinna Nwachukwu", "phone": "+2348012345691", "lga": "Umuahia North", "pu": "AB002/001/004", "verified": false, "election_ready": false },
+        { "id": "ag_022", "name": "Aminat Sanni", "phone": "+2348012345692", "lga": "Ilorin East", "pu": "KW001/004/006", "verified": true, "election_ready": true },
+        { "id": "ag_023", "name": "Danjuma Aliyu", "phone": "+2348012345693", "lga": "Gusau", "pu": "ZA001/002/008", "verified": false, "election_ready": false },
+        { "id": "ag_024", "name": "Nkechi Agwu", "phone": "+2348012345694", "lga": "Aba South", "pu": "AB001/003/011", "verified": true, "election_ready": true },
+        { "id": "ag_025", "name": "Salihu Ibrahim", "phone": "+2348012345695", "lga": "Katsina MC", "pu": "KT001/001/002", "verified": true, "election_ready": true },
+        { "id": "ag_026", "name": "Cynthia Okorie", "phone": "+2348012345696", "lga": "Yenagoa", "pu": "BY001/001/009", "verified": false, "election_ready": false },
+        { "id": "ag_027", "name": "Usman Dandaura", "phone": "+2348012345697", "lga": "Dutse", "pu": "JG001/001/004", "verified": true, "election_ready": true },
+        { "id": "ag_028", "name": "Joy Igwe", "phone": "+2348012345698", "lga": "Awka South", "pu": "AN001/021/006", "verified": true, "election_ready": true },
+        { "id": "ag_029", "name": "Muhammed Sambo", "phone": "+2348012345699", "lga": "Lafia", "pu": "NW001/001/007", "verified": false, "election_ready": false },
+        { "id": "ag_030", "name": "Patience Egwu", "phone": "+2348012345700", "lga": "Makurdi", "pu": "BE001/002/003", "verified": true, "election_ready": true }
+      ]
+    }
+  },
+  {
+    "key": "agents.election_day",
+    "label": "Agents: Election Day EC8A Demo",
+    "editable": false,
+    "data": {
+      "submitted_forms": [
+        {
+          "id": "ec8a_001",
+          "agent_id": "ag_001",
+          "pu_code": "KN001/005/001",
+          "pu_name": "Kano Municipal Ward 5 PU 001",
+          "submitted_at": "2027-01-16T09:42:00Z",
+          "ai_extracted": {
+            "registered_voters": 847,
+            "accredited_voters": 801,
+            "afp_votes": 312,
+            "apc_votes": 289,
+            "pdp_votes": 187,
+            "lp_votes": 59,
+            "total_valid": 861,
+            "rejected_ballots": 14,
+            "signatures_present": true
+          },
+          "flags": [
+            {
+              "field": "total_valid",
+              "message": "Votes cast (861) exceeds accredited voters (801) — review required",
+              "severity": "high"
+            }
+          ],
+          "status": "flagged",
+          "photo_url": "/assets/demo/ec8a_sample.jpg"
+        }
+      ]
+    }
+  },
+  {
+    "key": "agents.incidents",
+    "label": "Agents: Incident Reports",
+    "editable": false,
+    "data": [
+      {
+        "id": "inc_001",
+        "type": "Vote buying",
+        "severity": 4,
+        "lga": "Kano Municipal",
+        "pu": "KN001/005/001",
+        "description": "Vote buying reported — Kano Municipal, Severity 4",
+        "transcription": "I dey see dem dey share money for the back of church, about 500 naira per person, dem say make you vote for APC candidate. I record small small but e no clear. About 20 people dey collect.",
+        "recommended_action": "Dispatch INEC observer, notify police, document with timestamped evidence before confronting",
+        "status": "acknowledged",
+        "photo_attached": true,
+        "submitted_at": "2027-01-16T08:15:00Z"
+      }
+    ]
+  },
+  {
+    "key": "finance.dashboard",
+    "label": "Finance: Dashboard Summary",
+    "editable": true,
+    "data": {
+      "total_cap_naira": 5000000000,
+      "total_spent_naira": 1200000000,
+      "projected_final_naira": 4100000000,
+      "days_to_next_inec_deadline": 47,
+      "next_deadline_label": "Q2 2026 Interim Expenditure Return",
+      "spending_by_category": [
+        { "category": "Media", "amount_naira": 480000000, "sub_cap_naira": 1500000000, "pct_of_sub_cap": 32 },
+        { "category": "Transport", "amount_naira": 280000000, "sub_cap_naira": 500000000, "pct_of_sub_cap": 56 },
+        { "category": "Logistics", "amount_naira": 195000000, "sub_cap_naira": 400000000, "pct_of_sub_cap": 49 },
+        { "category": "Personnel", "amount_naira": 160000000, "sub_cap_naira": 600000000, "pct_of_sub_cap": 27 },
+        { "category": "Materials", "amount_naira": 85000000, "sub_cap_naira": 300000000, "pct_of_sub_cap": 28 }
+      ],
+      "alerts": [
+        { "type": "warning", "message": "Media spend at 32% of sub-cap with 20 months to election — at current burn rate, will breach sub-cap by Q3 2026" }
+      ]
+    }
+  },
+  {
+    "key": "finance.expenses",
+    "label": "Finance: Expense Records",
+    "editable": false,
+    "data": [
+      { "id": "exp_001", "date": "2026-05-01", "vendor": "Silverbird Media Ltd", "category": "Media", "lga": "Lagos Island", "amount_naira": 48000000, "status": "Flagged", "note": "Single invoice ₦48m — unusually high for one-time vendor" },
+      { "id": "exp_002", "date": "2026-05-03", "vendor": "TransAfrika Logistics", "category": "Transport", "lga": "Abuja MC", "amount_naira": 12500000, "status": "Approved" },
+      { "id": "exp_003", "date": "2026-05-05", "vendor": "Printmaster NG", "category": "Materials", "lga": "Kano Municipal", "amount_naira": 8700000, "status": "Approved" },
+      { "id": "exp_004", "date": "2026-05-06", "vendor": "Channels TV (spot buy)", "category": "Media", "lga": "National", "amount_naira": 22000000, "status": "Approved" },
+      { "id": "exp_005", "date": "2026-05-07", "vendor": "Green Field Hotel Abuja", "category": "Logistics", "lga": "Abuja MC", "amount_naira": 6800000, "status": "Pending" },
+      { "id": "exp_006", "date": "2026-05-08", "vendor": "NTA Network (spot buy)", "category": "Media", "lga": "National", "amount_naira": 18500000, "status": "Approved" },
+      { "id": "exp_007", "date": "2026-05-09", "vendor": "Dispatch Riders NG", "category": "Transport", "lga": "Lagos Mainland", "amount_naira": 3200000, "status": "Approved" },
+      { "id": "exp_008", "date": "2026-05-10", "vendor": "Creative Studio Ibadan", "category": "Materials", "lga": "Ibadan North", "amount_naira": 5400000, "status": "Pending" },
+      { "id": "exp_009", "date": "2026-05-11", "vendor": "Campaign Staff Payroll", "category": "Personnel", "lga": "National", "amount_naira": 32000000, "status": "Approved" },
+      { "id": "exp_010", "date": "2026-05-11", "vendor": "Kwara Events & Logistics", "category": "Logistics", "lga": "Ilorin East", "amount_naira": 9100000, "status": "Approved" },
+      { "id": "exp_011", "date": "2026-05-12", "vendor": "Radio Nigeria (Hausa Service)", "category": "Media", "lga": "National", "amount_naira": 7200000, "status": "Approved" },
+      { "id": "exp_012", "date": "2026-05-12", "vendor": "FuelExpress Ltd", "category": "Transport", "lga": "Kaduna South", "amount_naira": 4800000, "status": "Approved" },
+      { "id": "exp_013", "date": "2026-05-13", "vendor": "Social Pulse Digital Agency", "category": "Media", "lga": "Lagos Island", "amount_naira": 15300000, "status": "Approved" },
+      { "id": "exp_014", "date": "2026-05-13", "vendor": "Port Harcourt Rally Logistics", "category": "Logistics", "lga": "Port Harcourt", "amount_naira": 11200000, "status": "Pending" },
+      { "id": "exp_015", "date": "2026-05-14", "vendor": "Abuja Legal Associates", "category": "Personnel", "lga": "Abuja MC", "amount_naira": 8600000, "status": "Approved" },
+      { "id": "exp_016", "date": "2026-05-14", "vendor": "TVC Communications", "category": "Media", "lga": "National", "amount_naira": 14800000, "status": "Approved" },
+      { "id": "exp_017", "date": "2026-05-14", "vendor": "BenoBranding NG", "category": "Materials", "lga": "Enugu North", "amount_naira": 6300000, "status": "Approved" },
+      { "id": "exp_018", "date": "2026-05-15", "vendor": "Polling Data Consultants", "category": "Personnel", "lga": "National", "amount_naira": 19500000, "status": "Pending" },
+      { "id": "exp_019", "date": "2026-05-15", "vendor": "SafeRoute Security", "category": "Logistics", "lga": "Kano Municipal", "amount_naira": 7400000, "status": "Approved" },
+      { "id": "exp_020", "date": "2026-05-15", "vendor": "AFP Media Hub Lagos", "category": "Media", "lga": "Lagos Island", "amount_naira": 21600000, "status": "Approved" }
+    ]
+  },
+  {
+    "key": "finance.donors",
+    "label": "Finance: Donor Records",
+    "editable": false,
+    "data": [
+      { "id": "don_001", "name": "Alhaji Musa Tanko", "amount_naira": 50000000, "date": "2026-04-01", "risk_score": "Low", "source": "Declared business income" },
+      { "id": "don_002", "name": "ChiGroup Holdings Ltd", "amount_naira": 100000000, "date": "2026-04-05", "risk_score": "Medium", "source": "Corporate — directors partially disclosed" },
+      { "id": "don_003", "name": "Dr Stella Adekunle", "amount_naira": 25000000, "date": "2026-04-10", "risk_score": "Low", "source": "Consultant, verified FIRS record" },
+      { "id": "don_004", "name": "NorthLink Commodities Ltd", "amount_naira": 75000000, "date": "2026-04-15", "risk_score": "High", "source": "Corporate — appears on EFCC public watchlist — further verification required", "flagged": true, "flag_reason": "Donor appears on EFCC public watchlist — further verification required" },
+      { "id": "don_005", "name": "Chief Emeka Nwosu", "amount_naira": 30000000, "date": "2026-04-18", "risk_score": "Low", "source": "Real estate developer, Anambra" },
+      { "id": "don_006", "name": "AFP Lagos Diaspora Chapter", "amount_naira": 45000000, "date": "2026-04-22", "risk_score": "Low", "source": "Registered donor pool, UK/US" },
+      { "id": "don_007", "name": "Barrister Yakubu Damba", "amount_naira": 20000000, "date": "2026-04-25", "risk_score": "Low", "source": "Legal practice, Kaduna" },
+      { "id": "don_008", "name": "SunriseFarm Cooperative", "amount_naira": 15000000, "date": "2026-04-28", "risk_score": "Low", "source": "Agricultural co-op, Niger State" },
+      { "id": "don_009", "name": "Engr. Taiwo Olatunji", "amount_naira": 35000000, "date": "2026-05-02", "risk_score": "Low", "source": "Construction — federal infrastructure contractor" },
+      { "id": "don_010", "name": "Nnamdi Ventures Ltd", "amount_naira": 55000000, "date": "2026-05-05", "risk_score": "Medium", "source": "Trading company, partial KYC submitted" },
+      { "id": "don_011", "name": "AFP Women's League", "amount_naira": 12000000, "date": "2026-05-07", "risk_score": "Low", "source": "Registered party chapter fundraiser" },
+      { "id": "don_012", "name": "Hajia Khadija Musa", "amount_naira": 18000000, "date": "2026-05-09", "risk_score": "Low", "source": "Textile business, Kano" },
+      { "id": "don_013", "name": "ProServe Insurance Group", "amount_naira": 40000000, "date": "2026-05-10", "risk_score": "Medium", "source": "Insurance company, CBN licensed, directors disclosed" },
+      { "id": "don_014", "name": "Chief Biodun Afolabi", "amount_naira": 60000000, "date": "2026-05-12", "risk_score": "Low", "source": "Oil & gas — NNPC licensed trader" },
+      { "id": "don_015", "name": "Zenith Trade & Partners", "amount_naira": 80000000, "date": "2026-05-14", "risk_score": "Medium", "source": "Import/export — AML review pending" }
+    ]
+  },
+  {
+    "key": "warroom.tally",
+    "label": "War Room: Live Tally (Simulated)",
+    "editable": true,
+    "data": {
+      "election_date": "2027-01-16",
+      "pus_total": 176846,
+      "pus_reporting": 312,
+      "coverage_pct": 0.18,
+      "last_update": "2027-01-16T11:47:00Z",
+      "running_tally": [
+        { "party": "AFP", "candidate": "Emeka Adeyemi Bello", "votes": 38241, "pct": 33.0 },
+        { "party": "APC", "candidate": "Incumbent", "votes": 35912, "pct": 31.0 },
+        { "party": "PDP", "candidate": "Candidate TBA", "votes": 24318, "pct": 21.0 },
+        { "party": "LP", "candidate": "Peter Obi", "votes": 15064, "pct": 13.0 },
+        { "party": "Others", "candidate": "Various", "votes": 2893, "pct": 2.5 }
+      ],
+      "state_summary": [
+        { "state": "Kano", "pus_reporting": 47, "pus_total": 14320, "afp_pct": 27, "apc_pct": 38, "tier": "Lean Opponent" },
+        { "state": "Lagos", "pus_reporting": 38, "pus_total": 13325, "afp_pct": 41, "apc_pct": 35, "tier": "Toss-up" },
+        { "state": "Rivers", "pus_reporting": 29, "pus_total": 5321, "afp_pct": 35, "apc_pct": 24, "tier": "Lean Hold" },
+        { "state": "Kaduna", "pus_reporting": 21, "pus_total": 5987, "afp_pct": 31, "apc_pct": 42, "tier": "Lean Opponent" },
+        { "state": "Oyo", "pus_reporting": 18, "pus_total": 4891, "afp_pct": 38, "apc_pct": 28, "tier": "Lean Hold" }
+      ],
+      "incidents_last_hour": 7,
+      "severity_5_incidents": 2,
+      "anomaly_flags": 3,
+      "live_feed": [
+        { "time": "11:43", "type": "result", "message": "KN001/005/007 confirmed — AFP 47, APC 62, PDP 38" },
+        { "time": "11:45", "type": "incident", "message": "Severity 3 — BVAS slow at Surulere Ward 3 PU 008, queue building", "severity": 3 },
+        { "time": "11:46", "type": "result", "message": "LA001/006/014 confirmed — AFP 103, APC 88, PDP 41" },
+        { "time": "11:47", "type": "anomaly", "message": "⚠ 3 PUs in Kano showing results diverging >15% from model — review", "severity": 4 }
+      ]
+    }
+  },
+  {
+    "key": "warroom.reconciliation",
+    "label": "War Room: PU Reconciliation",
+    "editable": false,
+    "data": [
+      {
+        "pu_code": "KN001/005/001",
+        "pu_name": "Kano Municipal Ward 5 PU 001",
+        "agent_submission": { "afp": 312, "apc": 289, "pdp": 187, "lp": 59 },
+        "citizen_submissions": [],
+        "status": "Confirmed",
+        "reconciled_by": "auto"
+      },
+      {
+        "pu_code": "LA001/012/003",
+        "pu_name": "Surulere Ward 12 PU 003",
+        "agent_submission": { "afp": 142, "apc": 98, "pdp": 67, "lp": 44 },
+        "citizen_submissions": [
+          { "source_id": "cit_01", "afp": 120, "apc": 115, "pdp": 67, "lp": 44 }
+        ],
+        "status": "Disputed",
+        "dispute_note": "Agent says AFP 142 / APC 98; citizen says AFP 120 / APC 115 — discrepancy on AFP and APC columns",
+        "reconciled_by": null
+      },
+      {
+        "pu_code": "OY001/007/002",
+        "pu_name": "Ibadan North Ward 7 PU 002",
+        "agent_submission": { "afp": 278, "apc": 201, "pdp": 143, "lp": 88 },
+        "citizen_submissions": [
+          { "source_id": "cit_02", "afp": 278, "apc": 201, "pdp": 143, "lp": 88 }
+        ],
+        "status": "Confirmed",
+        "reconciled_by": "auto"
+      }
+    ]
+  },
+  {
+    "key": "candidate.profile",
+    "label": "Candidate Profile: Emeka Adeyemi Bello",
+    "editable": false,
+    "data": {
+      "full_name": "Emeka Adeyemi Bello",
+      "preferred_name": "Bello",
+      "party": "AFP",
+      "party_full": "Action For People",
+      "party_colour": "#1D4ED8",
+      "office": "President of the Federal Republic of Nigeria",
+      "election_year": 2027,
+      "running_mate": null,
+      "running_mate_label": "Not yet announced",
+      "campaign_manager": "Ngozi Eze",
+      "login_email": "demo@solon.ng",
+      "election_date": "2027-01-16",
+      "slogan": "A Nigeria That Works For Everyone",
+      "headshot_url": "/assets/demo/candidate_headshot.png"
+    }
+  }
+]

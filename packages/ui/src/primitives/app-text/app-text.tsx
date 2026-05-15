@@ -26,7 +26,7 @@ const VARIANT_CLASSES: Record<AppTextVariant, string> = {
   'heading-3': 'text-xl font-semibold leading-snug',
   body: 'text-base leading-relaxed',
   'body-sm': 'text-sm leading-relaxed',
-  caption: 'text-xs uppercase tracking-wide text-[#3A3B40]',
+  caption: 'font-mono text-[10.5px] uppercase tracking-[var(--track-overline)] text-[var(--ink-3)]',
 };
 
 const DEFAULT_ELEMENT: Record<AppTextVariant, ElementType> = {

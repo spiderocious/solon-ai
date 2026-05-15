@@ -1,5 +1,5 @@
 // Routing
-export { ROUTES } from './constants/routes.js';
+export { ROUTES, DEMO_ROUTES } from './constants/routes.js';
 
 // Auth / token storage
 export { createTokenStorage, TOKEN_KEYS } from './auth/token-storage.js';

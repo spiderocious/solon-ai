@@ -1,17 +1,119 @@
-/* Optional shared base styles. Apps can import this from `@solon/ui/styles.css`
-   on top of their own Tailwind layer. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400..700&display=swap');
 
 :root {
-  --solon-forest: #1b4332;
-  --solon-forest-deep: #2d5a3d;
-  --solon-cream: #f5efe0;
-  --solon-orange: #c7522a;
-  --solon-charcoal: #1f2024;
+  /* ---------- Paper & ink ---------- */
+  --paper:        #F5EFE0;
+  --paper-2:      #EFE7D2;
+  --paper-3:      #E6DCC1;
+  --sheet:        #FBF6E7;
+  --sheet-edge:   #C9BE9F;
+  --ink:          #1A1714;
+  --ink-2:        #3C362C;
+  --ink-3:        #6B6555;
+  --ink-4:        #9A937F;
+  --hair:         #C9BE9F;
+  --hair-soft:    #DBD0AE;
+  --rule:         #1A1714;
+
+  /* ---------- Forest (primary interactive accent) ---------- */
+  --forest-50:   #EAF1EC;
+  --forest-100:  #D2E0D6;
+  --forest-200:  #A8C2B0;
+  --forest-300:  #7AA386;
+  --forest-400:  #4F8460;
+  --forest-500:  #2D5A3D;
+  --forest-600:  #1B4332;
+  --forest-700:  #14342A;
+  --forest-800:  #0D2A1E;
+  --forest-900:  #061A12;
+
+  /* ---------- Burnt orange (alarm only) ---------- */
+  --orange:       #C7522A;
+  --orange-soft:  #F4DDD0;
+  --orange-edge:  #E0A892;
+  --orange-deep:  #8C3416;
+
+  /* ---------- Critical oxblood (irreversible only) ---------- */
+  --crit:         #8B1A1A;
+  --crit-bg:      #F6E1DE;
+  --crit-edge:    #D8A6A1;
+
+  /* ---------- Semantic state aliases ---------- */
+  --warn:         var(--orange);
+  --warn-bg:      var(--orange-soft);
+  --warn-edge:    var(--orange-edge);
+
+  --ok:           var(--forest-600);
+  --ok-bg:        var(--forest-50);
+  --ok-edge:      var(--forest-200);
+
+  --info:         #2E5279;
+  --info-bg:      #E2EAF3;
+  --info-edge:    #B7C7DC;
+
+  /* ---------- Win-probability tier colours ---------- */
+  --tier-hold-strong:  #14342A;
+  --tier-hold-lean:    #1B4332;
+  --tier-toss:         #C7522A;
+  --tier-opp-lean:     #6B6555;
+  --tier-opp-strong:   #1A1714;
+
+  /* ---------- Confidence band ---------- */
+  --conf-high:    var(--forest-600);
+  --conf-med:     var(--ink-3);
+  --conf-low:     var(--orange);
+
+  /* ---------- Type ---------- */
+  --serif:   'Fraunces', 'Source Serif 4', Georgia, serif;
+  --sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Letter-spacing */
+  --track-display:  -0.018em;
+  --track-h:        -0.010em;
+  --track-body:      0;
+  --track-label:     0.01em;
+  --track-overline:  0.16em;
+  --track-mono:      0.02em;
+
+  /* ---------- Geometry ---------- */
+  --r-sharp:    2px;
+  --r-card:     4px;
+  --r-soft:     6px;
+  --r-pill:     9999px;
+
+  --gutter:     24px;
+
+  /* Shadows */
+  --line-1:     0 0 0 1px var(--hair);
+  --shade-1:    0 1px 0 rgba(26,23,20,0.04);
+  --shade-pop:  0 8px 24px -8px rgba(26,23,20,0.18), 0 0 0 1px var(--hair);
+
+  /* ---------- Motion ---------- */
+  --ease:     cubic-bezier(0.2, 0.6, 0.2, 1);
+  --t-fast:   120ms;
+  --t-med:    200ms;
+  --t-slow:   320ms;
 }
 
-html,
+/* ----- Reset ----- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--solon-cream);
-  color: var(--solon-charcoal);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  letter-spacing: var(--track-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "kern", "calt";
 }
+
+/* ----- Selection & scrollbar ----- */
+::selection { background: rgba(27, 67, 50, 0.20); color: var(--ink); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--sheet-edge); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-4); }

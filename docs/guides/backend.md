@@ -1,63 +1,301 @@
 # Backend Architecture Guide
 
-> **A comprehensive guide to building production-grade Node.js/Express backends with TypeScript**
+> **Solon monorepo backend conventions — Express + TypeScript + feature-based architecture**
 >
-> This document captures the architectural patterns, conventions, and principles used in building scalable, maintainable, and performant backend systems.
+> This guide reflects the actual pattern used in `apps/main-backend` and all subsequent backend apps in this monorepo. Follow this, not generic tutorials.
 
 ---
 
-## Table of Contents
+## The pattern in one sentence
 
-1. [Project Structure](#project-structure)
-2. [Core Architectural Patterns](#core-architectural-patterns)
-3. [Folder Organization](#folder-organization)
-4. [Service Layer Architecture](#service-layer-architecture)
-5. [Request/Response Handling](#requestresponse-handling)
-6. [Error Handling Strategy](#error-handling-strategy)
-7. [Validation Patterns](#validation-patterns)
-8. [Database & Data Access](#database--data-access)
-9. [TypeScript Conventions](#typescript-conventions)
-10. [Shared Code Organization](#shared-code-organization)
-11. [Utilities & Helpers](#utilities--helpers)
-12. [Configuration Management](#configuration-management)
-13. [Middleware Stack](#middleware-stack)
-14. [Routing Conventions](#routing-conventions)
-15. [Naming Conventions](#naming-conventions)
-16. [Performance Optimization](#performance-optimization)
-17. [Security Best Practices](#security-best-practices)
-18. [Code Quality Standards](#code-quality-standards)
-19. [Real-Time Features](#real-time-features)
-20. [Quick Setup Checklist](#quick-setup-checklist)
+**Feature-based folders, not layer-based folders.** Everything about a feature lives together. No flat `controllers/`, `services/`, `models/` folders at the top level.
+
+---
+
+## Core stack choices
+
+| Concern | Choice | Why |
+|---|---|---|
+| Framework | Express 4 | Simple, well-understood, no magic |
+| Language | TypeScript (strict) | Full type safety |
+| Validation | **Zod** | One schema = validation + TypeScript types. No express-validator. |
+| Logging | **Pino** | Structured JSON, low overhead, best Railway/cloud integration. No Winston. |
+| Database | **Mongoose** (MongoDB) | Schema + type safety via `IDocument` pattern |
+| Env | **Zod-validated** env schema | Fail fast on missing env vars at startup |
+| Monorepo | Nx — tsconfig extends `../../tsconfig.base.json` | Path aliases, shared packages via `@solon/*` |
 
 ---
 
 ## Project Structure
 
+All backend apps in the monorepo follow this layout:
+
 ```
-/your-backend-project/
+apps/your-backend/
 ├── src/
-│   ├── server.ts                 # Entry point with graceful shutdown
-│   ├── app.ts                    # Express app configuration
-│   ├── controllers/              # HTTP request/response handlers
-│   ├── services/                 # Business logic layer
-│   ├── models/                   # Database schemas (Mongoose)
-│   ├── routes/                   # API route definitions
-│   ├── middlewares/              # Express middleware
-│   ├── configs/                  # Configuration files
-│   ├── requests/                 # Validation schemas
-│   ├── shared/                   # Shared types and constants
-│   │   ├── types/               # TypeScript interfaces
-│   │   └── constants/           # Application constants
-│   ├── utils/                    # Helper utilities
-│   ├── websocket/               # WebSocket server (if needed)
-│   └── migrations/              # Database migrations
-├── dist/                         # Compiled JavaScript output
-├── docs/                         # Documentation
-├── .env                          # Environment variables
-├── package.json
-├── tsconfig.json
-└── README.md
+│   ├── server.ts                 # Entry point — connects DB, starts server, graceful shutdown
+│   ├── app.ts                    # Express app — middleware stack, feature registration
+│   ├── env.ts                    # Zod-validated env schema — imported everywhere
+│   ├── features/                 # One folder per domain feature
+│   │   ├── health/
+│   │   │   └── index.ts          # register(app) — mounts routes
+│   │   ├── auth/
+│   │   │   ├── index.ts          # register(app)
+│   │   │   ├── auth.routes.ts
+│   │   │   ├── auth.handler.ts   # HTTP layer (was "controller")
+│   │   │   ├── auth.service.ts   # Business logic
+│   │   │   ├── auth.model.ts     # Mongoose schema
+│   │   │   ├── auth.schema.ts    # Zod validation schemas
+│   │   │   └── auth.types.ts     # TypeScript interfaces for this feature
+│   │   └── simulator/
+│   │       └── ...               # same pattern
+│   ├── lib/                      # Shared infrastructure — not features
+│   │   ├── db.ts                 # Mongoose connection
+│   │   ├── errors.ts             # AppError class, error codes
+│   │   ├── ids.ts                # ID generation utility
+│   │   ├── logger.ts             # Pino logger instance
+│   │   └── response.ts           # HTTP response helpers
+│   ├── middlewares/              # Express middleware (cross-cutting)
+│   │   ├── auth.middleware.ts
+│   │   ├── errorHandler.middleware.ts
+│   │   ├── requestId.middleware.ts
+│   │   └── requestLog.middleware.ts
+│   └── shared/                   # Types + constants shared across features
+│       ├── types/
+│       └── constants/
+├── tsconfig.json                 # extends ../../tsconfig.base.json
+└── project.json                  # Nx project config
 ```
+
+**Rule:** if something is only used by one feature, it lives inside that feature folder. If two features need it, it goes in `lib/` or `shared/`.
+
+---
+
+## Feature folder anatomy
+
+Each feature exports a single `register(app)` function. That's the only public interface.
+
+```typescript
+// features/leads/index.ts
+import { Express } from 'express';
+import { Router } from 'express';
+import { submitLead } from './leads.handler.js';
+import { authenticate } from '@middlewares/auth.middleware.js';
+
+export const register = (app: Express): void => {
+  const router = Router();
+  router.post('/', submitLead);
+  app.use('/api/leads', router);
+};
+```
+
+`app.ts` just calls each feature's `register`:
+
+```typescript
+const features = [registerHealth, registerAuth, registerLeads, registerSimulator];
+features.forEach((register) => register(app));
+```
+
+No centralized route file. No route index. Each feature owns its own routes.
+
+---
+
+## Handlers (not "controllers")
+
+Called handlers, not controllers. Same responsibility — HTTP layer only.
+
+```typescript
+// features/leads/leads.handler.ts
+import { Request, Response } from 'express';
+import { asyncHandler } from '@lib/errors.js';
+import { leadService } from './leads.service.js';
+
+export const submitLead = asyncHandler(async (req: Request, res: Response) => {
+  const result = await leadService.submit(req.body);
+  res.status(201).json({ success: true, data: result });
+});
+```
+
+---
+
+## Validation with Zod
+
+Define schemas in `feature.schema.ts`. Use them for both validation middleware and TypeScript types.
+
+```typescript
+// features/leads/leads.schema.ts
+import { z } from 'zod';
+
+export const submitLeadSchema = z.object({
+  name: z.string().min(1).max(100),
+  email: z.string().email(),
+  phone: z.string().regex(/^\+?[0-9]{10,15}$/),
+});
+
+export type SubmitLeadDTO = z.infer<typeof submitLeadSchema>;
+```
+
+Validation middleware:
+
+```typescript
+// lib/validate.ts
+import { AnyZodObject, ZodError } from 'zod';
+import { Request, Response, NextFunction } from 'express';
+
+export const validate = (schema: AnyZodObject) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse(req.body);
+    if (!result.success) {
+      return res.status(400).json({
+        success: false,
+        error: result.error.errors[0].message,
+        details: result.error.errors,
+      });
+    }
+    req.body = result.data; // sanitized + typed
+    next();
+  };
+```
+
+Usage in routes:
+
+```typescript
+router.post('/', validate(submitLeadSchema), submitLead);
+```
+
+---
+
+## Services
+
+Pure business logic. No `req`/`res`. Return data or throw `AppError`.
+
+```typescript
+// features/leads/leads.service.ts
+import { LeadModel } from './leads.model.js';
+import { AppError } from '@lib/errors.js';
+import { SubmitLeadDTO } from './leads.schema.js';
+
+class LeadService {
+  async submit(data: SubmitLeadDTO) {
+    const existing = await LeadModel.findOne({ email: data.email }).lean();
+    if (existing) throw new AppError('LEAD_EXISTS', 409);
+
+    return LeadModel.create({ ...data, id: ids.lead() });
+  }
+}
+
+export const leadService = new LeadService();
+```
+
+Services throw `AppError` (not return error objects). The `errorHandler` middleware catches and formats them.
+
+---
+
+## Error handling
+
+```typescript
+// lib/errors.ts
+export class AppError extends Error {
+  constructor(
+    public code: string,
+    public statusCode: number = 500,
+    message?: string,
+  ) {
+    super(message ?? code);
+  }
+}
+
+// middlewares/errorHandler.middleware.ts
+export const errorHandler = (err, req, res, next) => {
+  if (err instanceof AppError) {
+    return res.status(err.statusCode).json({ success: false, error: { code: err.code } });
+  }
+  logger.error(err);
+  res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR' } });
+};
+```
+
+**This replaces the ServiceResult pattern from the old guide. Services throw, the global handler catches. Cleaner, less boilerplate.**
+
+---
+
+## Env validation
+
+```typescript
+// env.ts
+import { z } from 'zod';
+
+const schema = z.object({
+  NODE_ENV: z.enum(['development', 'production', 'test']),
+  PORT: z.coerce.number().default(3000),
+  MONGODB_URI: z.string().min(1),
+  JWT_SECRET: z.string().min(32),
+  OPENAI_API_KEY: z.string().min(1),
+  CORS_ORIGIN: z.string().default('*'),
+});
+
+export const env = schema.parse(process.env);
+```
+
+App crashes at startup if any required env var is missing. No silent fallbacks in production.
+
+---
+
+## Mongoose models
+
+```typescript
+// features/leads/leads.model.ts
+import mongoose, { Schema, Document } from 'mongoose';
+import { ILead } from './leads.types.js';
+
+export interface ILeadDocument extends ILead, Document {}
+
+const schema = new Schema<ILeadDocument>(
+  {
+    id: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    email: { type: String, required: true, index: true },
+    phone: { type: String, required: true },
+    skipped: { type: Boolean, default: false },
+    sessionId: { type: String, index: true },
+  },
+  { timestamps: true, collection: 'leads' }
+);
+
+export const LeadModel = mongoose.model<ILeadDocument>('Lead', schema);
+```
+
+Always `.lean()` on read queries. Always `timestamps: true`.
+
+---
+
+## Logging
+
+Use pino. The logger instance lives in `lib/logger.ts` and is imported everywhere.
+
+```typescript
+import { logger } from '@lib/logger.js';
+
+logger.info({ leadId: lead.id }, 'lead submitted');
+logger.error({ err }, 'database write failed');
+```
+
+Structured key-value pairs, not string concatenation. Pino ships these as JSON — Railway picks them up cleanly.
+
+---
+
+## What changed from the old guide
+
+| Old (backend.md v1) | New (this guide) |
+|---|---|
+| Flat `controllers/`, `services/`, `models/` folders | Feature folders — everything co-located |
+| `ServiceResult` pattern (return success/error objects) | Services throw `AppError`, global handler catches |
+| Winston logger | Pino |
+| express-validator | Zod |
+| Singleton pattern on every service | Plain class instance exported as const |
+| Centralized route index | Each feature owns its routes via `register(app)` |
+
+---
 
 ### Path Aliases Setup
 

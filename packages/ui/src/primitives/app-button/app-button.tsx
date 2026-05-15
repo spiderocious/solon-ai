@@ -13,13 +13,13 @@ export interface AppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> 
 
 const VARIANT_CLASSES: Record<AppButtonVariant, string> = {
   primary:
-    'bg-[#1B4332] text-[#F5EFE0] hover:bg-[#2D5A3D] focus-visible:ring-[#2D5A3D] disabled:opacity-60',
+    'bg-[var(--forest-600)] text-[var(--paper)] hover:bg-[var(--forest-800)] focus-visible:ring-[var(--forest-500)] disabled:opacity-60',
   secondary:
-    'bg-[#F5EFE0] text-[#1B4332] hover:bg-[#EBE2CC] focus-visible:ring-[#1B4332] disabled:opacity-60',
+    'bg-[var(--paper)] text-[var(--ink)] border border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] focus-visible:ring-[var(--ink)] disabled:opacity-60',
   ghost:
-    'bg-transparent text-[#1B4332] hover:bg-[#1B4332]/5 focus-visible:ring-[#1B4332] disabled:opacity-60',
+    'bg-transparent text-[var(--ink-2)] hover:bg-[var(--ink)]/5 focus-visible:ring-[var(--ink)] disabled:opacity-60',
   danger:
-    'bg-[#C7522A] text-white hover:bg-[#A8421F] focus-visible:ring-[#C7522A] disabled:opacity-60',
+    'bg-[var(--crit)] text-[var(--paper)] hover:bg-[var(--orange-deep)] focus-visible:ring-[var(--orange)] disabled:opacity-60',
 };
 
 export const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(function AppButton(
