@@ -24,11 +24,15 @@ interface UseLoginFormResult {
   error: string;
   loading: boolean;
   handleSubmit: (e: FormEvent) => void;
+  demoAccount: {
+    email: string;
+    password: string;
+  };
 }
 
 export function useLoginForm({ onSuccess }: Readonly<UseLoginFormOptions>): Readonly<UseLoginFormResult> {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(DEMO_EMAIL);
+  const [password, setPassword] = useState(DEMO_PASSWORD);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -64,5 +68,9 @@ export function useLoginForm({ onSuccess }: Readonly<UseLoginFormOptions>): Read
     error,
     loading,
     handleSubmit,
+    demoAccount: {
+      email: DEMO_EMAIL,
+      password: DEMO_PASSWORD,
+    }
   };
 }

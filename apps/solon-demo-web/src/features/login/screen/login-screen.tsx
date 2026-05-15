@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { DEMO_ROUTES } from '@solon/core';
-import { Button, FieldLabel, TextInput } from '@solon/ui';
+import { AppText, Button, FieldLabel, TextInput } from '@solon/ui';
 import { SolonLogo } from '@ui/SolonLogo';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import { useLoginForm } from '../hooks/use-login-form';
@@ -9,7 +9,7 @@ export default function LoginScreen() {
   const { login } = useDemoSession();
   const navigate = useNavigate();
 
-  const { fields, error, loading, handleSubmit } = useLoginForm({
+  const { fields, error, loading, handleSubmit, demoAccount } = useLoginForm({
     onSuccess: (sessionId) => {
       login(sessionId, null);
       navigate(DEMO_ROUTES.LEAD_CAPTURE);
@@ -75,6 +75,12 @@ export default function LoginScreen() {
             <Button type="submit" variant="primary" size="md" loading={loading} className="w-full mt-1">
               Sign in
             </Button>
+            <AppText variant='caption'>
+              Please just click the sign in button
+              <br /> no need to enter credentials.
+              <br /> This is a demo session with pre-filled data for you to explore the app.
+              <br /> You can find the demo account credentials below for reference.
+            </AppText>
           </form>
 
           {/* Card footer */}
@@ -82,7 +88,7 @@ export default function LoginScreen() {
             className="px-8 py-4 border-t font-mono text-[10px] text-center"
             style={{ borderColor: 'var(--hair)', color: 'var(--ink-4)' }}
           >
-            demo@solon.ng · demo2027
+            {demoAccount.email} · {demoAccount.password}
           </div>
         </div>
       </div>
