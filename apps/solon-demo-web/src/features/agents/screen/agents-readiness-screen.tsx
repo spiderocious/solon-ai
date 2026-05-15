@@ -1,6 +1,7 @@
-import { SkeletonCard } from '@solon/ui';
 import { formatPct } from '@shared/helpers/format-pct';
 import { useAgentsReadiness } from '../api/use-agents-readiness';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 function readinessColor(pct: number): string {
   if (pct >= 80) return 'var(--forest-600)';
@@ -9,18 +10,10 @@ function readinessColor(pct: number): string {
 }
 
 export default function AgentsReadinessScreen() {
-  const { data, isLoading } = useAgentsReadiness();
-  const r = data;
+  const { data: r, isLoading, isError, refetch } = useAgentsReadiness();
 
-  if (isLoading && !r) {
-    return (
-      <div className="p-6 flex flex-col gap-4">
-        {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
-
-  if (!r) return null;
+  if (isLoading) return <ScreenSkeleton rows={4} />;
+  if (isError || !r) return <ErrorState message="Could not load readiness data." onRetry={() => void refetch()} />;
 
   const verifiedPct = r.total_agents > 0 ? (r.verified / r.total_agents) * 100 : 0;
   const readyPct = r.total_agents > 0 ? (r.election_ready / r.total_agents) * 100 : 0;
@@ -34,7 +27,6 @@ export default function AgentsReadinessScreen() {
 
   return (
     <div className="flex flex-col md:grid min-h-full" style={{ gridTemplateColumns: '260px 1fr' }}>
-      {/* Left — score card */}
       <div className="border-b md:border-b-0 md:border-r p-5 flex flex-col gap-5" style={{ borderColor: 'var(--hair)' }}>
         <div>
           <h2 className="font-serif font-semibold text-[18px]" style={{ color: 'var(--ink)' }}>Readiness</h2>
@@ -43,7 +35,6 @@ export default function AgentsReadinessScreen() {
           </p>
         </div>
 
-        {/* Summary stats */}
         <div className="grid grid-cols-2 gap-3">
           {[
             { label: 'Trained', value: r.trained },
@@ -78,10 +69,8 @@ export default function AgentsReadinessScreen() {
         )}
       </div>
 
-      {/* Right — checklist */}
       <div className="p-5 md:p-6">
         <h3 className="font-sans font-semibold text-[14px] mb-4" style={{ color: 'var(--ink)' }}>Preparation checklist</h3>
-
         <div className="flex flex-col gap-4">
           {CHECKLIST.map((item) => {
             const color = readinessColor(item.pct);
@@ -107,9 +96,7 @@ export default function AgentsReadinessScreen() {
                 <div className="px-4 py-3">
                   <div className="flex justify-between mb-1.5">
                     <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>{item.count} of {r.total_agents} agents</span>
-                    <span className="font-mono text-[10px]" style={{ color }}>
-                      {r.total_agents - item.count} remaining
-                    </span>
+                    <span className="font-mono text-[10px]" style={{ color }}>{r.total_agents - item.count} remaining</span>
                   </div>
                   <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: 'var(--hair)' }}>
                     <div className="h-full rounded-full transition-all" style={{ width: `${item.pct}%`, background: color }} />

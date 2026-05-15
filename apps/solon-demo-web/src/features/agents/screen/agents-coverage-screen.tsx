@@ -1,6 +1,7 @@
-import { SkeletonCard } from '@solon/ui';
 import { formatPct } from '@shared/helpers/format-pct';
 import { useAgentsCoverage } from '../api/use-agents-coverage';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 function coverageColor(pct: number): string {
   if (pct >= 5) return 'var(--forest-600)';
@@ -9,17 +10,10 @@ function coverageColor(pct: number): string {
 }
 
 export default function AgentsCoverageScreen() {
-  const { data, isLoading } = useAgentsCoverage();
+  const { data, isLoading, isError, refetch } = useAgentsCoverage();
 
-  if (isLoading && !data) {
-    return (
-      <div className="p-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
-
-  if (!data) return null;
+  if (isLoading) return <ScreenSkeleton rows={4} />;
+  if (isError || !data) return <ErrorState message="Could not load coverage data." onRetry={() => void refetch()} />;
 
   const coveragePct = data.coverage_pct * 100;
 
@@ -32,7 +26,6 @@ export default function AgentsCoverageScreen() {
         </p>
       </div>
 
-      {/* Summary strip */}
       <div
         className="flex items-center gap-6 flex-wrap px-5 py-3 rounded-[6px] mb-6"
         style={{ background: 'var(--ink)', border: '1px solid var(--ink)' }}
@@ -53,7 +46,6 @@ export default function AgentsCoverageScreen() {
         ))}
       </div>
 
-      {/* Status grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
         {[
           { label: 'Verified', value: data.verified, color: 'var(--forest-700)', bg: 'var(--forest-50)', border: 'var(--forest-600)' },
@@ -71,7 +63,6 @@ export default function AgentsCoverageScreen() {
         ))}
       </div>
 
-      {/* Coverage bar */}
       <div className="rounded-[6px] p-4" style={{ border: '1px solid var(--hair)' }}>
         <div className="flex justify-between mb-2">
           <span className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>Nationwide PU coverage</span>

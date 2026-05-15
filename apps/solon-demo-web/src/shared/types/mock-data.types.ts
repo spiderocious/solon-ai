@@ -254,6 +254,44 @@ export interface LiveUpdate {
   severity?: 'high' | 'medium' | 'low';
 }
 
+// ─── Simulator (interactive scenario) ────────────────────────────────────────
+
+export interface ScenarioParams {
+  turnout: 'low' | 'medium' | 'high';
+  youthMobilization: 'baseline' | 'moderate' | 'strong';
+  incidentRate: number;
+  weatherImpact: boolean;
+}
+
+export interface ScenarioCandidate {
+  name: string;
+  party: string;
+  partyColor: string;
+  projectedShare: number;
+  delta: number;
+}
+
+export interface ScenarioResult {
+  scenarioId: string;
+  name: string;
+  params: ScenarioParams;
+  candidates: ScenarioCandidate[];
+  projectedTurnout: number;
+  confidence: number;
+  createdAt: string;
+}
+
+// ─── Voter Intel (message generator) ─────────────────────────────────────────
+
+export interface MessageTemplate {
+  id: string;
+  cluster: string;
+  channel: 'whatsapp' | 'sms' | 'voice';
+  content: string;
+  estimatedReach: number;
+  engagementScore: number;
+}
+
 // ─── Copilot ──────────────────────────────────────────────────────────────────
 
 export interface CopilotMessage {

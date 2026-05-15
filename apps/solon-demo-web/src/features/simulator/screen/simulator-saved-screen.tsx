@@ -1,68 +1,42 @@
 import { useQuery } from '@tanstack/react-query';
-import { Button, ConfidenceBar, OfficialStamp, SkeletonCard } from '@solon/ui';
-import type { ConfidenceLevel } from '@solon/ui';
+import { Button, OfficialStamp, SkeletonCard } from '@solon/ui';
 import { demoClient } from '@shared/api/demo-client';
 import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
-import type { ScenarioResult } from '@shared/types/mock-data.types';
+import type { SavedScenario } from '@shared/types/mock-data.types';
 
-const MOCK_SCENARIOS: ScenarioResult[] = [
+const MOCK_SCENARIOS: SavedScenario[] = [
   {
-    scenarioId: 'sc-1',
+    id: 'sc-baseline',
+    name: 'Baseline — no-shock model',
+    created_at: '2026-05-11T08:00:00Z',
+    summary: { bello_share: 47.2, apc_share: 22.1, pdp_share: 9.8, lp_share: 13.4 },
+  },
+  {
+    id: 'sc-1',
     name: 'High turnout + youth surge',
-    params: { turnout: 'high', youthMobilization: 'strong', incidentRate: 0.05, weatherImpact: false },
-    candidates: [
-      { name: 'LP', party: 'LP', partyColor: 'var(--forest-600)', projectedShare: 52.4, delta: 5.2 },
-      { name: 'APC', party: 'APC', partyColor: 'var(--ink)', projectedShare: 20.1, delta: -2.0 },
-      { name: 'APGA', party: 'APGA', partyColor: 'var(--paper-3)', projectedShare: 16.2, delta: -2.2 },
-      { name: 'PDP', party: 'PDP', partyColor: 'var(--orange-soft)', projectedShare: 8.8, delta: -1.0 },
-    ],
-    projectedTurnout: 71.8,
-    confidence: 3,
-    createdAt: '2026-05-11T10:00:00Z',
+    created_at: '2026-05-11T10:00:00Z',
+    summary: { bello_share: 52.4, apc_share: 20.1, pdp_share: 8.8, lp_share: 11.2 },
   },
   {
-    scenarioId: 'baseline',
-    name: 'Baseline',
-    params: { turnout: 'medium', youthMobilization: 'baseline', incidentRate: 0, weatherImpact: false },
-    candidates: [
-      { name: 'LP', party: 'LP', partyColor: 'var(--forest-600)', projectedShare: 47.2, delta: 0 },
-      { name: 'APC', party: 'APC', partyColor: 'var(--ink)', projectedShare: 22.1, delta: 0 },
-      { name: 'APGA', party: 'APGA', partyColor: 'var(--paper-3)', projectedShare: 18.4, delta: 0 },
-      { name: 'PDP', party: 'PDP', partyColor: 'var(--orange-soft)', projectedShare: 9.8, delta: 0 },
-    ],
-    projectedTurnout: 64.2,
-    confidence: 4,
-    createdAt: '2026-05-11T08:00:00Z',
-  },
-  {
-    scenarioId: 'sc-3',
-    name: 'Security incident · Onitsha · sev 4',
-    params: { turnout: 'low', youthMobilization: 'baseline', incidentRate: 0.14, weatherImpact: true },
-    candidates: [
-      { name: 'LP', party: 'LP', partyColor: 'var(--forest-600)', projectedShare: 42.1, delta: -5.1 },
-      { name: 'APC', party: 'APC', partyColor: 'var(--ink)', projectedShare: 25.6, delta: 3.5 },
-      { name: 'APGA', party: 'APGA', partyColor: 'var(--paper-3)', projectedShare: 19.8, delta: 1.4 },
-      { name: 'PDP', party: 'PDP', partyColor: 'var(--orange-soft)', projectedShare: 10.3, delta: 0.5 },
-    ],
-    projectedTurnout: 48.6,
-    confidence: 2,
-    createdAt: '2026-05-10T14:30:00Z',
+    id: 'sc-3',
+    name: 'Security incident · North · sev 4',
+    created_at: '2026-05-10T14:30:00Z',
+    summary: { bello_share: 42.1, apc_share: 25.6, pdp_share: 10.3, lp_share: 14.8 },
   },
 ];
 
-const CONF_LABEL: Record<number, string> = { 1: 'LOW CONF.', 2: 'LOW CONF.', 3: 'MED CONF.', 4: 'HIGH CONF.', 5: 'HIGH CONF.' };
-const CONF_COLOR: Record<number, string> = { 1: 'var(--crit)', 2: 'var(--orange)', 3: 'var(--ink-3)', 4: 'var(--forest-700)', 5: 'var(--forest-700)' };
-
 export default function SimulatorSavedScreen() {
   const { sessionId } = useDemoSession();
-  const { data, isLoading } = useQuery<ScenarioResult[]>({
+  const { data, isLoading } = useQuery<SavedScenario[]>({
     queryKey: ['simulator-scenarios'],
-    queryFn: () => demoClient.getMock<ScenarioResult[]>(MOCK_KEY.SIMULATOR_SAVED_SCENARIOS, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<SavedScenario[]>(MOCK_KEY.SIMULATOR_SAVED_SCENARIOS, sessionId ?? undefined),
     placeholderData: MOCK_SCENARIOS,
   });
 
-  const scenarios = data ?? MOCK_SCENARIOS;
+  const rawScenarios = data ?? MOCK_SCENARIOS;
+  const scenarios = rawScenarios.filter((sc) => sc.summary != null);
+  const displayScenarios = scenarios.length > 0 ? scenarios : MOCK_SCENARIOS;
 
   if (isLoading && !data) {
     return (
@@ -77,21 +51,20 @@ export default function SimulatorSavedScreen() {
       <div className="mb-5">
         <h2 className="font-serif font-semibold text-[20px]" style={{ color: 'var(--ink)' }}>Saved scenarios</h2>
         <p className="font-serif italic text-[13px] mt-0.5" style={{ color: 'var(--ink-3)' }}>
-          — Anambra Central · senate · 2027
+          — AFP · Presidency · 2027
         </p>
       </div>
 
-      {/* DS cards-screen 3-up grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-        {scenarios.map((sc) => {
-          const lp = sc.candidates.find((c) => c.party === 'LP');
-          const confLabel = CONF_LABEL[sc.confidence] ?? 'MED CONF.';
-          const confColor = CONF_COLOR[sc.confidence] ?? 'var(--ink-3)';
-          const isBaseline = sc.scenarioId === 'baseline';
+        {displayScenarios.map((sc) => {
+          const isBaseline = sc.id === 'sc-baseline' || sc.name.toLowerCase().includes('baseline');
+          const afpShare = sc.summary.bello_share;
+          const baseline = displayScenarios.find((s) => s.id === 'sc-baseline' || s.name.toLowerCase().includes('baseline'));
+          const afpDelta = isBaseline ? null : afpShare - (baseline?.summary.bello_share ?? afpShare);
 
           return (
             <div
-              key={sc.scenarioId}
+              key={sc.id}
               className="rounded-[6px] overflow-hidden"
               style={{ border: `1px solid ${isBaseline ? 'var(--forest-600)' : 'var(--hair)'}`, background: 'var(--sheet)' }}
             >
@@ -101,27 +74,34 @@ export default function SimulatorSavedScreen() {
                 style={{ background: 'var(--paper-2)', borderColor: isBaseline ? 'var(--forest-600)' : 'var(--hair)' }}
               >
                 <span className="font-mono text-[10px]" style={{ color: 'var(--ink-3)' }}>
-                  SAVED · {new Date(sc.createdAt).toLocaleDateString('en-NG', { day: '2-digit', month: 'short' }).toUpperCase()}
+                  SAVED · {new Date(sc.created_at).toLocaleDateString('en-NG', { day: '2-digit', month: 'short' }).toUpperCase()}
                 </span>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px]" style={{ color: confColor }}>{confLabel}</span>
-                  {isBaseline && <OfficialStamp variant="simulation" meta="BASELINE" />}
-                </div>
+                {isBaseline && <OfficialStamp variant="simulation" meta="BASELINE" />}
               </div>
 
               {/* Card body */}
               <div className="p-4">
                 <h3 className="font-sans font-semibold text-[14px]" style={{ color: 'var(--ink)' }}>{sc.name}</h3>
                 <p className="font-serif italic text-[11px] mt-0.5" style={{ color: 'var(--ink-3)' }}>
-                  — Anambra Central · senate
+                  — AFP presidential campaign
                 </p>
-                <p className="font-sans text-[12px] mt-2 leading-relaxed" style={{ color: 'var(--ink-3)' }}>
-                  Turnout: {sc.params.turnout} · Youth: {sc.params.youthMobilization}
-                  {sc.params.weatherImpact ? ' · weather applied' : ''}
-                  {sc.params.incidentRate > 0 ? ` · ${(sc.params.incidentRate * 100).toFixed(0)}% incident rate` : ''}
-                </p>
-                <div className="flex items-center gap-2 mt-3">
-                  <ConfidenceBar level={sc.confidence as ConfidenceLevel} />
+
+                {/* Party breakdown bars */}
+                <div className="mt-3 space-y-1.5">
+                  {[
+                    { label: 'AFP', share: sc.summary.bello_share, color: '#1D4ED8' },
+                    { label: 'APC', share: sc.summary.apc_share, color: '#16A34A' },
+                    { label: 'PDP', share: sc.summary.pdp_share, color: '#DC2626' },
+                    { label: 'LP',  share: sc.summary.lp_share,  color: '#B45309' },
+                  ].map(({ label, share, color }) => (
+                    <div key={label} className="flex items-center gap-2">
+                      <span className="font-mono text-[9px] w-6 shrink-0" style={{ color: 'var(--ink-4)' }}>{label}</span>
+                      <div className="flex-1 h-1 rounded-full" style={{ background: 'var(--hair)' }}>
+                        <div className="h-full rounded-full" style={{ width: `${share}%`, background: color }} />
+                      </div>
+                      <span className="font-mono text-[10px] w-8 text-right" style={{ color: 'var(--ink-3)' }}>{share.toFixed(1)}%</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -130,13 +110,18 @@ export default function SimulatorSavedScreen() {
                 className="border-t px-4 py-3 flex justify-between items-baseline"
                 style={{ borderColor: 'var(--hair)' }}
               >
-                <span className="font-sans text-[11px]" style={{ color: 'var(--ink-3)' }}>LP projection</span>
-                <span className="font-serif font-bold text-[22px]" style={{ color: lp && lp.projectedShare > 47 ? 'var(--forest-700)' : 'var(--orange)' }}>
-                  {lp?.projectedShare.toFixed(1)}%
+                <span className="font-sans text-[11px]" style={{ color: 'var(--ink-3)' }}>AFP projection</span>
+                <span className="font-serif font-bold text-[22px]" style={{ color: afpShare >= 50 ? 'var(--forest-700)' : afpShare >= 45 ? 'var(--orange)' : 'var(--crit)' }}>
+                  {afpShare.toFixed(1)}%
                 </span>
-                <span className="font-serif italic text-[11px]" style={{ color: lp && lp.delta >= 0 ? 'var(--forest-700)' : 'var(--orange)' }}>
-                  {lp && lp.delta !== 0 ? (lp.delta >= 0 ? `+${lp.delta.toFixed(1)}` : lp.delta.toFixed(1)) : 'baseline'}
-                </span>
+                {afpDelta !== null && (
+                  <span className="font-serif italic text-[11px]" style={{ color: afpDelta >= 0 ? 'var(--forest-700)' : 'var(--orange)' }}>
+                    {afpDelta >= 0 ? `+${afpDelta.toFixed(1)}` : afpDelta.toFixed(1)}
+                  </span>
+                )}
+                {afpDelta === null && (
+                  <span className="font-serif italic text-[11px]" style={{ color: 'var(--ink-4)' }}>baseline</span>
+                )}
               </div>
 
               {/* Actions */}

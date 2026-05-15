@@ -1,5 +1,7 @@
-import { Button, OfficialStamp, SkeletonCard } from '@solon/ui';
+import { Button, OfficialStamp } from '@solon/ui';
 import { useFinanceSummary } from '../api/use-finance-summary';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 function formatNaira(n: number): string {
   if (n >= 1_000_000_000) return `₦ ${(n / 1_000_000_000).toFixed(2)}bn`;
@@ -8,25 +10,16 @@ function formatNaira(n: number): string {
 }
 
 export default function FinanceDashboardScreen() {
-  const { data, isLoading } = useFinanceSummary();
-  const s = data;
+  const { data: s, isLoading, isError, refetch } = useFinanceSummary();
 
-  if (isLoading && !s) {
-    return (
-      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
-
-  if (!s) return null;
+  if (isLoading) return <ScreenSkeleton rows={4} cards />;
+  if (isError || !s) return <ErrorState message="Could not load finance data." onRetry={() => void refetch()} />;
 
   const spentPct = (s.total_spent_naira / s.total_cap_naira) * 100;
   const hasWarnings = s.alerts.filter((a) => a.type === 'warning').length;
 
   return (
     <div className="p-5 md:p-8 max-w-[960px]">
-      {/* Statement header */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 mb-6 border-b gap-3" style={{ borderColor: 'var(--ink)' }}>
         <div>
           <h1 className="font-serif font-bold text-[22px] md:text-[28px]" style={{ color: 'var(--ink)' }}>
@@ -38,15 +31,13 @@ export default function FinanceDashboardScreen() {
         </div>
         <div className="font-mono text-[11px] sm:text-right shrink-0" style={{ color: 'var(--ink-3)' }}>
           <div>AFP · Presidential</div>
-          <div>Campaign Manager: {/* from candidate profile */} Ngozi Eze</div>
+          <div>Campaign Manager: Ngozi Eze</div>
           <div>Next return due: <span className="font-medium" style={{ color: 'var(--forest-700)' }}>{s.next_deadline_label}</span></div>
           <div>In <span className="font-medium" style={{ color: 'var(--orange)' }}>{s.days_to_next_inec_deadline} days</span></div>
         </div>
       </div>
 
-      {/* Top grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        {/* INEC Cap card */}
         <div className="sm:col-span-1 rounded-[6px] p-4" style={{ border: '2px solid var(--ink)' }}>
           <div className="font-mono text-[9px]" style={{ color: 'var(--ink-3)' }}>INEC STATUTORY CAP · PRESIDENTIAL</div>
           <div className="flex items-baseline gap-2 mt-1 flex-wrap">
@@ -66,7 +57,6 @@ export default function FinanceDashboardScreen() {
           </div>
         </div>
 
-        {/* Alerts */}
         <div className="rounded-[6px] p-4" style={{ border: `1px solid ${hasWarnings ? 'var(--orange)' : 'var(--hair)'}`, background: hasWarnings ? 'var(--orange-soft)' : 'var(--sheet)' }}>
           <div className="font-mono text-[9px] uppercase" style={{ color: hasWarnings ? 'var(--orange)' : 'var(--ink-3)' }}>Open alerts</div>
           <div className="font-serif font-bold text-[28px]" style={{ color: hasWarnings ? 'var(--orange)' : 'var(--forest-700)' }}>
@@ -79,7 +69,6 @@ export default function FinanceDashboardScreen() {
           )}
         </div>
 
-        {/* Projected final */}
         <div className="rounded-[6px] p-4" style={{ border: '1px solid var(--hair)' }}>
           <div className="font-mono text-[9px] uppercase" style={{ color: 'var(--ink-3)' }}>Projected final spend</div>
           <div className="font-serif font-bold text-[28px]" style={{ color: s.projected_final_naira > s.total_cap_naira ? 'var(--crit)' : 'var(--ink)' }}>
@@ -93,7 +82,6 @@ export default function FinanceDashboardScreen() {
         </div>
       </div>
 
-      {/* Sub-cap usage */}
       <div className="rounded-[6px] p-4 mb-6" style={{ border: '1px solid var(--hair)' }}>
         <div className="flex items-baseline gap-2 mb-4 flex-wrap">
           <h3 className="font-sans font-medium text-[14px]" style={{ color: 'var(--ink)' }}>Spend by category</h3>
@@ -127,7 +115,6 @@ export default function FinanceDashboardScreen() {
         })}
       </div>
 
-      {/* Signature block */}
       <div
         className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-6 mt-2 border-t gap-4 flex-wrap"
         style={{ borderColor: 'var(--ink)' }}

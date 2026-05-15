@@ -34,6 +34,14 @@ export default function FinanceComplianceScreen() {
     );
   }
 
+  const complianceScore = s
+    ? Math.round(
+        100 -
+          (s.alerts.length * 5) -
+          (s.total_spent_naira / s.total_cap_naira > 0.75 ? 10 : 0)
+      )
+    : 82;
+
   return (
     <div
       className="flex flex-col md:grid min-h-full"
@@ -49,19 +57,19 @@ export default function FinanceComplianceScreen() {
         </div>
 
         {/* Score */}
-        <div className="rounded-[6px] p-5 flex flex-col items-center" style={{ background: 'var(--sheet)', border: `1px solid ${s && s.complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)'}` }}>
+        <div className="rounded-[6px] p-5 flex flex-col items-center" style={{ background: 'var(--sheet)', border: `1px solid ${complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)'}` }}>
           <div className="font-mono text-[9px] uppercase tracking-[0.14em] mb-1" style={{ color: 'var(--ink-4)' }}>Compliance score</div>
           <div
             className="font-serif font-bold leading-none"
-            style={{ fontSize: 72, color: s && s.complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)' }}
+            style={{ fontSize: 72, color: complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)' }}
           >
-            {s?.complianceScore ?? '—'}
+            {complianceScore}
           </div>
           <div className="font-mono text-[12px]" style={{ color: 'var(--ink-4)' }}>/100</div>
           <div className="w-full h-2 rounded-full overflow-hidden mt-3" style={{ background: 'var(--hair)' }}>
             <div
               className="h-full rounded-full"
-              style={{ width: `${s?.complianceScore ?? 0}%`, background: s && s.complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)' }}
+              style={{ width: `${complianceScore}%`, background: complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)' }}
             />
           </div>
         </div>
