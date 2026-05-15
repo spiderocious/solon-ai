@@ -22,7 +22,7 @@
     },
     "build": {
       "inputs": [{ "step": "install" }],
-      "commands": ["pnpm nx build backend"]
+      "commands": ["pnpm nx build solon-demo-api"]
     }
   },
   "deploy": {
