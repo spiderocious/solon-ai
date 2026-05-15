@@ -13,6 +13,7 @@ export default defineConfig({
       { find: '@app', replacement: path.resolve(__dirname, 'src') },
       { find: '@features', replacement: path.resolve(__dirname, 'src/features') },
       { find: '@shared', replacement: path.resolve(__dirname, 'src/shared') },
+      { find: '@ui', replacement: path.resolve(__dirname, 'src/ui') },
       // Specific alias first so '@solon/ui/styles.css' wins before the bare '@solon/ui' rule.
       {
         find: '@solon/ui/styles.css',

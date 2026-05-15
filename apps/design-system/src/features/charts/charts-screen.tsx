@@ -1,4 +1,5 @@
-import { ConfidenceBar } from '@solon/ui';
+import { ConfidenceBar, VoteShareBar, TurnoutGauge, SpendingBreakdown, TallyTicker } from '@solon/ui';
+import type { TallySnapshot } from '@solon/ui';
 
 function Scene({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
   return (
@@ -291,6 +292,61 @@ export function ChartsScreen() {
         <div className="mt-4 font-serif italic text-[12px]" style={{ color: 'var(--ink-3)' }}>
           Sources — radio call-in (52%), Nairaland (24%), public X (18%), public WhatsApp (6%)
         </div>
+      </Scene>
+
+      {/* Scene 5 — VoteShareBar (recharts) */}
+      <Scene title="Scene · VoteShareBar" subtitle="horizontal bar — party vote share · recharts">
+        <VoteShareBar
+          title="Projected outcome"
+          subtitle="senate, 2027"
+          confidence={4}
+          entries={[
+            { party: 'LP', share: 47.2 },
+            { party: 'APC', share: 22.1 },
+            { party: 'APGA', share: 18.4 },
+            { party: 'PDP', share: 9.8 },
+          ]}
+        />
+      </Scene>
+
+      {/* Scene 6 — TurnoutGauge (recharts) */}
+      <Scene title="Scene · TurnoutGauge" subtitle="radial gauge — projected vs target turnout · recharts">
+        <div className="flex gap-10 flex-wrap">
+          <TurnoutGauge projected={62} target={70} historical={58} label="Anambra Central" />
+          <TurnoutGauge projected={71} target={70} historical={66} label="Onitsha North" />
+          <TurnoutGauge projected={44} target={60} historical={52} label="Ogbaru" />
+        </div>
+      </Scene>
+
+      {/* Scene 7 — SpendingBreakdown (recharts) */}
+      <Scene title="Scene · SpendingBreakdown" subtitle="donut chart — campaign spending by category · recharts">
+        <div className="max-w-[380px]">
+          <SpendingBreakdown
+            totalBudget={5_000_000_000}
+            categories={[
+              { name: 'Logistics', amount: 1_200_000_000 },
+              { name: 'Media / comms', amount: 950_000_000 },
+              { name: 'Agent stipends', amount: 720_000_000 },
+              { name: 'Events', amount: 580_000_000 },
+              { name: 'Ops', amount: 410_000_000 },
+            ]}
+          />
+        </div>
+      </Scene>
+
+      {/* Scene 8 — TallyTicker (recharts) */}
+      <Scene title="Scene · TallyTicker" subtitle="area chart — live tally progression · recharts">
+        <TallyTicker
+          totalPUs={412}
+          snapshots={[
+            { time: '14:00', lp: 44.2, apc: 24.1, pdp: 11.3, reported: 12 },
+            { time: '15:00', lp: 45.8, apc: 23.6, pdp: 11.1, reported: 58 },
+            { time: '16:00', lp: 46.4, apc: 22.9, pdp: 10.8, reported: 134 },
+            { time: '17:00', lp: 47.0, apc: 22.3, pdp: 10.6, reported: 220 },
+            { time: '18:00', lp: 47.2, apc: 22.1, pdp: 10.4, reported: 312 },
+            { time: '19:00', lp: 47.5, apc: 21.8, pdp: 10.2, reported: 389 },
+          ] satisfies TallySnapshot[]}
+        />
       </Scene>
     </div>
   );

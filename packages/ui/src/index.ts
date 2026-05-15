@@ -65,6 +65,13 @@ export type { SkeletonProps, SkeletonCardProps } from './display/skeleton/index.
 export { LivePulse } from './display/live-pulse/index.js';
 export type { LivePulseProps } from './display/live-pulse/index.js';
 
+// Charts (recharts-based)
+export { VoteShareBar, TurnoutGauge, SpendingBreakdown, TallyTicker } from './charts/index.js';
+export type { VoteShareBarProps, VoteShareEntry, TurnoutGaugeProps, SpendingBreakdownProps, SpendingCategory, TallyTickerProps, TallySnapshot } from './charts/index.js';
+
+// Recharts proxy — import full recharts API from here
+export * as Recharts from './recharts/index.js';
+
 // Services
 export { DrawerService, DrawerStore, ModalHost, ToastHost } from './services/drawer/index.js';
 export type { DrawerState, ToastItem, ModalItem, ToastVariant, ModalVariant } from './services/drawer/index.js';

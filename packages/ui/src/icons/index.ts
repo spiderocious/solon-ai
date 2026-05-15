@@ -41,4 +41,10 @@ export {
   Globe as IconPublic,
   Lock as IconPrivate,
   SkipForward as IconSkip,
+  Menu as IconMenu,
+  X as IconX,
+  RefreshCw as IconRefresh,
+  Plus as IconPlus,
+  FileText as IconFile,
+  CheckCircle2 as IconCheck,
 } from 'lucide-react';
