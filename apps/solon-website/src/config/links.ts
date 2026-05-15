@@ -3,6 +3,6 @@ export const DEMO_APP_URL =
 
 export const EXTERNAL_LINKS = {
   demo: DEMO_APP_URL,
-  contact: 'mailto:hello@solon.ng',
+  contact: 'mailto:devferanmi@gmail.com',
   twitter: 'https://twitter.com/solonhq',
 } as const;
