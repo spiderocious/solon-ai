@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian petroleum subsidy regime timeline — major policy events with political significance.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu (2023 removal)", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia — Petroleum industry in Nigeria (2012 crisis)", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "date": "2012-01",
+      "event": "January 2012 subsidy removal and Occupy Nigeria protests",
+      "pump_price_before_ngn": null,
+      "pump_price_after_ngn": null,
+      "pump_price_notes": "Wikipedia: fuel increased from ~$1.70/gallon to ~$3.50/gallon (approx NGN65 to NGN141 per litre at then-exchange-rate)",
+      "political_outcome": "Occupy Nigeria protests; Jonathan administration partially reversed the removal to NGN97/litre after negotiations with NLC/TUC",
+      "president": "Goodluck Jonathan",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia — Petroleum industry in Nigeria", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2016-05",
+      "event": "Buhari administration fuel price adjustment",
+      "pump_price_before_ngn": 87,
+      "pump_price_after_ngn": 145,
+      "pump_price_notes": "Buhari administration raised regulated pump price from NGN87 to NGN145 in May 2016 — described as partial deregulation",
+      "political_outcome": "NLC protests; fuel scarcity; no full strike action",
+      "president": "Muhammadu Buhari",
+      "sources": []
+    },
+    {
+      "date": "2023-05-29",
+      "event": "Tinubu inaugural address — full fuel subsidy removal",
+      "pump_price_before_ngn": 195,
+      "pump_price_after_ngn": null,
+      "pump_price_notes": "Price rapidly increased to ~NGN500-600/litre immediately post-announcement; later rose further as naira devalued. By late 2024 prices exceeded NGN1,000/litre in many locations.",
+      "political_outcome": "NLC called for strike; negotiations; partial cash transfers announced as palliatives. Became Tinubu's most politically costly early decision.",
+      "president": "Bola Tinubu",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2023-06-14",
+      "event": "CBN removes FX trading restrictions — naira float",
+      "naira_per_usd_before": null,
+      "naira_per_usd_after": null,
+      "naira_per_usd_notes": "Naira fell to historic lows. Official rate converged with parallel rate. By late 2024 naira was ~NGN1,600-1,700/USD.",
+      "political_outcome": "Import cost surge; worsened inflation; praised by IMF/World Bank but deeply unpopular with ordinary Nigerians.",
+      "president": "Bola Tinubu",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "pump_prices_monthly_2023_2026", "note": "Monthly PMS pump prices from NNPCL or NBS not retrieved."},
+    {"field": "2016_2022_detailed", "note": "Multiple subsidy-related price adjustments 2016-2022 not fully documented here. Source: NNPCL press releases or NBS."}
+  ]
+}

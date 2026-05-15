@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian religious demographics — national and per-state where available.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria",
+      "name": "Wikipedia — Demographics of Nigeria",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "national": {
+    "year": null,
+    "muslim_pct": 53.5,
+    "christian_pct": 45.9,
+    "traditional_other_pct": 0.6,
+    "conflict_note": "Alternative Pew Research 2015 data: Muslim 50%, Christian 48.1%, other ~2%. Nigerian government does not publish official religion figures. 53.5/45.9 figures are from Wikipedia citing NBS/general sources.",
+    "sources": [
+      {"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia — Demographics of Nigeria", "retrieved_at": "2026-05-13"},
+      {"url": "https://www.pewresearch.org/religion/2015/04/02/nigerias-divided-future/", "name": "Pew Research 2015 — Nigeria's Divided Future", "retrieved_at": null, "note": "Not yet fetched; cited by Wikipedia"}
+    ]
+  },
+  "geopolitical_zone_summary": {
+    "note": "General pattern based on public knowledge; not sourced from a single retrieved document. Needs NBS/Pew per-state data to verify.",
+    "NW": "Predominantly Muslim (~95%+)",
+    "NE": "Predominantly Muslim (~90%+)",
+    "NC": "Mixed — northern LGAs predominantly Muslim, southern LGAs predominantly Christian",
+    "SW": "Mixed — roughly 50/50 Muslim/Christian in Yoruba states",
+    "SE": "Predominantly Christian (~95%+)",
+    "SS": "Predominantly Christian (~85%+)"
+  },
+  "by_state": [],
+  "gaps": [
+    {"field": "by_state", "note": "Per-state religion breakdown not retrieved. Nigeria's government does not publish official per-state religion figures. Best source: Pew Research 2010/2015 subnational estimates or academic surveys (Afrobarometer)."},
+    {"field": "year", "note": "Year of 53.5/45.9 figure unclear from Wikipedia source"}
+  ]
+}

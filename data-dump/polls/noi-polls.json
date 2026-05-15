@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "description": "NOI Polls — Nigerian public opinion polling data 2024–2026. Key polls retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://www.noi-polls.com/opinion-poll-releases", "name": "NOI Polls — Poll releases listing", "retrieved_at": "2026-05-13"},
+    {"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls — Approval ratings", "retrieved_at": "2026-05-13"}
+  ],
+  "governance_approval_ratings": {
+    "subject": "Tinubu administration governance approval",
+    "pollster": "NOI Polls",
+    "methodology": "Telephone interviews, nationally representative",
+    "notes": "Monthly tracking. September 2025 was record high. Data points from approval-ratings page (year not always confirmed — assumed 2025-2026 unless noted).",
+    "data": [
+      {"period": "2026-02", "approval_pct": null, "note": "Slipped 4 points from January", "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2026-01", "approval_pct": 53,   "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2025-11", "approval_pct": 41,   "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2025-10", "approval_pct": 46,   "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2025-09", "approval_pct": 51, "note": "Record high", "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2025-08", "approval_pct": 46,   "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]},
+      {"period": "2025-07", "approval_pct": 44,   "sources": [{"url": "https://www.noi-polls.com/approval-ratings", "name": "NOI Polls approval ratings page", "retrieved_at": "2026-05-13"}]}
+    ]
+  },
+  "polls": [
+    {
+      "title": "Adult Nigerians Divided on New Tax Policy",
+      "date_published": "2026-04-20",
+      "url": "https://www.noi-polls.com/post/adult-nigerians-divided-on-new-tax-policy-new-poll-reveals-deep-opposition-and-trust-deficit",
+      "sample_size": null,
+      "methodology": null,
+      "key_findings": null,
+      "margin_of_error": null,
+      "retrieved": false,
+      "tags": ["economy","tax","politics"]
+    },
+    {
+      "title": "Governance approval rating slips 4 points in February",
+      "date_published": "2026-03-16",
+      "url": "https://www.noi-polls.com/post/governance-approval-rating-slips-4-points-in-february",
+      "sample_size": null,
+      "methodology": "Telephone interviews",
+      "key_findings": {"approval_pct": null, "note": "Slipped 4 points; January was 53%"},
+      "margin_of_error": null,
+      "retrieved": false,
+      "tags": ["approval","governance","Tinubu"]
+    },
+    {
+      "title": "60% Nigerians say country on wrong track but national pride remains high",
+      "date_published": "2025-10-01",
+      "date_fieldwork": "2025-09-22",
+      "url": "https://www.noi-polls.com/post/60-nigerians-say-country-on-wrong-track-but-national-pride-remains-high",
+      "sample_size": 1000,
+      "methodology": "Telephone interviews; 6 geopolitical zones, 36 states + FCT; 5 languages",
+      "key_findings": {
+        "wrong_track_pct": 60,
+        "right_track_pct": 24,
+        "national_pride_pct": 81,
+        "top_challenges": ["security: 24%", "economic instability: 17%", "bad governance: 15%"],
+        "regional_wrong_track": {"SE": 74, "SS": 64}
+      },
+      "margin_of_error_pct": 4.65,
+      "confidence_level": 95,
+      "retrieved": true,
+      "tags": ["wrong-track","right-track","governance","national-sentiment"],
+      "sources": [{"url": "https://www.noi-polls.com/post/60-nigerians-say-country-on-wrong-track-but-national-pride-remains-high", "name": "NOI Polls — 60% wrong track poll", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "title": "Nigerians oppose removal of fuel subsidies, want them reinstated",
+      "date_published": "2025-02-21",
+      "date_fieldwork_start": "2024-06-19",
+      "date_fieldwork_end": "2024-07-17",
+      "url": "https://www.noi-polls.com/post/nigerians-oppose-removal-of-fuel-subsidies-want-them-to-be-reinstated",
+      "sample_size": 1600,
+      "methodology": "Face-to-face interviews; nationally representative, random, stratified probability sample",
+      "key_findings": {
+        "disapprove_subsidy_removal_pct": 85,
+        "approve_subsidy_removal_pct": 12,
+        "want_reinstatement_pct": 58,
+        "wrong_direction_pct": 93,
+        "economy_bad_pct": 88,
+        "poor_personal_living_conditions_pct": 74,
+        "top_problem_cost_of_living_pct": 33
+      },
+      "margin_of_error_pct": 2.5,
+      "confidence_level": 95,
+      "retrieved": true,
+      "tags": ["fuel-subsidy","economy","Tinubu","cost-of-living"],
+      "sources": [{"url": "https://www.noi-polls.com/post/nigerians-oppose-removal-of-fuel-subsidies-want-them-to-be-reinstated", "name": "NOI Polls — Fuel subsidy poll", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "title": "7 in 10 Nigerians Dissatisfied with 2024 in All Aspects",
+      "date_published": "2024-12-26",
+      "url": "https://www.noi-polls.com/post/7-in-10-nigerians-dissatisfied-with-2024-in-all-aspects-new-poll-reveals",
+      "sample_size": null,
+      "methodology": null,
+      "key_findings": {"dissatisfied_2024_pct": 70},
+      "retrieved": false,
+      "tags": ["satisfaction","economy","governance"],
+      "sources": [{"url": "https://www.noi-polls.com/opinion-poll-releases", "name": "NOI Polls listing", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "title": "Majority of Nigerians have considered emigration in search of opportunity",
+      "date_published": "2024-12-19",
+      "url": "https://www.noi-polls.com/post/nigerians-considering-emigration-for-opportunity",
+      "sample_size": null,
+      "methodology": null,
+      "key_findings": {"considered_emigration_majority": true},
+      "retrieved": false,
+      "tags": ["emigration","japa","economy","youth"],
+      "sources": [{"url": "https://www.noi-polls.com/opinion-poll-releases", "name": "NOI Polls listing", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "full_archive", "note": "Only ~12 polls listed on NOI Polls page; full archive pagination not scraped. NOI Polls has been publishing since 2012."},
+    {"field": "2027_horse_race_polls", "note": "No horse-race polls (candidate preference) found on NOI Polls site as of May 2026 — too early."}
+  ]
+}

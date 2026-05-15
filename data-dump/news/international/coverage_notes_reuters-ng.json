@@ -1,0 +1,8 @@
+{
+  "source": "reuters-ng",
+  "date_range_covered": null,
+  "method": "WebFetch not yet attempted",
+  "blocked": null,
+  "gaps": "International wire Nigeria coverage not retrieved. Operator should query Reuters/AP/AFP Nigeria tag pages or use their API.",
+  "headline_count": 0
+}

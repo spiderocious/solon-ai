@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "description": "2015 Nigerian Presidential Election results. National totals only — state-level not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2015-03-28",
+  "office": "President of the Federal Republic of Nigeria",
+  "cycle": 2015,
+  "notes": "Historic first peaceful transfer of power via election in Nigeria. APC formed from merger of ACN, CPC, ANPP, nPDP factions in 2013.",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election",
+      "name": "Wikipedia — 2015 Nigerian presidential election",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "national_summary": {
+    "registered_voters": 67422005,
+    "accredited_voters": null,
+    "total_votes_cast": null,
+    "total_valid_votes": 28587564,
+    "total_rejected_votes": null,
+    "turnout_pct": 43.65,
+    "winner": "Muhammadu Buhari",
+    "winner_party": "APC",
+    "sources": [{"url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+  },
+  "candidates": [
+    {
+      "name": "Muhammadu Buhari",
+      "party": "APC",
+      "votes_national": 15424921,
+      "vote_share_pct": 53.96,
+      "states_won": 21,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Goodluck Ebele Jonathan",
+      "party": "PDP",
+      "votes_national": 12853162,
+      "vote_share_pct": 44.96,
+      "states_won": 15,
+      "notes": "Jonathan won 15 states + FCT per Wikipedia",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "by_state": [],
+  "gaps": [
+    {
+      "scope": "by_state",
+      "note": "State-by-state breakdown not retrieved. Source: INEC EC8E form (2015) or Harvard Dataverse."
+    }
+  ]
+}

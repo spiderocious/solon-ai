@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "description": "2027 INEC candidate registration status. Not yet open as of May 2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "status": "INEC has not yet opened candidate registration for 2027. Expected to open approximately 12 months before election (Q1 2026 for presidential; exact timetable not published).",
+  "data": [],
+  "gaps": [{"field": "timetable", "note": "INEC 2027 election timetable not yet published. Monitor inecnigeria.org."}]
+}

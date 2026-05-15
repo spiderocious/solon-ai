@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "description": "Candidate profile: Bola Ahmed Tinubu",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "slug": "tinubu-bola",
+  "name": "Bola Ahmed Adekunle Tinubu",
+  "date_of_birth": "1952-03-29",
+  "age_at_election": 74,
+  "gender": "Male",
+  "religion": "Muslim",
+  "ethnicity": "Yoruba",
+  "state_of_origin": "LAGOS",
+  "lga_of_origin": null,
+  "party": "APC",
+  "aspirant_since": "2025-05",
+  "education": [
+    {"institution": "Richard J. Daley College, Chicago", "degree": "Associate", "year": null, "provenance_type": "claim"},
+    {"institution": "Chicago State University", "degree": "BSc Business Administration (Accounting & Management)", "year": 1979, "provenance_type": "claim", "notes": "Wikipedia states 'summa cum laude', GPA 3.54. Chicago State University transcript records have been subject of public controversy — see scandal_log."}
+  ],
+  "prior_offices": [
+    {"office": "Senator, Lagos West", "party": "SDP", "start": "1992", "end": "1993"},
+    {"office": "Governor, Lagos State", "party": "AD/ACN", "start": "1999-05-29", "end": "2007-05-29"}
+  ],
+  "current_office": "President of the Federal Republic of Nigeria",
+  "office_since": "2023-05-29",
+  "notable_endorsements": [],
+  "godfathers_backers": ["Tinubu himself considered the APC's Lagos godfather and primary national sponsor"],
+  "issue_platform": null,
+  "last_5_quoted_policy_positions": [],
+  "social_media": {
+    "twitter_x": null,
+    "facebook": null
+  },
+  "scandal_log": [
+    {
+      "date": "1993",
+      "description": "U.S. asset forfeiture: ~$460,000 forfeited related to alleged heroin trafficking proceeds. Civil forfeiture, not criminal conviction.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2007",
+      "description": "Code of Conduct Bureau trial — alleged illegal foreign accounts. Outcome unclear from Wikipedia source.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2009",
+      "description": "EFCC cleared of money laundering charges.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2019",
+      "description": "'Bullion van' incident — armoured vehicles seen at his Lagos residence on election day 2019. Tinubu stated 'I keep money anywhere I want.'",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2022-2023",
+      "description": "Chicago State University transcripts: during 2023 presidential election, opponents obtained CSU records raising questions about the name on the degree ('Bola Tinubu' vs. birth name). Subject of ongoing public controversy.",
+      "provenance_type": "claim",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu (general; specific transcript controversy needs separate fetch)", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "sources": [
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}
+  ]
+}

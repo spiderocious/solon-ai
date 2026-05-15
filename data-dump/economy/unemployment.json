@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian unemployment rate — partial time series. NBS methodology changed in 2020.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia — Economy of Nigeria", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": "NBS changed unemployment methodology in 2020 — data pre/post-2020 not directly comparable.",
+  "data": [
+    {"period": "Q1 2025", "unemployment_rate_pct": 22.6, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]}
+  ],
+  "gaps": [
+    {"field": "historical_quarterly", "note": "NBS publishes quarterly unemployment reports. Not retrieved. 2020 methodology change important caveat."}
+  ]
+}

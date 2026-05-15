@@ -1,0 +1,10 @@
+{
+  "source": "sahara-reporters",
+  "date_range_covered": null,
+  "method": "WebFetch attempted",
+  "paywalled": null,
+  "blocked": true,
+  "block_reason": "HTTP 403 Forbidden returned during collection",
+  "gaps": "All headlines for sahara-reporters not retrieved. Operator should use headless browser or RSS feed to scrape. RSS feeds typically available at /<outlet>/feed or /rss.",
+  "headline_count": 0
+}

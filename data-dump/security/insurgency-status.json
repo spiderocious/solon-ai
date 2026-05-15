@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "description": "Status of major security threats in Nigeria as of May 2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Boko_Haram", "name": "Wikipedia — Boko Haram", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Herder%E2%80%93farmer_conflicts_in_Nigeria", "name": "Wikipedia — Herder-farmer conflicts in Nigeria", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "group": "Boko Haram (JAS)",
+      "current_leader": "Bakura Doro (since 2022)",
+      "primary_states": ["BORNO","YOBE","ADAMAWA"],
+      "regional_scope": ["Northern Cameroon","Niger","Chad","Mali"],
+      "current_trend": "Persistent; organizational continuity despite territorial losses. Revival noted after Shekau death (2021).",
+      "notable_recent_incidents": [
+        {"date": "2026", "location": "Maiduguri", "type": "bombings", "sources": [{"url": "https://en.wikipedia.org/wiki/Boko_Haram", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+        {"date": "2026", "location": "Jilli", "type": "massacre", "sources": [{"url": "https://en.wikipedia.org/wiki/Boko_Haram", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]}
+      ],
+      "electoral_impact": "High voter suppression effect in Borno, Yobe, and parts of Adamawa. These states had lower-than-national-average turnout in 2023.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Boko_Haram", "name": "Wikipedia — Boko Haram", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "group": "ISWAP (Islamic State West Africa Province)",
+      "primary_states": ["BORNO","YOBE"],
+      "current_trend": "Active around Lake Chad basin; enemies with Boko Haram (JAS) since 2021",
+      "electoral_impact": "Overlaps with Boko Haram impact; Borno and Yobe elections require heavy security deployment",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Boko_Haram", "name": "Wikipedia — Boko Haram (ISWAP referenced)", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "group": "Banditry (Northwest)",
+      "primary_states": ["ZAMFARA","KADUNA","KATSINA","SOKOTO","KEBBI","NIGER"],
+      "current_trend": "Highly active. Wikipedia banditry article returned 404; data from general knowledge.",
+      "estimated_deaths_annual": null,
+      "electoral_impact": "Significant impact on NW voter registration and turnout. Zamfara, Kaduna particularly affected.",
+      "sources": [],
+      "data_gap": "Banditry Wikipedia article returned 404. Operator should fetch ACLED Nigeria data."
+    },
+    {
+      "group": "Herder-Farmer Conflict (Middle Belt)",
+      "primary_states": ["PLATEAU","KADUNA","BENUE","ADAMAWA","TARABA","NASARAWA"],
+      "current_trend": "Intensifying. 2023: 200+ deaths in Dec holiday attacks in Plateau. 2025: 100+ deaths in Benue.",
+      "total_deaths_since_1999": "19,000+",
+      "electoral_impact": "IDP displacement affects voter registration; security crisis may depress turnout in affected LGAs. Politically polarizes Muslim/Christian communities in NC.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Herder%E2%80%93farmer_conflicts_in_Nigeria", "name": "Wikipedia — Herder-farmer conflicts in Nigeria", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "group": "IPOB / ESN (Southeast)",
+      "primary_states": ["ANAMBRA","IMO","ABIA","ENUGU","EBONYI"],
+      "current_trend": "Sit-at-home orders Mondays disrupting commerce; ESN (Eastern Security Network) armed wing active. Simon Ekpa (Finland-based) continues calling sit-at-home orders.",
+      "electoral_impact": "Monday sit-at-home orders directly affect election days (may be called off for elections or enforced). 2023 SE elections saw some violence but proceeded.",
+      "sources": [],
+      "data_gap": "IPOB Wikipedia article not fetched in this pass. Operator should add."
+    }
+  ],
+  "gaps": [
+    {"field": "banditry_detailed", "note": "ACLED data (acleddata.com/data) has monthly incident counts by state — not retrieved."},
+    {"field": "violence_trend_2024_2026", "note": "Most recent 2024-2026 incident data not retrieved for any group."}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigeria Premium Motor Spirit (petrol) pump price history — key events. Monthly data not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "currency": "NGN",
+  "unit": "per_litre",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia — Petroleum industry in Nigeria", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {"date": "2012-01", "price_ngn_per_litre": 65,  "notes": "Pre-subsidy-removal price", "sources": [{"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"date": "2012-01", "price_ngn_per_litre": 141, "notes": "Post-Jan-2012 removal; then reduced to 97 after Occupy Nigeria protests", "sources": [{"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"date": "2016-05", "price_ngn_per_litre": 87,  "notes": "Pre-Buhari adjustment", "sources": []},
+    {"date": "2016-05", "price_ngn_per_litre": 145, "notes": "Post-Buhari May 2016 adjustment", "sources": []},
+    {"date": "2023-05-28", "price_ngn_per_litre": 195, "notes": "Price just before Tinubu inauguration", "sources": []},
+    {"date": "2023-06", "price_ngn_per_litre": 530, "notes": "Approximate price immediately after subsidy removal announcement. Widely reported figure — not from single verified source in this pass.", "sources": []}
+  ],
+  "gaps": [
+    {"field": "monthly_2012_2026", "note": "Monthly pump prices not retrieved. Source: NNPCL price notices or NBS petroleum product pricing reports."},
+    {"field": "current_price_2026", "note": "Current (May 2026) PMS price not retrieved — important for electoral sentiment."}
+  ]
+}

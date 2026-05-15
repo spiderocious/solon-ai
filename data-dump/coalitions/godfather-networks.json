@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "description": "Publicly documented patron-client political structures ('godfather networks') in Nigeria. Only documented entries included.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "godfather": "Bola Tinubu",
+      "zone": "SW",
+      "primary_state": "LAGOS",
+      "description": "Tinubu is the dominant political patron of Lagos and the broader Southwest. Controlled Lagos governorship succession from 1999; Fashola and Sanwo-Olu were his protégés. Instrumental in forming APC (2013) and selecting APC presidential nominees.",
+      "documented_clients": ["Babajide Sanwo-Olu (Lagos governor)", "Babatunde Raji Fashola (former Lagos governor, later minister)"],
+      "current_status": "Now president; his network extends nationally through APC",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "godfather": "Nyesom Wike",
+      "zone": "SS",
+      "primary_state": "RIVERS",
+      "description": "Former Rivers governor (2015-2023), now FCT Minister. Wike retains significant political networks in Rivers despite being replaced by Fubara (his former ally turned rival). The Wike-Fubara rift (2023-2026) is one of Nigeria's most significant current political conflicts.",
+      "documented_clients": ["Siminalayi Fubara (initially Wike's ally; now rival)"],
+      "current_status": "FCT Minister; active patron in Rivers and PDP internal politics",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Federal_Capital_Territory,_Nigeria", "name": "Wikipedia — FCT Nigeria", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "godfather": "Bukola Saraki",
+      "zone": "NC",
+      "primary_state": "KWARA",
+      "description": "Saraki dynasty in Kwara State. Father was Olusola Saraki (long-time Kwara powerbroker). Bukola Saraki was governor then Senate President. The dynasty was defeated in 2019 ('OtogeGang' movement). Kwara went to APC under AbdulRazaq.",
+      "documented_clients": [],
+      "current_status": "Significantly weakened after 2019 Kwara elections; no longer dominant in Kwara",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_Senate_election", "name": "Wikipedia — 2019 Nigerian Senate election (Saraki lost his seat)", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "godfather": "Rabiu Kwankwaso",
+      "zone": "NW",
+      "primary_state": "KANO",
+      "description": "Kwankwaso-sphere known as 'Kwankwasiyya' movement. Mass following in Kano; NNPP holds Kano governorship through Abba Yusuf (Kwankwaso ally). Significant social welfare/educational patronage network.",
+      "documented_clients": ["Abba Kabir Yusuf (Kano governor, NNPP)"],
+      "current_status": "Active; NNPP controls Kano",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "Okonjo-Iweala_Anambra_network", "note": "Not documented"},
+    {"field": "Edwin_Clark_SS_influence", "note": "Edwin Clark is a major elder statesman/patron in Ijaw/SS politics. Not yet fetched."},
+    {"field": "full_eastern_networks", "note": "SE and SS godfather networks incompletely documented here"}
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian population estimates — national total and per-state. Based on 2006 census; 2023 figures are NBS projections.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Nigerian_states_by_population",
+      "name": "Wikipedia — List of Nigerian states by population",
+      "retrieved_at": "2026-05-13"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria",
+      "name": "Wikipedia — Demographics of Nigeria",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "notes": [
+    "Nigeria's last full national census was conducted in 2006. All post-2006 figures are NBS projections.",
+    "2023 estimates sourced from NBS/Wikipedia. 2026 national estimate: 242,431,841 (Wikipedia).",
+    "For forecasting, note that registered voter counts from INEC (93.5M for 2023) are a more reliable electoral denominator than census projections."
+  ],
+  "national": {
+    "population_2006_census": null,
+    "population_2022_estimate": 227830000,
+    "population_2026_estimate": 242431841,
+    "projection_method": "NBS extrapolation from 2006 census",
+    "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia — Demographics of Nigeria", "retrieved_at": "2026-05-13"}]
+  },
+  "by_state": [
+    {"state": "KANO",       "pop_2006_census": 9401288, "pop_2023_estimate": 16253549, "area_km2": 20131,  "density_2023": 807.39},
+    {"state": "LAGOS",      "pop_2006_census": 9113605, "pop_2023_estimate": 15772884, "area_km2": 3345,   "density_2023": 4715.36},
+    {"state": "KATSINA",    "pop_2006_census": 5801584, "pop_2023_estimate": 9300382,  "area_km2": 24192,  "density_2023": 384.44},
+    {"state": "KADUNA",     "pop_2006_census": 6113503, "pop_2023_estimate": 8324285,  "area_km2": 46053,  "density_2023": 180.75},
+    {"state": "BAUCHI",     "pop_2006_census": 4653066, "pop_2023_estimate": 7540663,  "area_km2": 45893,  "density_2023": 164.31},
+    {"state": "OYO",        "pop_2006_census": 5580894, "pop_2023_estimate": 7512855,  "area_km2": 28454,  "density_2023": 264.08},
+    {"state": "ANAMBRA",    "pop_2006_census": 5177828, "pop_2023_estimate": 7299910,  "area_km2": 4844,   "density_2023": 1507.26},
+    {"state": "RIVERS",     "pop_2006_census": 5198716, "pop_2023_estimate": 7234973,  "area_km2": 11077,  "density_2023": 653.01},
+    {"state": "JIGAWA",     "pop_2006_census": 4361002, "pop_2023_estimate": 6979080,  "area_km2": 23154,  "density_2023": 301.38},
+    {"state": "NIGER",      "pop_2006_census": 3954772, "pop_2023_estimate": 6720617,  "area_km2": 76363,  "density_2023": 87.99},
+    {"state": "BENUE",      "pop_2006_census": 4253641, "pop_2023_estimate": 6687706,  "area_km2": 34059,  "density_2023": 196.34},
+    {"state": "BORNO",      "pop_2006_census": 4171104, "pop_2023_estimate": 6651590,  "area_km2": 70898,  "density_2023": 93.80},
+    {"state": "OGUN",       "pop_2006_census": 3751140, "pop_2023_estimate": 6445275,  "area_km2": 16762,  "density_2023": 384.52},
+    {"state": "SOKOTO",     "pop_2006_census": 3702676, "pop_2023_estimate": 6163187,  "area_km2": 25973,  "density_2023": 237.34},
+    {"state": "DELTA",      "pop_2006_census": 5112445, "pop_2023_estimate": 6107543,  "area_km2": 17698,  "density_2023": 401.58},
+    {"state": "IMO",        "pop_2006_census": 3927563, "pop_2023_estimate": 6067722,  "area_km2": 5530,   "density_2023": 1097.70},
+    {"state": "KEBBI",      "pop_2006_census": 3256541, "pop_2023_estimate": 6001610,  "area_km2": 36800,  "density_2023": 163.10},
+    {"state": "ONDO",       "pop_2006_census": 3460877, "pop_2023_estimate": 5469707,  "area_km2": 15500,  "density_2023": 352.24},
+    {"state": "AKWA_IBOM",  "pop_2006_census": 3902051, "pop_2023_estimate": 5780581,  "area_km2": 7081,   "density_2023": 816.11},
+    {"state": "EDO",        "pop_2006_census": 3233366, "pop_2023_estimate": 5527810,  "area_km2": 17802,  "density_2023": 289.89},
+    {"state": "ZAMFARA",    "pop_2006_census": 3278873, "pop_2023_estimate": 5517793,  "area_km2": 39762,  "density_2023": 138.75},
+    {"state": "PLATEAU",    "pop_2006_census": 3206531, "pop_2023_estimate": 5400974,  "area_km2": 30913,  "density_2023": 174.67},
+    {"state": "ENUGU",      "pop_2006_census": 3267837, "pop_2023_estimate": 5396098,  "area_km2": 7161,   "density_2023": 753.71},
+    {"state": "ADAMAWA",    "pop_2006_census": 3178950, "pop_2023_estimate": 5236948,  "area_km2": 36917,  "density_2023": 141.84},
+    {"state": "KOGI",       "pop_2006_census": 3314043, "pop_2023_estimate": 5053734,  "area_km2": 29833,  "density_2023": 169.04},
+    {"state": "ABIA",       "pop_2006_census": 2845380, "pop_2023_estimate": 4841943,  "area_km2": 5243,   "density_2023": 923.59},
+    {"state": "FCT",        "pop_2006_census": 1406239, "pop_2023_estimate": 4802443,  "area_km2": 7315,   "density_2023": 656.93},
+    {"state": "GOMBE",      "pop_2006_census": 2365040, "pop_2023_estimate": 4623462,  "area_km2": 20265,  "density_2023": 228.77},
+    {"state": "YOBE",       "pop_2006_census": 2321339, "pop_2023_estimate": 4350401,  "area_km2": 45502,  "density_2023": 95.57},
+    {"state": "TARABA",     "pop_2006_census": 2294800, "pop_2023_estimate": 4331885,  "area_km2": 54473,  "density_2023": 79.53},
+    {"state": "KWARA",      "pop_2006_census": 2365353, "pop_2023_estimate": 4259613,  "area_km2": 36825,  "density_2023": 115.88},
+    {"state": "OSUN",       "pop_2006_census": 3416959, "pop_2023_estimate": 4237396,  "area_km2": 14875,  "density_2023": 285.27},
+    {"state": "CROSS_RIVER","pop_2006_census": 2892988, "pop_2023_estimate": 4175020,  "area_km2": 20156,  "density_2023": 207.85},
+    {"state": "EBONYI",     "pop_2006_census": 2176947, "pop_2023_estimate": 4007155,  "area_km2": 5670,   "density_2023": 706.88},
+    {"state": "NASARAWA",   "pop_2006_census": 1869377, "pop_2023_estimate": 3632239,  "area_km2": 27110,  "density_2023": 134.87},
+    {"state": "EKITI",      "pop_2006_census": 2398957, "pop_2023_estimate": 3398177,  "area_km2": 6353,   "density_2023": 534.83},
+    {"state": "BAYELSA",    "pop_2006_census": 1704515, "pop_2023_estimate": 2394725,  "area_km2": 21110,  "density_2023": 113.58}
+  ],
+  "sources": [
+    {"url": "https://en.wikipedia.org/wiki/List_of_Nigerian_states_by_population", "name": "Wikipedia — List of Nigerian states by population", "retrieved_at": "2026-05-13"}
+  ]
+}

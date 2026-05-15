@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian electoral wards (~8,809 total). PARTIAL — INEC domains unreachable during collection.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "source_count": 0,
+  "gaps": [
+    {
+      "what": "Complete ward list with codes",
+      "where_looked": ["https://inecnigeria.org", "https://inec.gov.ng"],
+      "why_failed": "Both INEC domains returned TLS/connection errors",
+      "unblock": "Operator must provide INEC ward list PDF or access inecnigeria.org directly. INEC publishes ward lists in their PU register PDFs."
+    }
+  ],
+  "data": []
+}

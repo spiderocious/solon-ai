@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "description": "Party strongholds derived from 2011–2023 presidential election national totals and 2023 gubernatorial results. State-level presidential vote shares not retrieved; patterns inferred from states-won data.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "notes": [
+    "This file contains inferred regional patterns based on available national summary data and Wikipedia descriptions. NOT sourced from full state-by-state vote tables (those are in elections/ folder, mostly gaps).",
+    "All patterns marked provenance_type='inferred_pattern' should be treated as priors, not measurements.",
+    "For verified state-level vote shares, operator must populate elections/*/presidential.json by_state arrays."
+  ],
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia — 2019 Nigerian presidential election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election", "name": "Wikipedia — 2015 Nigerian presidential election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia — 2011 Nigerian presidential election", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "party": "APC",
+      "stronghold_zones": ["NW", "NE"],
+      "competitive_zones": ["NC", "SW"],
+      "weak_zones": ["SE", "SS"],
+      "notes_2023": "Won 12 states in 2023 presidential; held 21 governorships after 2023 elections.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "PDP",
+      "stronghold_zones": ["SS", "NC (partial)"],
+      "competitive_zones": ["NE", "NW"],
+      "weak_zones": ["SW"],
+      "notes_2023": "Won 12 states in 2023 presidential. Historically dominant 1999-2015 across most zones.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "LP",
+      "stronghold_zones": ["SE", "Lagos (urban)"],
+      "competitive_zones": ["FCT", "SS"],
+      "weak_zones": ["NW", "NE", "NC"],
+      "notes_2023": "Peter Obi won SE states + FCT + Lagos in 2023. 2027 situation changed by Obi's defection to ADC.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "NNPP",
+      "stronghold_zones": ["NW (Kano specifically)"],
+      "competitive_zones": [],
+      "weak_zones": ["all other zones"],
+      "notes_2023": "Kwankwaso won Kano State presidential in 2023; NNPP holds Kano governorship.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "APGA",
+      "stronghold_zones": ["SE (Anambra only)"],
+      "competitive_zones": [],
+      "weak_zones": ["all other zones"],
+      "notes": "APGA has held Anambra governorship through APGA-affiliated governors since 2006 (aside from brief interruptions).",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia — List of political parties in Nigeria", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "lga_level_strongholds", "note": "LGA-level stronghold mapping requires full state-by-state and LGA-level election results — not yet retrieved."},
+    {"field": "historical_2011_2019_state_votes", "note": "State-level presidential votes for 2011-2019 needed to compute trend."}
+  ]
+}

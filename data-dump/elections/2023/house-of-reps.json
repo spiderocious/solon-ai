@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "description": "2023 Nigerian House of Representatives election — national seat totals by party. Constituency-level results not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2023-02-25",
+  "office": "House of Representatives of the Federal Republic of Nigeria",
+  "total_seats": 360,
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_House_of_Representatives_election", "name": "Wikipedia — 2023 Nigerian House of Representatives election", "retrieved_at": "2026-05-13"}
+  ],
+  "seat_totals_by_party": [
+    {"party": "APC", "seats": 176, "change_from_prior": -36},
+    {"party": "PDP", "seats": 119, "change_from_prior": -8},
+    {"party": "LP",  "seats": 35,  "change_from_prior": 34},
+    {"party": "NNPP","seats": 19,  "change_from_prior": 19},
+    {"party": "APGA","seats": 5,   "change_from_prior": -5},
+    {"party": "ADC", "seats": 2,   "change_from_prior": -1},
+    {"party": "SDP", "seats": 2,   "change_from_prior": 1},
+    {"party": "YPP", "seats": 2,   "change_from_prior": 2}
+  ],
+  "by_constituency": [],
+  "gaps": [{"scope": "by_constituency", "note": "360 constituency-level results not retrieved. Source: INEC official gazette."}]
+}

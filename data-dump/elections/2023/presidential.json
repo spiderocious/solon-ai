@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "description": "2023 Nigerian Presidential Election results. National totals verified; state-level breakdown not retrievable from available sources.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2023-02-25",
+  "office": "President of the Federal Republic of Nigeria",
+  "cycle": 2023,
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election",
+      "name": "Wikipedia — 2023 Nigerian general election",
+      "retrieved_at": "2026-05-13"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2023_Nigerian_presidential_election",
+      "name": "Wikipedia — 2023 Nigerian presidential election",
+      "retrieved_at": "2026-05-13",
+      "note": "State-by-state table truncated by WebFetch length limit; national totals only retrieved"
+    }
+  ],
+  "national_summary": {
+    "registered_voters": 93469008,
+    "accredited_voters": null,
+    "total_votes_cast": null,
+    "total_valid_votes": 23997174,
+    "total_rejected_votes": null,
+    "turnout_pct": 26.71,
+    "winner": "Bola Ahmed Tinubu",
+    "winner_party": "APC",
+    "sources": [
+      {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"}
+    ]
+  },
+  "candidates": [
+    {
+      "name": "Bola Ahmed Tinubu",
+      "party": "APC",
+      "votes_national": 8794726,
+      "vote_share_pct": 36.61,
+      "states_won": 12,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Atiku Abubakar",
+      "party": "PDP",
+      "votes_national": 6984520,
+      "vote_share_pct": 29.07,
+      "states_won": 12,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Peter Obi",
+      "party": "LP",
+      "votes_national": 6101533,
+      "vote_share_pct": 25.40,
+      "states_won": 12,
+      "notes": "Won 11 states + FCT per some sources; 12 per others — gap logged",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Rabiu Musa Kwankwaso",
+      "party": "NNPP",
+      "votes_national": 1496687,
+      "vote_share_pct": 6.23,
+      "states_won": 1,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "by_state": [],
+  "gaps": [
+    {
+      "scope": "by_state",
+      "note": "State-by-state results not retrieved — Wikipedia article too long for WebFetch window; INEC IReV portal unreachable. Operator should pull from INEC IReV (inecelectionresults.ng) or Stears Elections (stearsng.com/election).",
+      "states_missing": "ALL 36 + FCT"
+    },
+    {
+      "scope": "polling_unit_level",
+      "note": "PU-level results not retrieved — INEC domains unreachable"
+    }
+  ]
+}

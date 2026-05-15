@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "description": "2023 Nigerian gubernatorial elections — stub. State-level results not yet retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "cycle": 2023,
+  "data": [],
+  "gaps": [{"scope": "all_states", "note": "Gubernatorial results for 2023 not yet retrieved. Source: Wikipedia per-state articles or INEC EC8D forms."}]
+}

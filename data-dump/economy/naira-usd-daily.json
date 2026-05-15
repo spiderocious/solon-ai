@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "description": "NGN/USD exchange rate — selected annual figures and key events. Daily data not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia — Economy of Nigeria", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu (2023 float event)", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": "Daily NGN/USD data requires CBN official rates or AbokiFX parallel market data. This file has annual snapshots and key events only.",
+  "data": [
+    {"date": "2010", "official_rate_ngn_per_usd": 150, "parallel_rate_ngn_per_usd": null, "notes": "Approximate", "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"date": "2017-03", "official_rate_ngn_per_usd": null, "parallel_rate_ngn_per_usd": 520, "notes": "Parallel market high", "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"date": "2017-08", "official_rate_ngn_per_usd": null, "parallel_rate_ngn_per_usd": 350, "notes": "Parallel market low after CBN SMIS interventions", "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"date": "2023-06-14", "official_rate_ngn_per_usd": null, "parallel_rate_ngn_per_usd": null, "notes": "CBN removed FX restrictions — naira floated. Rate fell to historic lows immediately.", "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]},
+    {"date": "2024", "official_rate_ngn_per_usd": 1600, "parallel_rate_ngn_per_usd": 1700, "notes": "Approximate late-2024 range per public reports — not verified from authoritative source in this pass", "sources": []}
+  ],
+  "gaps": [
+    {"field": "daily_time_series", "note": "Daily data available from CBN (cbngov.org/rates) or AbokiFX historical dataset. Not retrieved."}
+  ]
+}

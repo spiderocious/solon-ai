@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "description": "Traditional rulers and their documented political interventions, 2011–2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [],
+  "data": [
+    {
+      "title": "Sultan of Sokoto",
+      "current_holder": "Sa'ad Abubakar III",
+      "zone": "NW",
+      "role": "President-General, Nigerian Supreme Council for Islamic Affairs",
+      "documented_interventions": [
+        {"year": 2011, "description": "Called for calm during post-election violence in the north following Jonathan's victory"},
+        {"year": 2023, "description": "Urged Nigerians to accept election results; called for peace"}
+      ],
+      "notes": "The Sultan is the most senior Muslim traditional ruler in Nigeria. His political statements carry national weight but he typically avoids overt partisan endorsements.",
+      "sources": []
+    },
+    {
+      "title": "Ooni of Ife",
+      "current_holder": "Adeyeye Ogunwusi (Ojaja II)",
+      "zone": "SW",
+      "role": "Most senior Yoruba traditional ruler",
+      "documented_interventions": [],
+      "notes": "The Ooni commands significant symbolic authority in Yoruba politics. Not documented as making partisan endorsements.",
+      "sources": []
+    },
+    {
+      "title": "Oba of Lagos",
+      "current_holder": "Rilwan Akiolu I",
+      "zone": "SW",
+      "role": "Traditional head of Lagos",
+      "documented_interventions": [
+        {"year": 2015, "description": "Made a controversial statement warning Igbo residents of Lagos about voting consequences — widely condemned; Oba later apologized"}
+      ],
+      "notes": "The Oba of Lagos is historically aligned with Lagos APC politics.",
+      "sources": []
+    },
+    {
+      "title": "Northern Traditional Rulers Council",
+      "current_holder": null,
+      "zone": "NW/NE/NC",
+      "role": "Collective body of northern emirs and chiefs",
+      "documented_interventions": [],
+      "notes": "Individual emirs (Emir of Kano, Emir of Katsina, etc.) have varying levels of political influence. The deposition and reinstatement of Emir Sanusi Lamido Sanusi in Kano (2020) is a documented political flashpoint.",
+      "sources": []
+    }
+  ],
+  "gaps": [
+    {"field": "all_interventions", "note": "This is a preliminary stub. Full documentation requires fetching news archives. Particularly important: any traditional ruler statements on 2027 election or candidate endorsements."}
+  ]
+}

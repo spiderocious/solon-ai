@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "description": "2019 Nigerian House of Representatives election — national seat totals by party.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2019-02-23",
+  "office": "House of Representatives of the Federal Republic of Nigeria",
+  "total_seats": 360,
+  "sources_used": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_House_of_Representatives_election", "name": "Wikipedia — 2019 Nigerian House of Representatives election", "retrieved_at": "2026-05-13"}],
+  "seat_totals_by_party": [
+    {"party": "APC",  "seats": 202, "change_from_prior": 21},
+    {"party": "PDP",  "seats": 126, "change_from_prior": -26},
+    {"party": "APGA", "seats": 9,   "change_from_prior": null},
+    {"party": "ADC",  "seats": 3,   "change_from_prior": null}
+  ],
+  "by_constituency": [],
+  "gaps": [{"scope": "by_constituency", "note": "360 constituency-level results not retrieved."}]
+}

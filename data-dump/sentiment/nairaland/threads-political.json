@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "description": "Nairaland political threads — EMPTY. Site returned 403 during collection.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [],
+  "gaps": [
+    {"field": "all", "note": "nairaland.com/politics returned HTTP 403. Operator should use a residential IP or cached version. Nairaland is publicly accessible in a browser. Alternative: use Wayback Machine CDX API to get crawled snapshots."}
+  ]
+}

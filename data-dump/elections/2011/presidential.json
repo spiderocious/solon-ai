@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "description": "2011 Nigerian Presidential Election results. National totals only — state-level not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2011-04-16",
+  "office": "President of the Federal Republic of Nigeria",
+  "cycle": 2011,
+  "notes": "Election postponed from 2011-04-09. Post-election violence in northern Nigeria caused ~800 deaths. Jonathan won 22 states + FCT.",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election",
+      "name": "Wikipedia — 2011 Nigerian presidential election",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "national_summary": {
+    "registered_voters": 73528040,
+    "accredited_voters": null,
+    "total_votes_cast": 39469484,
+    "total_valid_votes": 38209978,
+    "total_rejected_votes": 1259506,
+    "turnout_pct": 53.68,
+    "winner": "Goodluck Ebele Jonathan",
+    "winner_party": "PDP",
+    "sources": [{"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+  },
+  "candidates": [
+    {
+      "name": "Goodluck Ebele Jonathan",
+      "party": "PDP",
+      "votes_national": 22495187,
+      "vote_share_pct": 58.87,
+      "states_won": 22,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Muhammadu Buhari",
+      "party": "CPC",
+      "votes_national": 12214853,
+      "vote_share_pct": 31.97,
+      "states_won": null,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Nuhu Ribadu",
+      "party": "ACN",
+      "votes_national": 2079151,
+      "vote_share_pct": 5.44,
+      "states_won": null,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "by_state": [],
+  "gaps": [
+    {
+      "scope": "by_state",
+      "note": "State-by-state breakdown not retrieved. Source: INEC EC8E form (2011) or Harvard Dataverse / African Election Database."
+    }
+  ]
+}

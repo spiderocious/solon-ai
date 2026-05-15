@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian literacy rate — national and per-state where available.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [],
+  "national": {
+    "adult_literacy_pct": null,
+    "male_literacy_pct": null,
+    "female_literacy_pct": null,
+    "year": null,
+    "notes": "Literacy data not retrieved from Wikipedia sources in this pass. NBS data needed."
+  },
+  "by_state": [],
+  "gaps": [
+    {"field": "all", "note": "Literacy data not found in Wikipedia excerpts. Source: NBS Nigeria Literacy Survey 2019 or UNDP Human Development Reports. Northern states (especially NW and NE) have significantly lower literacy rates, particularly for women — critical electoral context."}
+  ]
+}

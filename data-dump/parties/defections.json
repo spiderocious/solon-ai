@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "description": "Major documented politician-party defections 2011–2026. Partial — only high-profile defections captured from available Wikipedia sources.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "politician": "Atiku Abubakar",
+      "position_at_defection": "Former VP / Presidential aspirant",
+      "from_party": "PDP",
+      "to_party": "APC",
+      "date": "2014",
+      "declared_reason": "Dispute with PDP leadership over presidential primaries",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "politician": "Atiku Abubakar",
+      "position_at_defection": "APC member",
+      "from_party": "APC",
+      "to_party": "PDP",
+      "date": "2015",
+      "declared_reason": "Returned to PDP after APC won 2015 election and Buhari (not Atiku) became president",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "politician": "Atiku Abubakar",
+      "position_at_defection": "Former VP / 2023 presidential candidate",
+      "from_party": "PDP",
+      "to_party": "ADC",
+      "date": "2025",
+      "declared_reason": "Joined opposition coalition with Peter Obi, David Mark, Rauf Aregbesola to challenge Tinubu",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "politician": "Peter Obi",
+      "position_at_defection": "Former Anambra governor / 2023 presidential candidate",
+      "from_party": "LP",
+      "to_party": "ADC",
+      "date": "2025-12-31",
+      "declared_reason": null,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "politician": "Bukola Saraki",
+      "position_at_defection": "Senate President",
+      "from_party": "APC",
+      "to_party": "PDP",
+      "date": "2018",
+      "declared_reason": "Conflict with APC leadership; led group of legislators back to PDP ahead of 2019 elections",
+      "sources": []
+    },
+    {
+      "politician": "Rabiu Kwankwaso",
+      "position_at_defection": "Former Kano governor / APC presidential aspirant",
+      "from_party": "APC",
+      "to_party": "PDP",
+      "date": "2018",
+      "declared_reason": "APC internal conflict; Kwankwaso vs. Ganduje faction in Kano",
+      "sources": []
+    },
+    {
+      "politician": "Rabiu Kwankwaso",
+      "position_at_defection": "Former Kano governor",
+      "from_party": "PDP",
+      "to_party": "NNPP",
+      "date": "2021",
+      "declared_reason": "Founded NNPP as vehicle for 2023 presidential bid",
+      "sources": []
+    },
+    {
+      "politician": "Rauf Aregbesola",
+      "position_at_defection": "Minister of Interior",
+      "from_party": "APC",
+      "to_party": "ADC",
+      "date": "2025",
+      "declared_reason": "Joined opposition coalition to challenge Tinubu; Aregbesola-Tinubu rift was public from 2022",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "comprehensive_list", "note": "Only high-profile defections captured. Systematic defection tracking requires Premium Times / Vanguard defection archives — see news/ folder."}
+  ]
+}

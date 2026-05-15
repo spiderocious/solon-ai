@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "description": "Candidate profile: Atiku Abubakar",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "slug": "atiku-abubakar",
+  "name": "Atiku Abubakar",
+  "date_of_birth": "1946-11-25",
+  "age_at_election": 80,
+  "gender": "Male",
+  "religion": "Islam",
+  "ethnicity": "Fulani",
+  "state_of_origin": "ADAMAWA",
+  "lga_of_origin": "Jada",
+  "party": "ADC",
+  "party_note": "Joined ADC 2025; previously PDP for most of political career",
+  "party_history": [
+    {"party": "PDP", "period": "1998-2023 (mostly)"},
+    {"party": "APC", "period": "2014-2015 (briefly; returned to PDP)"},
+    {"party": "ADC", "period": "2025 onwards"}
+  ],
+  "education": [
+    {"institution": "Ahmadu Bello University", "degree": "Diploma in Law / Administration", "year": 1969, "provenance_type": "claim"},
+    {"institution": "Anglia Ruskin University", "degree": "MA International Relations", "year": 2021, "provenance_type": "claim"}
+  ],
+  "prior_offices": [
+    {"office": "Vice President of Nigeria", "party": "PDP", "start": "1999-05-29", "end": "2007-05-29"},
+    {"office": "Adamawa State Governor-elect (never inaugurated)", "party": "PDP", "start": "1998", "end": null, "notes": "Won 1998 gubernatorial election but was asked to step down by party to run for VP with Obasanjo"}
+  ],
+  "presidential_candidacies": [1993, 2007, 2011, 2015, 2019, 2023],
+  "current_office": null,
+  "vote_share_2023_presidential_pct": 29.07,
+  "votes_2023_national": 6984520,
+  "coalition_activity_2025": "Joined opposition coalition with David Mark, Rauf Aregbesola, Peter Obi in July 2025 to challenge Tinubu",
+  "scandal_log": [
+    {
+      "date": "2005",
+      "description": "Alleged bribery scandal involving U.S. Congressman William J. Jefferson. Both denied wrongdoing; Jefferson was later convicted. Atiku's role was investigated but not charged.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2016",
+      "description": "Named in Panama Papers for offshore holdings.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "sources": [{"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+}

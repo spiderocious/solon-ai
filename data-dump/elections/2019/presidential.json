@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "description": "2019 Nigerian Presidential Election results. National totals only — state-level not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2019-02-23",
+  "office": "President of the Federal Republic of Nigeria",
+  "cycle": 2019,
+  "notes": "Election originally scheduled 2019-02-16; postponed to 2019-02-23.",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election",
+      "name": "Wikipedia — 2019 Nigerian presidential election",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "national_summary": {
+    "registered_voters": 82344107,
+    "accredited_voters": null,
+    "total_votes_cast": null,
+    "total_valid_votes": 27324583,
+    "total_rejected_votes": null,
+    "turnout_pct": 34.75,
+    "winner": "Muhammadu Buhari",
+    "winner_party": "APC",
+    "sources": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+  },
+  "candidates": [
+    {
+      "name": "Muhammadu Buhari",
+      "party": "APC",
+      "votes_national": 15191847,
+      "vote_share_pct": 55.60,
+      "states_won": 34,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Atiku Abubakar",
+      "party": "PDP",
+      "votes_national": 11262978,
+      "vote_share_pct": 41.22,
+      "states_won": null,
+      "notes": "Wikipedia says Abubakar secured 29 states — but Buhari also listed as 34 states; conflict in source. Likely refers to different offices or includes FCT differently.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "by_state": [],
+  "gaps": [
+    {
+      "scope": "by_state",
+      "note": "State-by-state breakdown not retrieved. Source: INEC EC8E form (2019) or Harvard Dataverse Nigerian Elections dataset."
+    }
+  ]
+}

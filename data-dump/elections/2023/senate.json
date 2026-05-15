@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "description": "2023 Nigerian Senate election — national seat totals by party. Constituency-level results not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2023-02-25",
+  "office": "Senate of the Federal Republic of Nigeria",
+  "total_seats": 109,
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_Senate_election", "name": "Wikipedia — 2023 Nigerian Senate election", "retrieved_at": "2026-05-13"}
+  ],
+  "seat_totals_by_party": [
+    {"party": "APC", "seats": 59, "change_from_prior": 0},
+    {"party": "PDP", "seats": 37, "change_from_prior": -3},
+    {"party": "LP",  "seats": 7,  "change_from_prior": 7},
+    {"party": "NNPP","seats": 2,  "change_from_prior": 2},
+    {"party": "SDP", "seats": 2,  "change_from_prior": 2},
+    {"party": "APGA","seats": 1,  "change_from_prior": 1},
+    {"party": "YPP", "seats": 1,  "change_from_prior": 0}
+  ],
+  "by_constituency": [],
+  "gaps": [{"scope": "by_constituency", "note": "109 constituency-level results not retrieved. Source: INEC official gazette."}]
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "description": "candidate-withdrawals — 2026-2027 election cycle events. Stub.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [],
+  "gaps": [{"field": "all", "note": "Not collected in this pass. Source: Premium Times, Punch, TheCable event archives."}]
+}

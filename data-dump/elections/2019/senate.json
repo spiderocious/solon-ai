@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "description": "2019 Nigerian Senate election — national seat totals by party.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2019-02-23",
+  "office": "Senate of the Federal Republic of Nigeria",
+  "total_seats": 109,
+  "sources_used": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_Senate_election", "name": "Wikipedia — 2019 Nigerian Senate election", "retrieved_at": "2026-05-13"}],
+  "seat_totals_by_party": [
+    {"party": "APC", "seats": 63, "change_from_prior": 8},
+    {"party": "PDP", "seats": 44, "change_from_prior": -4},
+    {"party": "YPP", "seats": 1,  "change_from_prior": 1}
+  ],
+  "by_constituency": [],
+  "gaps": [{"scope": "by_constituency", "note": "109 constituency-level results not retrieved."}]
+}

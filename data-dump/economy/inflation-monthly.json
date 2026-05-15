@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian CPI inflation rate — annual data 2011–2026. Monthly data not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia — Economy of Nigeria", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": "Only annual figures available from Wikipedia. For monthly CPI time series, operator should pull from NBS (nigerianstat.gov.ng) or World Bank WDI database.",
+  "data": [
+    {"year": 2011, "month": null, "inflation_rate_pct": 10.8, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2012, "month": null, "inflation_rate_pct": 12.2, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2013, "month": null, "inflation_rate_pct": 8.5,  "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2014, "month": null, "inflation_rate_pct": 8.0,  "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2015, "month": null, "inflation_rate_pct": 9.0,  "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2016, "month": null, "inflation_rate_pct": 15.7, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2017, "month": null, "inflation_rate_pct": 16.5, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2018, "month": null, "inflation_rate_pct": 12.1, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2019, "month": null, "inflation_rate_pct": 11.4, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2020, "month": null, "inflation_rate_pct": 13.2, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2021, "month": null, "inflation_rate_pct": 17.0, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2022, "month": null, "inflation_rate_pct": 18.8, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2023, "month": null, "inflation_rate_pct": 24.7, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2024, "month": null, "inflation_rate_pct": 32.5, "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2025, "month": null, "inflation_rate_pct": 25.0, "notes": "Estimate", "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"year": 2026, "month": null, "inflation_rate_pct": 15.2, "notes": "Estimate", "sources": [{"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]}
+  ],
+  "gaps": [
+    {"field": "monthly_data", "note": "Monthly CPI data not retrieved. Source: NBS CPI reports (monthly publication) or World Bank WDI."},
+    {"field": "2026_actual", "note": "2026 figure is a projection; actual monthly data for Jan-May 2026 not retrieved."}
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "description": "Data that exists and is collectible but requires API keys, registration, or special access.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [
+    {
+      "data_type": "Twitter/X political sentiment",
+      "api": "Twitter API v2 (Academic Research track)",
+      "where_to_apply": "https://developer.twitter.com/en/portal/dashboard",
+      "cost": "Free (Academic Research); Basic $100/month for commercial",
+      "what_we_get": "Historical tweet search for Nigerian political keywords; volume, sentiment, top tweets",
+      "priority": "HIGH"
+    },
+    {
+      "data_type": "Facebook political page engagement",
+      "api": "Meta Content Library API",
+      "where_to_apply": "https://transparency.meta.com/researchtools/meta-content-library/",
+      "cost": "Free (requires institutional affiliation)",
+      "what_we_get": "Post content, likes, shares, comments from public political pages",
+      "priority": "MEDIUM"
+    },
+    {
+      "data_type": "TikTok political video metrics",
+      "api": "TikTok Research API",
+      "where_to_apply": "https://developers.tiktok.com/products/research-api/",
+      "cost": "Free (requires non-profit/academic approval)",
+      "what_we_get": "Video metadata, view/like/comment counts for political hashtags",
+      "priority": "MEDIUM"
+    },
+    {
+      "data_type": "ACLED Nigeria security incident data",
+      "api": "ACLED Data API",
+      "where_to_apply": "https://acleddata.com/register/",
+      "cost": "Free registration",
+      "what_we_get": "Monthly armed conflict events by state: fatalities, event type, actor, date",
+      "priority": "HIGH"
+    },
+    {
+      "data_type": "NBS economic time series (CPI, unemployment, state GDP)",
+      "api": "NBS data portal (nigerianstat.gov.ng)",
+      "where_to_apply": "https://nigerianstat.gov.ng/",
+      "cost": "Free (some data is publicly downloadable)",
+      "what_we_get": "Official monthly CPI, quarterly unemployment, state-level economic indicators",
+      "priority": "HIGH"
+    },
+    {
+      "data_type": "CBN official exchange rate series",
+      "api": "CBN rates API or download",
+      "where_to_apply": "https://www.cbn.gov.ng/rates/ExchRates.asp",
+      "cost": "Free",
+      "what_we_get": "Daily official NGN/USD and other currency rates",
+      "priority": "HIGH"
+    },
+    {
+      "data_type": "INEC PU register, ward list, election results",
+      "api": "INEC website direct download",
+      "where_to_apply": "https://inecnigeria.org",
+      "cost": "Free (site was unreachable during collection)",
+      "what_we_get": "Official PU register (Excel), ward list, EC8 result forms",
+      "priority": "CRITICAL"
+    },
+    {
+      "data_type": "Telegram political channel messages",
+      "api": "Telegram API (via telethon Python library)",
+      "where_to_apply": "https://my.telegram.org",
+      "cost": "Free (phone number required)",
+      "what_we_get": "Public Nigerian political Telegram channel message history",
+      "priority": "MEDIUM"
+    },
+    {
+      "data_type": "Afrobarometer subnational survey data (Nigeria)",
+      "api": "Afrobarometer data download portal",
+      "where_to_apply": "https://www.afrobarometer.org/data/",
+      "cost": "Free (registration required for Round 9/10 datasets)",
+      "what_we_get": "Per-state survey data: governance satisfaction, issue salience, ethnic/religious identity",
+      "priority": "HIGH"
+    },
+    {
+      "data_type": "Harvard Dataverse historical election results",
+      "api": "Harvard Dataverse (free, no key needed)",
+      "where_to_apply": "https://dataverse.harvard.edu/ (search: Nigeria elections)",
+      "cost": "Free",
+      "what_we_get": "LGA-level presidential results for 2011, 2015, 2019",
+      "priority": "HIGH"
+    }
+  ]
+}

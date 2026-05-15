@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "description": "Declared and credibly speculated 2027 Nigerian presidential candidates. State collected: May 2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_dates": {
+    "presidential_and_nass": "2027-01-16",
+    "gubernatorial_and_state_assembly": "2027-02-06"
+  },
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": [
+    "Candidates listed are either formally declared or speculated in ≥2 reliable media sources as of Wikipedia's article.",
+    "APC endorsed Tinubu for re-election in May 2025.",
+    "Opposition coalition formed July 2025: Atiku Abubakar, David Mark, Rauf Aregbesola, Peter Obi.",
+    "Presidential election uses modified two-round system: winner must get 25%+ in at least 24 of 36 states + FCT."
+  ],
+  "data": [
+    {
+      "name": "Bola Ahmed Tinubu",
+      "slug": "tinubu-bola",
+      "status": "incumbent_seeking_reelection",
+      "party": "APC",
+      "office_sought": "President",
+      "declaration_date": null,
+      "party_endorsed": true,
+      "party_endorsement_date": "2025-05",
+      "profile_file": "profiles/tinubu-bola.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Peter Gregory Obi",
+      "slug": "obi-peter",
+      "status": "speculated",
+      "party": "ADC",
+      "party_note": "Defected from LP to ADC on 2025-12-31",
+      "office_sought": "President",
+      "declaration_date": null,
+      "notes": "Stated he 'may not contest again after 2027' — ambiguous. Was LP candidate in 2023 with 25.40% nationally.",
+      "profile_file": "profiles/obi-peter.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Rabiu Musa Kwankwaso",
+      "slug": "kwankwaso-rabiu",
+      "status": "speculated",
+      "party": "NNPP",
+      "office_sought": "President",
+      "declaration_date": null,
+      "notes": "Received 6.4% in 2023. Strong in Kano. NNPP currently holds Kano governorship.",
+      "profile_file": "profiles/kwankwaso-rabiu.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Rotimi Amaechi",
+      "slug": "amaechi-rotimi",
+      "status": "speculated",
+      "party": "APC",
+      "office_sought": "President",
+      "declaration_date": null,
+      "notes": "Former Rivers State governor (2007-2015), former Minister of Transportation. APC member; would compete with Tinubu within the party.",
+      "profile_file": "profiles/amaechi-rotimi.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Omoyele Sowore",
+      "slug": "sowore-omoyele",
+      "status": "speculated",
+      "party": "AAC",
+      "office_sought": "President",
+      "declaration_date": null,
+      "notes": "Human rights activist, founder of Sahara Reporters, African Action Congress. Ran in 2019.",
+      "profile_file": "profiles/sowore-omoyele.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "name": "Atiku Abubakar",
+      "slug": "atiku-abubakar",
+      "status": "speculated",
+      "party": "ADC",
+      "party_note": "Joined ADC 2025; previously PDP",
+      "office_sought": "President",
+      "declaration_date": null,
+      "notes": "Joined opposition coalition July 2025. PDP candidate in 2019 and 2023. Former VP under Obasanjo 1999-2007.",
+      "profile_file": "profiles/atiku-abubakar.json",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "gubernatorial_candidates", "note": "2027 governorship candidates for states holding elections not yet collected."},
+    {"field": "senate_and_house_candidates", "note": "National Assembly candidates not yet declared as of May 2026."}
+  ]
+}

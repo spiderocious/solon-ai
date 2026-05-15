@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "description": "2015 Nigerian House of Representatives election — national seat totals by party.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2015-03-28",
+  "office": "House of Representatives of the Federal Republic of Nigeria",
+  "total_seats": 360,
+  "sources_used": [{"url": "https://en.wikipedia.org/wiki/2015_Nigerian_general_election", "name": "Wikipedia — 2015 Nigerian general election", "retrieved_at": "2026-05-13"}],
+  "seat_totals_by_party": [
+    {"party": "APC",  "seats": 212, "change_from_prior": 77},
+    {"party": "PDP",  "seats": 140, "change_from_prior": -63},
+    {"party": "APGA", "seats": 5,   "change_from_prior": null},
+    {"party": "Accord", "seats": 1, "change_from_prior": null},
+    {"party": "LP",   "seats": 1,   "change_from_prior": null},
+    {"party": "SDP",  "seats": 1,   "change_from_prior": null}
+  ],
+  "by_constituency": [],
+  "gaps": [{"scope": "by_constituency", "note": "Constituency-level not retrieved."}]
+}

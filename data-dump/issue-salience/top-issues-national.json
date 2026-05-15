@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "description": "Top national issues — derived from NOI Polls data and Premium Times headlines. Heuristic, not measured.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "derivation_method": "derived_heuristic",
+  "notes": "These rankings are derived from poll findings and headline counts in collected data, NOT from systematic issue-coding. Flag: derived_heuristic.",
+  "sources_used": [
+    {"url": "https://www.noi-polls.com/post/60-nigerians-say-country-on-wrong-track-but-national-pride-remains-high", "name": "NOI Polls Sept 2025 wrong-track poll", "retrieved_at": "2026-05-13"},
+    {"url": "https://www.noi-polls.com/post/nigerians-oppose-removal-of-fuel-subsidies-want-them-to-be-reinstated", "name": "NOI Polls fuel subsidy poll 2024", "retrieved_at": "2026-05-13"},
+    {"url": "https://premiumtimesng.com/category/news/politics", "name": "Premium Times politics category", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "week": null,
+      "note": "Rolling weekly data not available — only point-in-time poll data retrieved. See NOI Polls approval ratings for monthly trend.",
+      "top_10_issues": [
+        {"rank": 1, "issue": "Cost of living / inflation", "evidence": "NOI Polls: 33% cite cost of living as top problem; 88% say economy bad; 85% oppose subsidy removal"},
+        {"rank": 2, "issue": "Security (banditry, Boko Haram, herder-farmer)", "evidence": "NOI Polls: security 24% of wrong-track mentions"},
+        {"rank": 3, "issue": "Unemployment / youth joblessness", "evidence": "22.6% unemployment rate; majority considered emigration"},
+        {"rank": 4, "issue": "Fuel pump price / energy cost", "evidence": "85% disapprove subsidy removal; politically dominant since May 2023"},
+        {"rank": 5, "issue": "Governance / corruption", "evidence": "NOI Polls: bad governance 15% of wrong-track mentions; 93% say wrong direction (fuel subsidy poll)"},
+        {"rank": 6, "issue": "Electoral integrity (INEC, BVAS, IReV)", "evidence": "Ongoing litigation; 2023 election controversies; FCT 2026 election"},
+        {"rank": 7, "issue": "Naira devaluation / forex crisis", "evidence": "Naira float June 2023; import costs; visible in Premium Times headlines"},
+        {"rank": 8, "issue": "Power supply (electricity)", "evidence": "NOI Polls Jul 2024: yearlong trend of inadequate power"},
+        {"rank": 9, "issue": "2027 election / political positioning", "evidence": "APC endorsement of Tinubu; ADC formation; opposition coalition"},
+        {"rank": 10, "issue": "Southeast separatism / IPOB sit-at-home", "evidence": "Ongoing economic disruption in SE; political implications for 2027"}
+      ]
+    }
+  ]
+}

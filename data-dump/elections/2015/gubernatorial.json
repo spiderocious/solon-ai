@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "description": "2015 Nigerian gubernatorial elections — stub. State-level results not yet retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2015-04-11",
+  "cycle": 2015,
+  "notes": "Governorship elections held 2015-04-11 (after presidential on 2015-03-28). APC won majority of states in the north; PDP held south-south and south-east.",
+  "data": [],
+  "gaps": [{"scope": "all_states", "note": "State-level results not retrieved. Source: Wikipedia per-state articles or INEC EC8D forms."}]
+}

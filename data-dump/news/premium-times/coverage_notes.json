@@ -1,0 +1,9 @@
+{
+  "source": "Premium Times (premiumtimesng.com)",
+  "date_range_covered": "2024-03-27 to 2026-04-27",
+  "method": "WebFetch of category page — ~20 headlines only",
+  "paywalled": false,
+  "blocked": false,
+  "gaps": "Full archive (Jan 2025 onwards as specified) not scraped. Only category page listing retrieved. Operator should implement pagination scraping or use Wayback Machine API.",
+  "headline_count": 19
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "description": "Geopolitical zone voting patterns 2011–2023. Based on states-won summaries — not full vote-share tables.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia — 2023 Nigerian general election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia — 2019 Nigerian presidential election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2015_Nigerian_presidential_election", "name": "Wikipedia — 2015 Nigerian presidential election", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/2011_Nigerian_presidential_election", "name": "Wikipedia — 2011 Nigerian presidential election", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": "All data marked provenance_type='inferred_pattern' — derived from states-won summaries, NOT from full state-level vote tables. Treat as priors only.",
+  "data": [
+    {
+      "zone": "NW",
+      "states": ["KANO","KATSINA","KADUNA","SOKOTO","ZAMFARA","KEBBI","JIGAWA"],
+      "registered_voters_approx": null,
+      "pattern_2011_2023": "Predominantly voted for northern Muslim candidates. 2011: Jonathan (PDP) won; 2015: Buhari (APC) dominant; 2019: Buhari dominant; 2023: Split — Tinubu (APC) won most states but NNPP's Kwankwaso won Kano.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "zone": "NE",
+      "states": ["BORNO","YOBE","GOMBE","BAUCHI","ADAMAWA","TARABA"],
+      "pattern_2011_2023": "Predominantly APC/Buhari stronghold 2015-2019. Borno and Yobe very high APC margins. Adamawa competitive (PDP governor in 2023). Security crisis (Boko Haram/ISWAP) affects turnout in Borno, Yobe, Adamawa.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2019_Nigerian_presidential_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "zone": "NC",
+      "states": ["BENUE","KOGI","KWARA","NASARAWA","NIGER","PLATEAU","FCT"],
+      "pattern_2011_2023": "Middle Belt — historically competitive. FCT voted for Peter Obi (LP) in 2023 — significant break from pattern. Plateau is PDP-leaning. Benue is PDP-leaning. Kogi APC.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "zone": "SW",
+      "states": ["LAGOS","OYO","OGUN","ONDO","OSUN","EKITI"],
+      "pattern_2011_2023": "Tinubu/APC stronghold 2015-2023. Lagos is the critical prize. 2023: Tinubu won SW but Peter Obi ran strongly in Lagos urban areas. PDP's Makinde holds Oyo. PDP won Osun 2022.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "zone": "SE",
+      "states": ["ANAMBRA","IMO","ENUGU","ABIA","EBONYI"],
+      "pattern_2011_2023": "Heavily voted Igbo candidates. 2023: Peter Obi (LP) dominated; APGA holds Anambra. APC held Ebonyi and Imo. Historically PDP stronghold when no Igbo candidate running.",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "zone": "SS",
+      "states": ["RIVERS","DELTA","AKWA_IBOM","BAYELSA","CROSS_RIVER","EDO"],
+      "pattern_2011_2023": "PDP stronghold historically. 2023: Mostly PDP in governorships; Rivers under Fubara (PDP). Significant political tension in Rivers 2024-2026 (Fubara vs. Wike).",
+      "provenance_type": "inferred_pattern",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2023_Nigerian_general_election", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ]
+}

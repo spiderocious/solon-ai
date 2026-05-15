@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0",
+  "description": "Known data gaps — everything attempted and failed to retrieve publicly in this collection run.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [
+    {
+      "category": "geography",
+      "what": "Ward list (~8,809 wards) with INEC codes",
+      "where_looked": ["https://inecnigeria.org", "https://inec.gov.ng"],
+      "why_failed": "Both INEC domains returned TLS certificate errors / connection closed",
+      "unblock": "Operator fetches INEC ward register PDF or Excel from inecnigeria.org directly"
+    },
+    {
+      "category": "geography",
+      "what": "Polling unit list (~176,846 PUs) with registered voter counts and coordinates",
+      "where_looked": ["https://inecnigeria.org", "https://inec.gov.ng", "https://inecelectionresults.ng"],
+      "why_failed": "All INEC/IReV domains unreachable",
+      "unblock": "Download INEC PU register Excel file from inecnigeria.org or use IReV API"
+    },
+    {
+      "category": "elections",
+      "what": "State-by-state presidential election results for all 37 jurisdictions, 2011–2023",
+      "where_looked": ["https://en.wikipedia.org/wiki/2023_Nigerian_presidential_election", "https://stears.co", "https://dataphyte.com"],
+      "why_failed": "Wikipedia articles truncated by WebFetch length limit; Stears returned 404; Dataphyte returned 403",
+      "unblock": "Operator fetches INEC EC8E forms (official) or Harvard Dataverse Nigeria elections dataset (free)"
+    },
+    {
+      "category": "elections",
+      "what": "All constituency-level legislative results (109 Senate seats, 360 House seats) 2011–2023",
+      "where_looked": ["Wikipedia", "INEC domains"],
+      "why_failed": "Same as above",
+      "unblock": "INEC official gazette or Harvard Dataverse"
+    },
+    {
+      "category": "elections",
+      "what": "All off-cycle gubernatorial results (Anambra 2013-2025, Edo 2012-2024, Ekiti 2014-2022, Ondo 2012-2024, Osun 2014-2022, etc.)",
+      "where_looked": ["Wikipedia individual article URLs"],
+      "why_failed": "Wikipedia articles for these specific elections returned 404 at the URL patterns tried",
+      "unblock": "Search Wikipedia for '[year] [state] gubernatorial election' — URL pattern varies"
+    },
+    {
+      "category": "demographics",
+      "what": "Per-state literacy rates, age distribution, religion breakdown",
+      "where_looked": ["Wikipedia demographics articles"],
+      "why_failed": "Not present in Wikipedia sources at the granularity needed",
+      "unblock": "NBS Nigeria Literacy Survey 2019; NPC census 2006 state tables; Afrobarometer Round 9/10 subnational data"
+    },
+    {
+      "category": "demographics",
+      "what": "Per-state poverty rates and unemployment",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "Not in Wikipedia sources",
+      "unblock": "NBS 2022 Multidimensional Poverty Index report (publicly available); NBS quarterly unemployment reports"
+    },
+    {
+      "category": "economy",
+      "what": "Monthly CPI inflation series 2011–2026",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "Only annual data available on Wikipedia",
+      "unblock": "NBS CPI monthly press releases or World Bank WDI API"
+    },
+    {
+      "category": "economy",
+      "what": "Daily NGN/USD exchange rate (official + parallel) 2011–2026",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "Wikipedia has only selected data points",
+      "unblock": "CBN rates (cbngov.org) for official; Stears for parallel market history; AbokiFX historical archive"
+    },
+    {
+      "category": "economy",
+      "what": "Monthly PMS pump price timeline 2011–2026",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "Wikipedia article specific to pump prices not found",
+      "unblock": "NNPCL price notices; NBS petroleum product pricing reports"
+    },
+    {
+      "category": "economy",
+      "what": "Per-state electricity supply hours (NERC data)",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "Not available",
+      "unblock": "NERC annual reports; TCN data; NBS"
+    },
+    {
+      "category": "security",
+      "what": "Monthly incident counts by state and event type (ACLED data)",
+      "where_looked": ["Wikipedia"],
+      "why_failed": "ACLED data not on Wikipedia; ACLED site not fetched",
+      "unblock": "ACLED free download at acleddata.com (requires registration); CFR Nigeria Security Tracker"
+    },
+    {
+      "category": "inec",
+      "what": "IReV per-state upload compliance percentages for 2023",
+      "where_looked": ["Wikipedia", "inecnigeria.org"],
+      "why_failed": "INEC domains unreachable; Wikipedia doesn't have this",
+      "unblock": "INEC 2023 post-election report; Yiaga Africa or Civic Hub IReV analysis"
+    },
+    {
+      "category": "news",
+      "what": "Headlines from Punch, TheCable, Vanguard, Daily Trust, Sahara Reporters, BusinessDay, The Nation, Channels TV, Arise, TVC",
+      "where_looked": "Direct category page URLs",
+      "why_failed": "All returned HTTP 403 Forbidden",
+      "unblock": "Use headless browser (Playwright/Puppeteer); try RSS feeds; use Wayback Machine CDX API for cached versions"
+    },
+    {
+      "category": "news",
+      "what": "Headlines from international wire services (Reuters Nigeria, AP Nigeria, AFP Nigeria)",
+      "where_looked": "Not attempted",
+      "why_failed": "Not fetched in this pass",
+      "unblock": "Reuters Nigeria tag page; AP Nigeria; AFP text service"
+    },
+    {
+      "category": "sentiment",
+      "what": "Nairaland political thread list",
+      "where_looked": ["https://www.nairaland.com/politics"],
+      "why_failed": "HTTP 403",
+      "unblock": "Use Wayback Machine CDX API; or residential IP"
+    },
+    {
+      "category": "polls",
+      "what": "Stat Strategy, Bloom Public Affairs, ANAP Foundation, Africa Polling Institute polls",
+      "where_looked": "Not attempted",
+      "why_failed": "Not fetched in this pass",
+      "unblock": "Fetch pollster websites; media-commissioned poll PDFs on Premium Times"
+    },
+    {
+      "category": "candidates",
+      "what": "2027 gubernatorial candidates for states holding elections",
+      "where_looked": ["Wikipedia 2027 election article"],
+      "why_failed": "Not yet available — primaries not held",
+      "unblock": "Monitor party announcements from Q3 2026"
+    }
+  ]
+}

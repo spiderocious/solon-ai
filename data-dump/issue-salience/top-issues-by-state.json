@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "description": "Top issues by state — stub. Insufficient state-level data retrieved for systematic coding.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [],
+  "gaps": [
+    {"field": "all", "note": "State-level issue salience requires per-state news archives or Afrobarometer Round 10 subnational data. Not retrieved in this pass. NOI Polls Sept 2025 data showed SE had highest wrong-track score (74%) vs SW (30% optimism) — partial signal."}
+  ]
+}

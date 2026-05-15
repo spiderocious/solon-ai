@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "description": "2021 ANAMBRA gubernatorial election — stub. Not yet fetched.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "cycle": 2021,
+  "state": "ANAMBRA",
+  "data": [],
+  "gaps": [{"scope": "results", "note": "Wikipedia article not found at standard URL patterns. Source: Wikipedia search or INEC EC8D."}]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "description": "Candidate profile: Peter Obi",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "slug": "obi-peter",
+  "name": "Peter Onwubuasi Gregory Obi",
+  "date_of_birth": "1961-07-19",
+  "age_at_election": 65,
+  "gender": "Male",
+  "religion": "Catholic Christian",
+  "ethnicity": "Igbo",
+  "state_of_origin": "ANAMBRA",
+  "lga_of_origin": "Agulu community",
+  "party": "ADC",
+  "party_note": "Defected from Labour Party to African Democratic Congress on 2025-12-31",
+  "party_history": [
+    {"party": "APGA", "period": "2006-2014 (governor)"},
+    {"party": "PDP",  "period": "2019 (VP candidate for Atiku)"},
+    {"party": "LP",   "period": "2022-2025-12-31"},
+    {"party": "ADC",  "period": "2026-01-01 onwards"}
+  ],
+  "education": [
+    {"institution": "Christ the King College, Onitsha", "degree": "Secondary", "year": null, "provenance_type": "claim"},
+    {"institution": "University of Nigeria, Nsukka", "degree": "BSc Philosophy", "year": 1984, "provenance_type": "claim"},
+    {"institution": "Lagos Business School", "degree": "Executive education", "year": null, "provenance_type": "claim"},
+    {"institution": "Harvard Business School", "degree": "Executive education", "year": null, "provenance_type": "claim"},
+    {"institution": "Cambridge Judge Business School", "degree": "Executive education", "year": null, "provenance_type": "claim"}
+  ],
+  "prior_offices": [
+    {"office": "Governor, Anambra State", "party": "APGA", "start": "2006", "end": "2014", "notes": "Impeached Nov 2006; reinstated Feb 2007 by Supreme Court ruling. Served full second term."},
+    {"office": "Vice Presidential candidate (running mate to Atiku Abubakar)", "party": "PDP", "start": "2019", "end": "2019", "notes": "Lost to Buhari/APC"}
+  ],
+  "current_office": null,
+  "vote_share_2023_presidential_pct": 25.40,
+  "votes_2023_national": 6101533,
+  "scandal_log": [
+    {
+      "date": "2021",
+      "description": "Pandora Papers: offshore company holdings in British Virgin Islands and Barbados. Obi stated compliance with Nigerian regulations.",
+      "provenance_type": "fact",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2023",
+      "description": "Leaked audio allegedly discussing 2023 election as a 'religious war'. Obi called it 'fake and doctored'.",
+      "provenance_type": "disputed_claim",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "sources": [{"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"}]
+}

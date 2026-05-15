@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "description": "Premium Times Nigeria political headlines — sample from category page, dated 2024-2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "source_url": "https://premiumtimesng.com/category/news/politics",
+  "coverage_notes": {
+    "date_range_covered": "2024-03-27 to 2026-04-27 (sample from category page, not exhaustive)",
+    "paywalled": false,
+    "blocked": false,
+    "gaps": "Only ~20 headlines retrieved from category listing. Full archive pagination not scraped. Premium Times archives are accessible without paywall."
+  },
+  "data": [
+    {"title": "Why I attended BBN Cross's wedding – Atiku", "url": "https://www.premiumtimesng.com/politics/875189-why-i-attended-bbn-crosss-wedding-atiku-2.html", "published_at": "2026-04-27", "tags": ["politics","Atiku"]},
+    {"title": "Akwa Ibom too big to be ruled by insult — US-based Nigerian reacts to Eno's 'receptionist' remark", "url": "https://www.premiumtimesng.com/regional/south-south-regional/863595-akwa-ibom-too-big-to-be-ruled-by-insult-us-based-nigerian-reacts-to-enos-receptionist-remark.html", "published_at": "2026-03-12", "tags": ["politics","AKWA_IBOM"]},
+    {"title": "#FCTDecides2026: Situation Room urges turnout as voting begins across six councils", "url": "https://www.premiumtimesng.com/news/top-news/858495-fctdecides2026-situation-room-urges-turnout-as-voting-begins-across-six-councils.html", "published_at": "2026-02-21", "tags": ["election-2026","FCT","politics"]},
+    {"title": "#FCTDecides2026: Civil society urges turnout as voting begins across six councils", "url": "https://www.premiumtimesng.com/news/top-news/858426-fctdecides2026-civil-society-urges-turnout-as-voting-begins-across-six-councils.html", "published_at": "2026-02-21", "tags": ["election-2026","FCT","politics"]},
+    {"title": "Atiku dumps PDP, gives reasons for exit", "url": "https://www.premiumtimesng.com/politics/807592-atiku-dumps-pdp-gives-reasons-for-exit.html", "published_at": "2025-07-16", "tags": ["politics","PDP","Atiku","defection"]},
+    {"title": "INEC presents certificates of return to Aiyedatiwa, deputy", "url": "https://www.premiumtimesng.com/politics/755859-inec-presents-certificates-of-return-to-aiyedatiwa-deputy-2.html", "published_at": "2024-11-20", "tags": ["politics","ONDO","INEC","election-2024"]},
+    {"title": "How Nigeria can reduce foreign exchange pressure — Wale Edun", "url": "https://www.premiumtimesng.com/politics/747834-how-nigeria-can-reduce-foreign-exchange-pressure-wale-edun-2.html", "published_at": "2024-10-23", "tags": ["economy","politics"]},
+    {"title": "#EdoDecides2024: 'INEC is most dangerous institution in Nigeria' – Davido", "url": "https://www.premiumtimesng.com/politics/737835-edodecides2024-inec-is-most-dangerous-institution-in-nigeria-davido.html", "published_at": "2024-09-23", "tags": ["politics","EDO","INEC","election-2024"]},
+    {"title": "Kidnapped party chieftain regains freedom", "url": "https://www.premiumtimesng.com/politics/733821-kidnapped-party-chieftain-regains-freedom.html", "published_at": "2024-09-12", "tags": ["politics","security","kidnapping"]},
+    {"title": "Obaseki's wife replies Oshiomhole, comforts childless women", "url": "https://www.premiumtimesng.com/news/732384-obasekis-wife-replies-oshiomhole-comforts-childless-women.html", "published_at": "2024-09-08", "tags": ["politics","EDO"]},
+    {"title": "Suspected Boko Haram insurgents kill many, burn houses, shops in Yobe — Police", "url": "https://www.premiumtimesng.com/politics/730223-suspected-boko-haram-insurgents-kill-many-burn-houses-shops-in-yobe-police.html", "published_at": "2024-09-02", "tags": ["security","YOBE","boko-haram"]},
+    {"title": "Police summon NLC president over alleged terrorism financing, cybercrime, others", "url": "https://www.premiumtimesng.com/politics/726016-police-summon-nlc-president-over-alleged-terrorism-financing-cybercrime-others-2.html", "published_at": "2024-08-19", "tags": ["politics","labour","NLC"]},
+    {"title": "Newly inaugurated Abia PDP lawmaker speaks on alleged plan to defect to Labour Party", "url": "https://www.premiumtimesng.com/politics/724936-newly-inaugurated-abia-pdp-lawmaker-speaks-on-alleged-plan-to-defect-to-labour-party.html", "published_at": "2024-08-16", "tags": ["politics","ABIA","PDP","LP","defection"]},
+    {"title": "Tinubu appoints new heads of agencies, programmes", "url": "https://www.premiumtimesng.com/politics/721917-tinubu-appoints-new-heads-of-agencies-programmes.html", "published_at": "2024-08-07", "tags": ["politics","APC","Tinubu"]},
+    {"title": "Rivers Labour Party suspends chairperson, actress Hilda Dokubo", "url": "https://www.premiumtimesng.com/news/715214-rivers-labour-party-suspends-chairperson-actress-hilda-dokubo.html", "published_at": "2024-07-19", "tags": ["politics","RIVERS","LP"]},
+    {"title": "FCT police invade bandits' hideouts, arrest suspects", "url": "https://www.premiumtimesng.com/politics/702286-fct-police-invade-bandits-hideouts-arrest-suspects.html", "published_at": "2024-06-09", "tags": ["security","FCT","banditry"]},
+    {"title": "Tinubu never influenced electoral process, Shettima says", "url": "https://www.premiumtimesng.com/politics/700053-tinubu-never-influenced-electoral-process-shettima-says.html", "published_at": "2024-06-02", "tags": ["politics","APC","Tinubu","INEC"]},
+    {"title": "Tinubu approves establishment of national health fellows programme", "url": "https://www.premiumtimesng.com/politics/684455-tinubu-approves-establishment-of-national-health-fellows-programme.html", "published_at": "2024-04-08", "tags": ["politics","APC","Tinubu","health"]},
+    {"title": "Police operatives allegedly extort $13,000 meant for victim's school fees", "url": "https://www.premiumtimesng.com/politics/681451-police-operatives-allegedly-extort-13000-meant-for-victims-school-fees.html", "published_at": "2024-03-27", "tags": ["politics","police","corruption"]}
+  ]
+}

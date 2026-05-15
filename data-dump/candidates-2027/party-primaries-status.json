@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "description": "Status of 2027 party primaries — as of May 2026. Very early; most parties have not scheduled primaries.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "party": "APC",
+      "office": "President",
+      "status": "party_endorsed_incumbent",
+      "notes": "APC officially endorsed Tinubu for re-election in May 2025. Formal primary not yet announced.",
+      "primary_date": null,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/2027_Nigerian_general_election", "name": "Wikipedia — 2027 Nigerian general election", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "ADC",
+      "office": "President",
+      "status": "pending",
+      "notes": "ADC is now the home of both Peter Obi and Atiku Abubakar. Internal primary to determine candidate not yet announced.",
+      "primary_date": null,
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Peter_Obi", "name": "Wikipedia — Peter Obi", "retrieved_at": "2026-05-13"}, {"url": "https://en.wikipedia.org/wiki/Atiku_Abubakar", "name": "Wikipedia — Atiku Abubakar", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "party": "PDP",
+      "office": "President",
+      "status": "pending",
+      "notes": "With Atiku moved to ADC, PDP's 2027 presidential candidate is unknown. Party in internal restructuring.",
+      "primary_date": null,
+      "sources": []
+    },
+    {
+      "party": "NNPP",
+      "office": "President",
+      "status": "pending",
+      "notes": "Kwankwaso likely candidate but no formal primary announced.",
+      "primary_date": null,
+      "sources": []
+    }
+  ],
+  "gaps": [
+    {"field": "gubernatorial_primaries", "note": "States holding 2027 governorship elections not yet known which primaries scheduled."},
+    {"field": "national_assembly_primaries", "note": "No primary info yet for any legislative seat."}
+  ]
+}

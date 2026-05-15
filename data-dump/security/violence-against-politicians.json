@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "description": "Violence against politicians — assassinations, kidnappings, attacks on rallies/offices 2011–present. Partial.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [],
+  "gaps": [
+    {"field": "all", "note": "Not retrieved in this pass. Source: Premium Times, Punch, or ACLED 'violence against civilians' filtered for political targets. ACLED has a 'political violence' category that includes attacks on politicians."}
+  ]
+}

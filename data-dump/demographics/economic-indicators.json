@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian economic indicators relevant to electoral forecasting — national figures. Per-state breakdown partial.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia — Economy of Nigeria", "retrieved_at": "2026-05-13"},
+    {"url": "https://en.wikipedia.org/wiki/Nigeria", "name": "Wikipedia — Nigeria", "retrieved_at": "2026-05-13"}
+  ],
+  "national": {
+    "unemployment_rate_pct": 22.6,
+    "unemployment_year": 2025,
+    "unemployment_quarter": "Q1 2025",
+    "poverty_rate_below_215_usd_pct": 31.21,
+    "poverty_rate_below_365_usd_pct": 48.82,
+    "poverty_year": 2025,
+    "gini_coefficient": 35.1,
+    "gini_year": 2020,
+    "inflation_rate_pct": 33.20,
+    "inflation_year": 2024,
+    "hdi": 0.560,
+    "hdi_rank": 164,
+    "hdi_year": 2023,
+    "gdp_per_capita_ppp_usd": 9994,
+    "gdp_per_capita_nominal_usd": 1556,
+    "gdp_year": 2026,
+    "sources": [
+      {"url": "https://en.wikipedia.org/wiki/Economy_of_Nigeria", "name": "Wikipedia — Economy of Nigeria", "retrieved_at": "2026-05-13"},
+      {"url": "https://en.wikipedia.org/wiki/Nigeria", "name": "Wikipedia — Nigeria", "retrieved_at": "2026-05-13"}
+    ]
+  },
+  "by_state": [],
+  "gaps": [
+    {"field": "by_state_poverty", "note": "Per-state poverty rates not retrieved. Source: NBS Nigeria 2022 multidimensional poverty index (published 2022, estimates for 36 states)."},
+    {"field": "by_state_unemployment", "note": "NBS publishes quarterly unemployment by state. Not retrieved."},
+    {"field": "by_state_gdp", "note": "NBS publishes state GDP estimates. Not retrieved."}
+  ]
+}

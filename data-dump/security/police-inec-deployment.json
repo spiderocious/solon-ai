@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "description": "Police/military INEC security deployment for elections. 2023 data partial; 2027 plans not yet announced.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "data": [],
+  "gaps": [
+    {"field": "2023_deployment", "note": "INEC and Nigeria Police Force published deployment plans for 2023. INEC domain unreachable. Source: INEC press releases or Premium Times election security reporting."},
+    {"field": "2027_plans", "note": "2027 deployment not yet announced as of May 2026."}
+  ]
+}

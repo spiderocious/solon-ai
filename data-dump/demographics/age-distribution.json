@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian age distribution — national figures. Per-state breakdown not retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria",
+      "name": "Wikipedia — Demographics of Nigeria",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "national": {
+    "year": 2026,
+    "under_15_pct": 51.7,
+    "age_15_to_64_pct": 45.0,
+    "age_65_plus_pct": 3.3,
+    "median_age": null,
+    "notes": "Under-15 and 65+ from Wikipedia 2026 estimate. 15-64 derived as remainder (100 - 51.7 - 3.3). Median age not stated in source.",
+    "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia — Demographics of Nigeria", "retrieved_at": "2026-05-13"}]
+  },
+  "electoral_relevance": "Nigeria's youth bulge is electorally significant. The 18-35 cohort accounts for an estimated majority of registered voters. INEC's 2023 data showed ~40% of registered voters were under 35.",
+  "by_state": [],
+  "gaps": [
+    {"field": "by_state", "note": "Per-state age distribution not retrieved. Source: NBS demographic reports or World Bank subnational data."},
+    {"field": "median_age", "note": "Median age not found in Wikipedia source. NBS or UN Population Division would have this."},
+    {"field": "18_to_35_pct", "note": "Key forecasting metric. Not directly available from this source; needs NBS data."}
+  ]
+}

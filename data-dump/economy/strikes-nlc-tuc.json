@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "description": "NLC/TUC strikes and major labour actions 2011–2026.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu (2023 NLC response to subsidy removal)", "retrieved_at": "2026-05-13"}
+  ],
+  "data": [
+    {
+      "date": "2012-01",
+      "actor": "NLC and TUC",
+      "cause": "Fuel subsidy removal by Jonathan administration — pump price doubled",
+      "duration_days": null,
+      "outcome": "Jonathan partially reversed price — reduced from NGN141 to NGN97/litre. Strike suspended.",
+      "political_significance": "Occupy Nigeria movement — one of Nigeria's largest mass protests. Severely damaged Jonathan's image before 2015 election.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Petroleum_industry_in_Nigeria", "name": "Wikipedia — Petroleum industry in Nigeria (partial reference)", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "date": "2023-06",
+      "actor": "NLC",
+      "cause": "Fuel subsidy removal by Tinubu",
+      "duration_days": null,
+      "outcome": "Negotiations led to suspension of strike action; palliatives (cash transfers) announced",
+      "political_significance": "Tinubu's most contentious early policy. NLC called for NGN494,000/month minimum wage.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/Bola_Tinubu", "name": "Wikipedia — Bola Tinubu", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "2013_2022", "note": "Multiple NLC actions in this period not documented here. Source: NLC press releases or Premium Times labor archives."},
+    {"field": "2024_2026", "note": "NLC actions after 2023 subsidy strike not documented. Critical for 2027 electoral context."}
+  ]
+}

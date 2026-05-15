@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "description": "Court rulings on candidate eligibility, party primaries, and election results 2023–2026. Partial.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [],
+  "data": [
+    {
+      "case": "Tinubu presidential qualification — certificate forgery allegation",
+      "court": "Presidential Election Petition Tribunal → Court of Appeal → Supreme Court",
+      "date_decided": "2023",
+      "outcome": "Tinubu's election upheld at all levels. Allegations of false academic credentials dismissed.",
+      "significance": "Established Tinubu's legal right to presidency despite ongoing public controversy",
+      "sources": []
+    },
+    {
+      "case": "Obi/Labour Party petition — 2023 presidential election results",
+      "court": "Presidential Election Petition Tribunal → Court of Appeal → Supreme Court",
+      "date_decided": "2023",
+      "outcome": "Petition dismissed; Tinubu's victory upheld.",
+      "significance": "Peter Obi challenged results; losing the case contributed to his party exit",
+      "sources": []
+    }
+  ],
+  "gaps": [
+    {"field": "full_litigation_log", "note": "Many state-level governorship petition rulings not documented here. Source: Nigerian Legal Information Institute (nigerialii.org) or court registry."}
+  ]
+}

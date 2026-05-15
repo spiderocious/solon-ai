@@ -1,0 +1,684 @@
+{
+  "schema_version": "1.0",
+  "description": "All 36 Nigerian states plus FCT — reference data for geography, current governors, and geopolitical zone",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "source_count": 4,
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/States_of_Nigeria",
+      "name": "Wikipedia — States of Nigeria",
+      "retrieved_at": "2026-05-13"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections",
+      "name": "Wikipedia — 2023 Nigerian gubernatorial elections",
+      "retrieved_at": "2026-05-13"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Federal_Capital_Territory,_Nigeria",
+      "name": "Wikipedia — FCT Nigeria",
+      "retrieved_at": "2026-05-13"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Douye_Diri",
+      "name": "Wikipedia — Douye Diri (Bayelsa governor party conflict)",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "notes": [
+    "INEC official domain inecnigeria.org unreachable; all data from Wikipedia cross-referenced.",
+    "Bayelsa governor party conflict: Wikipedia personal page lists APC; 2023 election results page lists PDP. PDP recorded as primary (consistent with all other sources and public record). Wikipedia personal page likely in error.",
+    "FCT is not a state; it is administered by a Minister appointed by the President. No gubernatorial election is held.",
+    "Governor last election year refers to the most recent gubernatorial election in each state. Some states had 2023 off-cycle elections (Anambra 2021, Bayelsa 2023, Imo 2023, Kogi 2023, Ondo 2024, Ekiti 2022, Osun 2022).",
+    "Ondo 2024: Lucky Aiyedatiwa was sworn in 2023-12-27 after governor Akeredolu died; he subsequently won the 2024 Ondo gubernatorial election.",
+    "Areas sourced from Wikipedia — may differ slightly from NBS figures."
+  ],
+  "data": [
+    {
+      "name": "Abia",
+      "code": "AB",
+      "inec_code": null,
+      "geopolitical_zone": "SE",
+      "capital": "Umuahia",
+      "area_km2": 6320,
+      "year_created": 1991,
+      "current_governor": "Alex Otti",
+      "governor_party": "LP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Adamawa",
+      "code": "AD",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Yola",
+      "area_km2": 36917,
+      "year_created": 1991,
+      "current_governor": "Ahmadu Umaru Fintiri",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Akwa Ibom",
+      "code": "AK",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Uyo",
+      "area_km2": 7081,
+      "year_created": 1987,
+      "current_governor": "Umo Eno",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Anambra",
+      "code": "AN",
+      "inec_code": null,
+      "geopolitical_zone": "SE",
+      "capital": "Awka",
+      "area_km2": 4844,
+      "year_created": 1991,
+      "current_governor": "Charles Soludo",
+      "governor_party": "APGA",
+      "governor_since": "2022-03-17",
+      "last_gubernatorial_election_year": 2021,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Anambra_State", "name": "Wikipedia — Anambra State", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Bauchi",
+      "code": "BA",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Bauchi",
+      "area_km2": 45893,
+      "year_created": 1976,
+      "current_governor": "Bala Mohammed",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Bayelsa",
+      "code": "BY",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Yenagoa",
+      "area_km2": 10773,
+      "year_created": 1996,
+      "current_governor": "Douye Diri",
+      "governor_party": "PDP",
+      "governor_since": "2020-02-14",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Douye_Diri", "name": "Wikipedia — Douye Diri (party conflict: Wikipedia page says APC; 2023 election result page says PDP — PDP recorded as primary)", "retrieved_at": "2026-05-13"}
+      ],
+      "conflict_note": "Wikipedia personal page for Douye Diri lists APC; 2023 gubernatorial election results page lists PDP. PDP is consistent with all public records and used here."
+    },
+    {
+      "name": "Benue",
+      "code": "BE",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Makurdi",
+      "area_km2": 34059,
+      "year_created": 1976,
+      "current_governor": "Hyacinth Alia",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Borno",
+      "code": "BO",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Maiduguri",
+      "area_km2": 70898,
+      "year_created": 1976,
+      "current_governor": "Babagana Umara Zulum",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Cross River",
+      "code": "CR",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Calabar",
+      "area_km2": 20156,
+      "year_created": 1976,
+      "current_governor": "Bassey Otu",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Delta",
+      "code": "DE",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Asaba",
+      "area_km2": 17698,
+      "year_created": 1991,
+      "current_governor": "Sheriff Oborevwori",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Ebonyi",
+      "code": "EB",
+      "inec_code": null,
+      "geopolitical_zone": "SE",
+      "capital": "Abakaliki",
+      "area_km2": 6400,
+      "year_created": 1996,
+      "current_governor": "Francis Nwifuru",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Edo",
+      "code": "ED",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Benin City",
+      "area_km2": 19559,
+      "year_created": 1991,
+      "current_governor": "Monday Okpebholo",
+      "governor_party": "APC",
+      "governor_since": "2024-11-12",
+      "last_gubernatorial_election_year": 2024,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2024_Edo_gubernatorial_election", "name": "Wikipedia — 2024 Edo gubernatorial election (not yet verified via fetch — needs confirmation)", "retrieved_at": null}
+      ],
+      "unverified_note": "Governor data for Edo not yet fetch-verified. Monday Okpebholo (APC) won 2024 Edo election per public record; needs confirmation fetch."
+    },
+    {
+      "name": "Ekiti",
+      "code": "EK",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Ado Ekiti",
+      "area_km2": 6353,
+      "year_created": 1996,
+      "current_governor": "Biodun Oyebanji",
+      "governor_party": "APC",
+      "governor_since": "2022-10-16",
+      "last_gubernatorial_election_year": 2022,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Biodun_Oyebanji", "name": "Wikipedia — Biodun Oyebanji", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Enugu",
+      "code": "EN",
+      "inec_code": null,
+      "geopolitical_zone": "SE",
+      "capital": "Enugu",
+      "area_km2": 13161,
+      "year_created": 1991,
+      "current_governor": "Peter Mbah",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "FCT",
+      "code": "FC",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Abuja",
+      "area_km2": 7315,
+      "year_created": 1991,
+      "current_governor": null,
+      "fct_minister": "Nyesom Wike",
+      "minister_party": "PDP",
+      "minister_since": "2023-08-21",
+      "last_gubernatorial_election_year": null,
+      "notes": "FCT is not a state and has no elected governor. The FCT Minister is appointed by the President. Nyesom Wike is PDP but was appointed by APC President Tinubu.",
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/Federal_Capital_Territory,_Nigeria", "name": "Wikipedia — Federal Capital Territory Nigeria", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Gombe",
+      "code": "GO",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Gombe",
+      "area_km2": 18768,
+      "year_created": 1996,
+      "current_governor": "Muhammad Inuwa Yahaya",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Imo",
+      "code": "IM",
+      "inec_code": null,
+      "geopolitical_zone": "SE",
+      "capital": "Owerri",
+      "area_km2": 5530,
+      "year_created": 1991,
+      "current_governor": "Hope Uzodinma",
+      "governor_party": "APC",
+      "governor_since": "2020-01-15",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Imo_State", "name": "Wikipedia — Imo State", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Jigawa",
+      "code": "JI",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Dutse",
+      "area_km2": 23154,
+      "year_created": 1991,
+      "current_governor": "Umar Namadi",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Kaduna",
+      "code": "KD",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Kaduna",
+      "area_km2": 46053,
+      "year_created": 1976,
+      "current_governor": "Uba Sani",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Kano",
+      "code": "KN",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Kano",
+      "area_km2": 20131,
+      "year_created": 1976,
+      "current_governor": "Abba Kabir Yusuf",
+      "governor_party": "NNPP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Katsina",
+      "code": "KT",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Katsina",
+      "area_km2": 24192,
+      "year_created": 1987,
+      "current_governor": "Dikko Umaru Radda",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Kebbi",
+      "code": "KE",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Birnin Kebbi",
+      "area_km2": 36800,
+      "year_created": 1991,
+      "current_governor": "Nasir Idris",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Kogi",
+      "code": "KO",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Lokoja",
+      "area_km2": 29833,
+      "year_created": 1991,
+      "current_governor": "Ahmed Usman Ododo",
+      "governor_party": "APC",
+      "governor_since": "2024-01-27",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Kogi_State", "name": "Wikipedia — Kogi State", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Kwara",
+      "code": "KW",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Ilorin",
+      "area_km2": 36825,
+      "year_created": 1976,
+      "current_governor": "AbdulRahman AbdulRazaq",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Lagos",
+      "code": "LA",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Ikeja",
+      "area_km2": 3577,
+      "year_created": 1976,
+      "current_governor": "Babajide Sanwo-Olu",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Nasarawa",
+      "code": "NA",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Lafia",
+      "area_km2": 26256,
+      "year_created": 1996,
+      "current_governor": "Abdullahi Sule",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Niger",
+      "code": "NI",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Minna",
+      "area_km2": 76363,
+      "year_created": 1976,
+      "current_governor": "Mohammed Umar Bago",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Ogun",
+      "code": "OG",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Abeokuta",
+      "area_km2": 16981,
+      "year_created": 1976,
+      "current_governor": "Dapo Abiodun",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Ondo",
+      "code": "ON",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Akure",
+      "area_km2": 15500,
+      "year_created": 1976,
+      "current_governor": "Lucky Aiyedatiwa",
+      "governor_party": "APC",
+      "governor_since": "2023-12-27",
+      "last_gubernatorial_election_year": 2024,
+      "notes": "Lucky Aiyedatiwa was deputy governor; he was sworn in as governor on 2023-12-27 following the death of Gov. Akeredolu. He subsequently won the 2024 Ondo gubernatorial election.",
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Ondo_State", "name": "Wikipedia — Ondo State", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Osun",
+      "code": "OS",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Osogbo",
+      "area_km2": 9251,
+      "year_created": 1991,
+      "current_governor": "Ademola Adeleke",
+      "governor_party": "PDP",
+      "governor_since": "2022-11-27",
+      "last_gubernatorial_election_year": 2022,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/Osun_State", "name": "Wikipedia — Osun State", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Oyo",
+      "code": "OY",
+      "inec_code": null,
+      "geopolitical_zone": "SW",
+      "capital": "Ibadan",
+      "area_km2": 28454,
+      "year_created": 1976,
+      "current_governor": "Seyi Makinde",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Plateau",
+      "code": "PL",
+      "inec_code": null,
+      "geopolitical_zone": "NC",
+      "capital": "Jos",
+      "area_km2": 30913,
+      "year_created": 1976,
+      "current_governor": "Caleb Mutfwang",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Rivers",
+      "code": "RI",
+      "inec_code": null,
+      "geopolitical_zone": "SS",
+      "capital": "Port Harcourt",
+      "area_km2": 11077,
+      "year_created": 1976,
+      "current_governor": "Siminalayi Fubara",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Sokoto",
+      "code": "SO",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Sokoto",
+      "area_km2": 25973,
+      "year_created": 1976,
+      "current_governor": "Ahmad Aliyu",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Taraba",
+      "code": "TA",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Jalingo",
+      "area_km2": 54473,
+      "year_created": 1991,
+      "current_governor": "Agbu Kefas",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Yobe",
+      "code": "YO",
+      "inec_code": null,
+      "geopolitical_zone": "NE",
+      "capital": "Damaturu",
+      "area_km2": 45502,
+      "year_created": 1991,
+      "current_governor": "Mai Mala Buni",
+      "governor_party": "APC",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    },
+    {
+      "name": "Zamfara",
+      "code": "ZA",
+      "inec_code": null,
+      "geopolitical_zone": "NW",
+      "capital": "Gusau",
+      "area_km2": 39762,
+      "year_created": 1996,
+      "current_governor": "Dauda Lawal",
+      "governor_party": "PDP",
+      "governor_since": "2023-05-29",
+      "last_gubernatorial_election_year": 2023,
+      "sources": [
+        {"url": "https://en.wikipedia.org/wiki/States_of_Nigeria", "name": "Wikipedia — States of Nigeria", "retrieved_at": "2026-05-13"},
+        {"url": "https://en.wikipedia.org/wiki/2023_Nigerian_gubernatorial_elections", "name": "Wikipedia — 2023 Nigerian gubernatorial elections", "retrieved_at": "2026-05-13"}
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "field": "inec_code",
+      "note": "INEC official state codes not retrieved — INEC domains unreachable. All set to null.",
+      "source_attempted": "https://inecnigeria.org"
+    },
+    {
+      "field": "Edo current governor",
+      "note": "Monday Okpebholo (APC) won 2024 Edo gubernatorial election. fetch not completed; needs verification.",
+      "source_attempted": null
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian polling units (~176,846 registered for 2023). EMPTY — INEC domains unreachable during collection.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "source_count": 0,
+  "gaps": [
+    {
+      "what": "Full polling unit list: PU code, ward, LGA, state, registered voters, coordinates",
+      "where_looked": ["https://inecnigeria.org", "https://inec.gov.ng", "https://inecelectionresults.ng"],
+      "why_failed": "All INEC domains returned TLS/connection errors. IReV portal also unreachable.",
+      "unblock": "Operator should download INEC PU register from inecnigeria.org (published as Excel/PDF). As of 2023, the total registered voters were approximately 93.4 million across 176,846 PUs."
+    }
+  ],
+  "data": []
+}

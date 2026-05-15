@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "description": "2011 Nigerian House of Representatives election — stub. Results not yet retrieved.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "election_date": "2011-04-09",
+  "office": "House of Representatives of the Federal Republic of Nigeria",
+  "total_seats": 360,
+  "seat_totals_by_party": [],
+  "by_constituency": [],
+  "gaps": [{"scope": "all", "note": "Wikipedia article 404. Source: INEC EC8E forms or African Election Database."}]
+}

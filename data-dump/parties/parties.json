@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian political parties — current registered parties and historical predecessors relevant to 2027 forecasting.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia — List of political parties in Nigeria", "retrieved_at": "2026-05-13"}
+  ],
+  "notes": [
+    "INEC registered 18 parties as of 2023 election. Some deregistrations occurred after 2023.",
+    "APC formed in 2013 from merger of ACN, CPC, ANPP and a faction of PDP (nPDP/New PDP).",
+    "SDP is a resurrection of the party that produced MKO Abiola's 1993 victory; different from 1989 original in leadership but same name/legacy claim.",
+    "Total INEC-registered parties as of 2026 not confirmed — operator should check INEC current register."
+  ],
+  "data": [
+    {
+      "abbreviation": "APC",
+      "full_name": "All Progressives Congress",
+      "founded": "2013-02-06",
+      "dissolved": null,
+      "formed_from": ["ACN", "CPC", "ANPP", "nPDP"],
+      "current_chairman": "Abdullahi Adamu",
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": 36.61,
+      "national_assembly_seats_2023": {"senate": 59, "house_of_reps": 176},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "PDP",
+      "full_name": "Peoples Democratic Party",
+      "founded": "1998-08-18",
+      "dissolved": null,
+      "formed_from": [],
+      "current_chairman": "Iyorchia Ayu",
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": 29.07,
+      "national_assembly_seats_2023": {"senate": 37, "house_of_reps": 119},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "LP",
+      "full_name": "Labour Party",
+      "founded": "2002",
+      "dissolved": null,
+      "formed_from": [],
+      "current_chairman": "Julius Abure",
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": 25.40,
+      "national_assembly_seats_2023": {"senate": 7, "house_of_reps": 35},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "NNPP",
+      "full_name": "New Nigeria People's Party",
+      "founded": "2020",
+      "dissolved": null,
+      "formed_from": [],
+      "current_chairman": "Rufai Ahmed Alkali",
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": 6.23,
+      "national_assembly_seats_2023": {"senate": 2, "house_of_reps": 19},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "APGA",
+      "full_name": "All Progressives Grand Alliance",
+      "founded": "2003",
+      "dissolved": null,
+      "formed_from": [],
+      "current_chairman": "Victor Oye",
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": null,
+      "national_assembly_seats_2023": {"senate": 1, "house_of_reps": 5},
+      "status": "registered",
+      "notes": "Primarily an Anambra/Southeast party. Has held Anambra governorship for multiple cycles.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "SDP",
+      "full_name": "Social Democratic Party",
+      "founded": "1989",
+      "dissolved": null,
+      "formed_from": [],
+      "current_chairman": null,
+      "presidential_candidate_2027": null,
+      "vote_share_2023_presidential_pct": null,
+      "national_assembly_seats_2023": {"senate": 2, "house_of_reps": 2},
+      "status": "registered",
+      "notes": "Legacy of 1993 election won by MKO Abiola (annulled). Re-emerged as fourth-republic registration.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "ADC",
+      "full_name": "African Democratic Congress",
+      "founded": "2005",
+      "dissolved": null,
+      "current_chairman": "David Mark",
+      "presidential_candidate_2027": null,
+      "national_assembly_seats_2023": {"senate": 0, "house_of_reps": 2},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "YPP",
+      "full_name": "Young Progressives Party",
+      "founded": "2017",
+      "dissolved": null,
+      "current_chairman": "Bishop Amakiri",
+      "presidential_candidate_2027": null,
+      "national_assembly_seats_2023": {"senate": 1, "house_of_reps": 2},
+      "status": "registered",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "ACN",
+      "full_name": "Action Congress of Nigeria",
+      "founded": "2006",
+      "dissolved": "2013-02-06",
+      "merged_into": "APC",
+      "formed_from": ["AC", "AD fragments"],
+      "status": "dissolved",
+      "notes": "Tinubu-aligned Yoruba/Southwest party; merged into APC 2013.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "CPC",
+      "full_name": "Congress for Progressive Change",
+      "founded": "2009",
+      "dissolved": "2013-02-06",
+      "merged_into": "APC",
+      "status": "dissolved",
+      "notes": "Buhari's party for 2011 election; merged into APC 2013.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    },
+    {
+      "abbreviation": "ANPP",
+      "full_name": "All Nigeria Peoples Party",
+      "founded": "1998",
+      "dissolved": "2013-02-06",
+      "merged_into": "APC",
+      "status": "dissolved",
+      "notes": "Northern-based party; Buhari ran under ANPP in 2003 and 2007.",
+      "sources": [{"url": "https://en.wikipedia.org/wiki/List_of_political_parties_in_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]
+    }
+  ],
+  "gaps": [
+    {"field": "full_inec_registered_list", "note": "INEC maintains a complete list of registered parties. As of 2023 there were 18. Deregistrations may have occurred since. INEC domain unreachable."},
+    {"field": "current_chairman_confirmations", "note": "Several chairmen listed may have changed since Wikipedia was last updated. Needs verification."}
+  ]
+}

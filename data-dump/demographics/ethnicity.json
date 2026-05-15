@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian ethnic composition — national and per-state. Highly politically relevant for coalition analysis.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria",
+      "name": "Wikipedia — Demographics of Nigeria",
+      "retrieved_at": "2026-05-13"
+    }
+  ],
+  "notes": "Nigeria has 250-500+ ethnic groups. Major groups dominate presidential politics. The three largest (Hausa-Fulani, Yoruba, Igbo) together represent ~60% of population.",
+  "national_major_groups": [
+    {"group": "Hausa",  "pct": 30.0, "primary_states": ["KANO","KATSINA","KADUNA","SOKOTO","ZAMFARA","KEBBI","JIGAWA"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"group": "Yoruba", "pct": 15.5, "primary_states": ["LAGOS","OYO","OGUN","ONDO","OSUN","EKITI","KWARA"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"group": "Igbo",   "pct": 15.2, "primary_states": ["ANAMBRA","IMO","ENUGU","ABIA","EBONYI"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"group": "Tiv",    "pct": 7.1,  "primary_states": ["BENUE"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"group": "Ibibio", "pct": 3.0,  "primary_states": ["AKWA_IBOM"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]},
+    {"group": "Fulani", "pct": 3.0,  "primary_states": ["distributed across north"], "sources": [{"url": "https://en.wikipedia.org/wiki/Demographics_of_Nigeria", "name": "Wikipedia", "retrieved_at": "2026-05-13"}]}
+  ],
+  "by_state": [],
+  "gaps": [
+    {"field": "by_state", "note": "Per-state ethnic breakdowns not retrieved. Source: 2006 NPC census report or Ethnologue/Afrobarometer."},
+    {"field": "ijaw_share", "note": "Ijaw — major group in Rivers, Bayelsa, Delta — not captured in Wikipedia excerpt; pct not retrieved."},
+    {"field": "kanuri_share", "note": "Kanuri — major group in Borno — not captured; pct not retrieved."}
+  ]
+}

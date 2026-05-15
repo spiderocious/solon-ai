@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "description": "Nigerian religious blocs and their historical political alignments. Partially documented.",
+  "collected_at": "2026-05-13",
+  "collector": "claude-code-autonomous-run",
+  "sources_used": [],
+  "data": [
+    {
+      "bloc": "Christian Association of Nigeria (CAN)",
+      "type": "Christian umbrella",
+      "leadership": null,
+      "historical_alignment": "CAN generally opposes Muslim-Muslim presidential ticket. Strongly endorsed Obi (LP) in 2023 given Christian-Christian ticket. CAN is politically influential in NC, SW, SE, SS.",
+      "alignment_2023": "Endorsed LP/Obi-Datti ticket (both Christian); opposed APC Muslim-Muslim ticket of Tinubu-Shettima",
+      "sources": []
+    },
+    {
+      "bloc": "Jama'atu Nasril Islam (JNI)",
+      "type": "Islamic umbrella (North)",
+      "leadership": null,
+      "historical_alignment": "Major northern Islamic organization. Generally aligned with political interests of northern Muslim candidates.",
+      "alignment_2023": null,
+      "sources": []
+    },
+    {
+      "bloc": "Nigerian Supreme Council for Islamic Affairs (NSCIA)",
+      "type": "Islamic (national)",
+      "leadership": "Sultan of Sokoto (ex officio)",
+      "historical_alignment": "Moderate; Sultan of Sokoto historically a stabilizing political voice rather than partisan actor.",
+      "alignment_2023": null,
+      "sources": []
+    },
+    {
+      "bloc": "Pentecostal Fellowship of Nigeria (PFN)",
+      "type": "Christian Pentecostal",
+      "leadership": null,
+      "historical_alignment": "Often aligns with CAN on political matters. Large mobilizing capacity in SW, SS, SE.",
+      "alignment_2023": null,
+      "sources": []
+    }
+  ],
+  "gaps": [
+    {"field": "all_fields", "note": "This file is lightly populated. Fetch CAN press releases, JNI statements, and PFN statements for 2023 and 2025-2026 from Premium Times / Daily Trust archives."}
+  ]
+}
