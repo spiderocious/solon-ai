@@ -101,7 +101,7 @@ export default function SimulatorCompareScreen() {
                   { party: 'LP', share: sc.lp, bg: 'var(--forest-600)', color: 'white' },
                   { party: 'APC', share: sc.apc, bg: 'var(--ink)', color: 'var(--paper)' },
                   { party: 'APGA', share: sc.apga, bg: 'var(--paper-3)', color: 'var(--ink-2)' },
-                  { party: 'PDP', share: sc.pdp, bg: '#FFF3E0', color: 'var(--ink-3)' },
+                  { party: 'PDP', share: sc.pdp, bg: 'var(--orange-soft)', color: 'var(--ink-3)' },
                 ].map(({ party, share, bg, color }) => (
                   <div
                     key={party}

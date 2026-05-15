@@ -1,12 +1,12 @@
 import { StatCard } from './stat-card';
 
 interface AgentsPanelProps {
-  readonly agentsCoverage: number;
-  readonly agentsTotal: number;
-  readonly agentsActive: number;
+  agentsCoverage: number;
+  agentsTotal: number;
+  agentsActive: number;
 }
 
-export function AgentsPanel({ agentsCoverage, agentsTotal, agentsActive }: AgentsPanelProps) {
+export function AgentsPanel({ agentsCoverage, agentsTotal, agentsActive }: Readonly<AgentsPanelProps>) {
   const inactive = agentsTotal - agentsActive;
   const coverageColor = agentsCoverage >= 80
     ? 'var(--forest-600)'

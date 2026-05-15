@@ -1,15 +1,15 @@
-import { VoteShareBar, ConfidenceBar } from '@solon/ui';
+import { VoteShareBar } from '@solon/ui';
 import type { ConfidenceLevel } from '@solon/ui';
 import { IconTrending, IconTrendingDown, IconSteady } from '@icons';
 import { StatCard } from './stat-card';
 
 interface VoteSharePanelProps {
-  readonly projectedVoteShare: number;
-  readonly projectedVoteShareDelta: number;
-  readonly confidenceLevel: number;
+  projectedVoteShare: number;
+  projectedVoteShareDelta: number;
+  confidenceLevel: number;
 }
 
-export function VoteSharePanel({ projectedVoteShare, projectedVoteShareDelta, confidenceLevel }: VoteSharePanelProps) {
+export function VoteSharePanel({ projectedVoteShare, projectedVoteShareDelta, confidenceLevel }: Readonly<VoteSharePanelProps>) {
   const deltaPositive = projectedVoteShareDelta > 0;
   const deltaNegative = projectedVoteShareDelta < 0;
   const deltaColor = deltaPositive ? 'var(--forest-700)' : deltaNegative ? 'var(--orange)' : 'var(--ink-3)';
@@ -36,7 +36,7 @@ export function VoteSharePanel({ projectedVoteShare, projectedVoteShareDelta, co
           { party: 'LP', share: projectedVoteShare, bg: 'var(--forest-600)', color: 'white' },
           { party: 'APC', share: 22.1, bg: 'var(--ink)', color: 'var(--paper)' },
           { party: 'APGA', share: 18.4, bg: 'var(--paper-3)', color: 'var(--ink-2)' },
-          { party: 'PDP', share: 9.8, bg: '#FFF3E0', color: 'var(--ink-3)' },
+          { party: 'PDP', share: 9.8, bg: 'var(--orange-soft)', color: 'var(--ink-3)' },
         ].map(({ party, share, bg, color }) => (
           <div
             key={party}

@@ -81,7 +81,7 @@ export default function FinanceDashboardScreen() {
         </div>
 
         {/* Anomalies */}
-        <div className="rounded-[6px] p-4" style={{ border: '1px solid var(--orange)', background: '#FFF3E0' }}>
+        <div className="rounded-[6px] p-4" style={{ border: '1px solid var(--orange)', background: 'var(--orange-soft)' }}>
           <div className="font-mono text-[9px] uppercase" style={{ color: 'var(--orange)' }}>Open anomalies</div>
           <div className="font-serif font-bold text-[28px]" style={{ color: 'var(--orange)' }}>
             {ANOMALIES.filter((a) => !a.resolved).length}
@@ -94,7 +94,7 @@ export default function FinanceDashboardScreen() {
         {/* Compliance */}
         <div
           className="rounded-[6px] p-4"
-          style={{ border: `1px solid ${s.complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)'}`, background: s.complianceScore >= 80 ? 'var(--forest-50)' : '#FFF3E0' }}
+          style={{ border: `1px solid ${s.complianceScore >= 80 ? 'var(--forest-600)' : 'var(--orange)'}`, background: s.complianceScore >= 80 ? 'var(--forest-50)' : 'var(--orange-soft)' }}
         >
           <div className="font-mono text-[9px] uppercase" style={{ color: s.complianceScore >= 80 ? 'var(--forest-700)' : 'var(--orange)' }}>Compliance score</div>
           <div className="font-serif font-bold text-[28px]" style={{ color: s.complianceScore >= 80 ? 'var(--forest-700)' : 'var(--orange)' }}>
@@ -147,7 +147,7 @@ export default function FinanceDashboardScreen() {
               <div
                 key={id}
                 className="px-3 py-2.5 rounded-[4px]"
-                style={{ borderLeft: `2px solid ${resolved ? 'var(--hair)' : 'var(--orange)'}`, background: resolved ? 'var(--paper-2)' : '#FFF3E0' }}
+                style={{ borderLeft: `2px solid ${resolved ? 'var(--hair)' : 'var(--orange)'}`, background: resolved ? 'var(--paper-2)' : 'var(--orange-soft)' }}
               >
                 <div className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>{title}</div>
                 <div className="font-sans text-[12px] mt-0.5" style={{ color: 'var(--ink-2)' }}>{body}</div>

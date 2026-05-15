@@ -4,12 +4,12 @@ import { StatCard } from './stat-card';
 import { formatNumber } from '@shared/helpers/format-number';
 
 interface TurnoutPanelProps {
-  readonly targetTurnout: number;
-  readonly registeredVoters: number;
-  readonly confidenceLevel: number;
+  targetTurnout: number;
+  registeredVoters: number;
+  confidenceLevel: number;
 }
 
-export function TurnoutPanel({ targetTurnout, registeredVoters, confidenceLevel }: TurnoutPanelProps) {
+export function TurnoutPanel({ targetTurnout, registeredVoters, confidenceLevel }: Readonly<TurnoutPanelProps>) {
   const expectedVoters = Math.round(registeredVoters * targetTurnout / 100);
 
   return (

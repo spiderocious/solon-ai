@@ -15,7 +15,7 @@ const MOCK_RESULT: ScenarioResult = {
     { name: 'LP', party: 'LP', partyColor: 'var(--forest-600)', projectedShare: 53.4, delta: 6.2 },
     { name: 'APC', party: 'APC', partyColor: 'var(--ink)', projectedShare: 19.8, delta: -2.3 },
     { name: 'APGA', party: 'APGA', partyColor: 'var(--paper-3)', projectedShare: 14.7, delta: -3.7 },
-    { name: 'PDP', party: 'PDP', partyColor: '#FFF3E0', projectedShare: 9.1, delta: -0.7 },
+    { name: 'PDP', party: 'PDP', partyColor: 'var(--orange-soft)', projectedShare: 9.1, delta: -0.7 },
   ],
   projectedTurnout: 71.8,
   confidence: 3,
@@ -227,11 +227,11 @@ export default function SimulatorScenarioScreen() {
 }
 
 interface LeverGroupProps {
-  readonly label: string;
-  readonly children: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
 }
 
-function LeverGroup({ label, children }: LeverGroupProps) {
+function LeverGroup({ label, children }: Readonly<LeverGroupProps>) {
   return (
     <div>
       <div className="font-mono text-[10px] uppercase tracking-[0.1em] mb-2" style={{ color: 'var(--ink-4)' }}>

@@ -37,7 +37,10 @@ export function useDashboardSummary() {
 
   return useQuery<DashboardSummary>({
     queryKey: ['dashboard-summary'],
-    queryFn: () => demoClient.get<DashboardSummary>(DEMO_EP.DASHBOARD_SUMMARY, sessionId ?? undefined),
-    placeholderData: MOCK,
+    queryFn: () =>
+      demoClient
+        .get<DashboardSummary>(DEMO_EP.DASHBOARD_SUMMARY, sessionId ?? undefined)
+        .catch(() => MOCK),
+    initialData: MOCK,
   });
 }

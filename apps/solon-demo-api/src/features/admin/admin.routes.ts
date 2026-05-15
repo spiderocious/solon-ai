@@ -103,6 +103,9 @@ router.get(
           name: d.name,
           email: d.email,
           phone: d.phone,
+          role: d.role,
+          party: d.party,
+          state: d.state,
           createdAt: d.createdAt,
         })),
       );
@@ -144,11 +147,16 @@ router.patch(
 
     const { data } = UpdateMockDataSchema.parse(req.body);
 
+    // Build dot-notation $set paths so unspecified fields are preserved (deep merge)
+    const dataFields = Object.fromEntries(
+      Object.entries(data).map(([k, v]) => [`data.${k}`, v]),
+    );
+
     const doc = await MockDataModel.findOneAndUpdate(
       { key },
       {
         $set: {
-          data,
+          ...dataFields,
           updatedBy: (req as Request & { admin?: { email: string } }).admin?.email,
         },
       },

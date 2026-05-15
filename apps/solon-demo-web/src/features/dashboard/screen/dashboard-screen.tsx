@@ -7,9 +7,9 @@ import { FinancePanel } from './parts/finance-panel';
 import { IssuesAlertsPanel } from './parts/issues-alerts-panel';
 
 export default function DashboardScreen() {
-  const { data, isLoading } = useDashboardSummary();
+  const { data } = useDashboardSummary();
 
-  if (isLoading && !data) {
+  if (!data) {
     return (
       <div className="p-6 md:p-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
@@ -17,7 +17,7 @@ export default function DashboardScreen() {
     );
   }
 
-  const d = data!;
+  const d = data;
 
   return (
     <div className="px-6 md:px-8 py-6 md:py-8">

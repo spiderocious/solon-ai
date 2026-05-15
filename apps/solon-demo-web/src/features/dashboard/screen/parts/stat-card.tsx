@@ -1,13 +1,13 @@
 import React from 'react';
 
 interface StatCardProps {
-  readonly label: string;
-  readonly children: React.ReactNode;
-  readonly className?: string;
-  readonly action?: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+  action?: React.ReactNode;
 }
 
-export function StatCard({ label, children, className, action }: StatCardProps) {
+export function StatCard({ label, children, className, action }: Readonly<StatCardProps>) {
   return (
     <div
       className={`rounded-[6px] overflow-hidden ${className ?? ''}`}

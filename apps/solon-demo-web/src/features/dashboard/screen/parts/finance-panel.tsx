@@ -2,11 +2,11 @@ import { StatCard } from './stat-card';
 import { formatNaira } from '@shared/helpers/format-naira';
 
 interface FinancePanelProps {
-  readonly campaignBudgetSpent: number;
-  readonly campaignBudgetTotal: number;
+  campaignBudgetSpent: number;
+  campaignBudgetTotal: number;
 }
 
-export function FinancePanel({ campaignBudgetSpent, campaignBudgetTotal }: FinancePanelProps) {
+export function FinancePanel({ campaignBudgetSpent, campaignBudgetTotal }: Readonly<FinancePanelProps>) {
   const pct = (campaignBudgetSpent / campaignBudgetTotal) * 100;
   const barColor = pct >= 75 ? 'var(--orange)' : 'var(--forest-600)';
 

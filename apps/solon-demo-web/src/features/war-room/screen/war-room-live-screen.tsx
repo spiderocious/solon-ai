@@ -6,7 +6,6 @@ import { DEMO_EP } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { TallySummary, LiveUpdate } from '@shared/types/mock-data.types';
 
-const FOREST_300 = '#7AA386';
 
 const MOCK_SUMMARY: TallySummary = {
   totalPUs: 412,
@@ -30,7 +29,7 @@ const MOCK_SNAPSHOTS: TallySnapshot[] = [
 ];
 
 const PARTY_ROWS = [
-  { party: 'LP', pct: 49.8, votes: '40,538', delta: '+2.6 pt', deltaColor: FOREST_300, barColor: 'var(--forest-600)' },
+  { party: 'LP', pct: 49.8, votes: '40,538', delta: '+2.6 pt', deltaColor: 'var(--forest-300)', barColor: 'var(--forest-600)' },
   { party: 'APC', pct: 21.4, votes: '17,406', delta: '-0.7', deltaColor: 'var(--ink-4)', barColor: 'var(--ink)' },
   { party: 'APGA', pct: 17.2, votes: '13,990', delta: '-1.2', deltaColor: 'var(--ink-4)', barColor: 'var(--ink-3)' },
   { party: 'PDP', pct: 8.9, votes: '7,239', delta: '-0.9', deltaColor: 'var(--ink-4)', barColor: 'var(--ink-4)' },
@@ -38,22 +37,22 @@ const PARTY_ROWS = [
 ];
 
 interface IncidentItem {
-  readonly sev: number;
-  readonly sevBg: string;
-  readonly sevColor: string;
-  readonly borderColor: string | undefined;
-  readonly cardBg: string | undefined;
-  readonly title: string;
-  readonly time: string;
-  readonly location: string;
-  readonly body: string;
-  readonly meta: string;
+  sev: number;
+  sevBg: string;
+  sevColor: string;
+  borderColor: string | undefined;
+  cardBg: string | undefined;
+  title: string;
+  time: string;
+  location: string;
+  body: string;
+  meta: string;
 }
 
 const INCIDENTS: IncidentItem[] = [
   { sev: 5, sevBg: 'var(--crit)', sevColor: 'var(--paper)', borderColor: 'var(--crit)', cardBg: 'var(--crit-bg)', title: 'BVAS lockdown across PU cluster', time: '2 min', location: 'PU 008-05-19, -20, -21 · Idemili N.', body: 'All three machines refusing to authenticate. Crowd building.', meta: 'AGENT · @CO / 2 CITIZENS / LEGAL DISPATCHED' },
   { sev: 4, sevBg: 'var(--orange)', sevColor: 'var(--paper)', borderColor: 'var(--orange)', cardBg: undefined, title: 'Vote-buying allegation', time: '14 min', location: 'Ogbaru · ward 6 · PU 008-06-04', body: 'Cash being distributed in church car park, 200m from PU.', meta: 'AGENT / 1 IMAGE / ACKNOWLEDGED' },
-  { sev: 3, sevBg: '#FFF3E0', sevColor: 'var(--orange)', borderColor: '#FFB74D', cardBg: undefined, title: 'Long queues, slow accreditation', time: '28 min', location: 'Onitsha North · ward 4 · PU 008-04-09', body: '90-minute queues reported via voice note.', meta: 'CITIZEN / VOICE 0:42 / MONITORING' },
+  { sev: 3, sevBg: 'var(--orange-soft)', sevColor: 'var(--orange)', borderColor: 'var(--orange-edge)', cardBg: undefined, title: 'Long queues, slow accreditation', time: '28 min', location: 'Onitsha North · ward 4 · PU 008-04-09', body: '90-minute queues reported via voice note.', meta: 'CITIZEN / VOICE 0:42 / MONITORING' },
   { sev: 2, sevBg: 'var(--paper-2)', sevColor: 'var(--ink-3)', borderColor: undefined, cardBg: 'var(--paper-2)', title: 'Material shortage · ballot books', time: '58 min', location: 'Aguata · ward 8', body: 'PU started with 1 book instead of 2; INEC resupply confirmed.', meta: 'AGENT / RESOLVED' },
 ];
 
@@ -87,10 +86,10 @@ export default function WarRoomLiveScreen() {
         style={{ background: 'var(--ink)', borderBottom: '1px solid rgba(255,255,255,0.1)' }}
       >
         {[
-          { label: 'PU reporting', value: <>{s.reportedPUs}<span style={{ color: 'var(--ink-3)' }}> / {s.totalPUs}</span></>, delta: '+18 last 60s', deltaColor: FOREST_300 },
-          { label: 'Coverage', value: `${((s.reportedPUs / s.totalPUs) * 100).toFixed(1)}%`, delta: 'target 90% by 18:00', deltaColor: FOREST_300 },
-          { label: 'Reconciled', value: <>{s.verifiedPUs}<span style={{ color: 'var(--ink-3)' }}> / {s.reportedPUs}</span></>, delta: '+6 last 60s', deltaColor: FOREST_300 },
-          { label: 'Accredited (live)', value: '81,402', delta: '+1,148 last 60s', deltaColor: FOREST_300 },
+          { label: 'PU reporting', value: <>{s.reportedPUs}<span style={{ color: 'var(--ink-3)' }}> / {s.totalPUs}</span></>, delta: '+18 last 60s', deltaColor: 'var(--forest-300)' },
+          { label: 'Coverage', value: `${((s.reportedPUs / s.totalPUs) * 100).toFixed(1)}%`, delta: 'target 90% by 18:00', deltaColor: 'var(--forest-300)' },
+          { label: 'Reconciled', value: <>{s.verifiedPUs}<span style={{ color: 'var(--ink-3)' }}> / {s.reportedPUs}</span></>, delta: '+6 last 60s', deltaColor: 'var(--forest-300)' },
+          { label: 'Accredited (live)', value: '81,402', delta: '+1,148 last 60s', deltaColor: 'var(--forest-300)' },
           { label: 'Incidents · open', value: <span style={{ color: 'var(--orange)' }}>14</span>, delta: '2 at sev 4+', deltaColor: 'var(--orange)' },
         ].map(({ label, value, delta, deltaColor }, i) => (
           <div key={label} className="flex items-center gap-2">
@@ -174,7 +173,7 @@ export default function WarRoomLiveScreen() {
             <div className="space-y-2">
               {(updates ?? MOCK_UPDATES).map((u) => {
                 const borderColor = u.type === 'incident' ? 'var(--crit)' : u.type === 'alert' ? 'var(--orange)' : 'var(--hair)';
-                const bg = u.type === 'alert' ? '#FFF3E0' : 'var(--paper-2)';
+                const bg = u.type === 'alert' ? 'var(--orange-soft)' : 'var(--paper-2)';
                 return (
                   <div
                     key={u.id}

@@ -11,7 +11,7 @@ This document is the complete handoff for testing and frontend integration of `s
 
 1. Copy `.env.example` to `.env` in `apps/solon-demo-api/`
 2. Set all required variables (see table below)
-3. Import seed data: `mongoimport --db solon_demo --collection mockdata --file seeds/mock-data.json --jsonArray --drop`
+3. Import seed data: `mongoimport --db solon_demo --collection mockdatas --file seeds/mock-data.json --jsonArray --drop`
 4. Run: `pnpm nx dev solon-demo-api`
 
 ### Required `.env` Variables

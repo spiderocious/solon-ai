@@ -3,11 +3,11 @@ import { StatCard } from './stat-card';
 import type { DashboardSummary } from '@shared/types/mock-data.types';
 
 interface IssuesAlertsPanelProps {
-  readonly topIssues: DashboardSummary['topIssues'];
-  readonly keyAlerts: DashboardSummary['keyAlerts'];
+  topIssues: DashboardSummary['topIssues'];
+  keyAlerts: DashboardSummary['keyAlerts'];
 }
 
-export function IssuesAlertsPanel({ topIssues, keyAlerts }: IssuesAlertsPanelProps) {
+export function IssuesAlertsPanel({ topIssues, keyAlerts }: Readonly<IssuesAlertsPanelProps>) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
       {/* Issue salience */}
@@ -53,7 +53,7 @@ export function IssuesAlertsPanel({ topIssues, keyAlerts }: IssuesAlertsPanelPro
                 ? 'var(--info-edge, #B7C7DC)'
                 : 'var(--hair)';
             const bg = alert.severity === 'high'
-              ? '#FFF3E0'
+              ? 'var(--orange-soft)'
               : 'var(--paper-2)';
 
             return (

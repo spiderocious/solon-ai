@@ -13,7 +13,8 @@ async function request<T>(path: string, init?: RequestInit & { sessionId?: strin
     const text = await res.text().catch(() => res.statusText);
     throw new Error(`[demo-api] ${res.status} ${path}: ${text}`);
   }
-  return res.json() as Promise<T>;
+  const json = await res.json() as { data: T } | T;
+  return (json !== null && typeof json === 'object' && 'data' in json ? (json as { data: T }).data : json) as T;
 }
 
 export const demoClient = {
@@ -21,4 +22,9 @@ export const demoClient = {
     request<T>(path, { method: 'GET', sessionId }),
   post: <T>(path: string, body: unknown, sessionId?: string) =>
     request<T>(path, { method: 'POST', body: JSON.stringify(body), sessionId }),
+  // GET /mock/:key — response is { data: { key, label, data: <payload> } }
+  // outer envelope is unwrapped by request(), then we unwrap the inner .data
+  getMock: <T>(key: string, sessionId?: string) =>
+    request<{ key: string; label: string; data: T }>(`/mock/${key}`, { method: 'GET', sessionId })
+      .then((envelope) => envelope.data),
 };

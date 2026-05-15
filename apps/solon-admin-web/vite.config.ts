@@ -13,6 +13,7 @@ export default defineConfig({
       { find: '@app', replacement: path.resolve(__dirname, 'src') },
       { find: '@features', replacement: path.resolve(__dirname, 'src/features') },
       { find: '@shared', replacement: path.resolve(__dirname, 'src/shared') },
+      { find: '@ui', replacement: path.resolve(__dirname, 'src/ui') },
       {
         find: '@solon/ui/styles.css',
         replacement: path.resolve(__dirname, '../../packages/ui/src/styles.css'),

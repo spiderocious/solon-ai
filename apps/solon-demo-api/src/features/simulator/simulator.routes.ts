@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { asyncHandler } from '@lib/http/asyncHandler.js';
 import { ResponseUtil } from '@lib/response.js';
 
-import { runSimulation, answerFollowUp } from './simulator.service.js';
+import { runSimulation, answerFollowUp, answerCopilot } from './simulator.service.js';
 
 const router: RouterType = Router();
 
@@ -19,12 +19,16 @@ const VALID_SCENARIOS = [
 ] as const;
 
 const RunSchema = z.object({
-  scenario: z.enum(VALID_SCENARIOS).default('base'),
+  scenario: z.enum(VALID_SCENARIOS),
 });
 
 const FollowUpSchema = z.object({
   question: z.string().min(3).max(500),
   context: z.object({ scenario: z.string().optional() }).optional(),
+});
+
+const CopilotSchema = z.object({
+  message: z.string().min(1).max(1000),
 });
 
 router.post(
@@ -41,6 +45,15 @@ router.post(
   asyncHandler(async (req, res) => {
     const { question } = FollowUpSchema.parse(req.body);
     const result = await answerFollowUp(question);
+    ResponseUtil.ok(res, result);
+  }),
+);
+
+router.post(
+  '/copilot',
+  asyncHandler(async (req, res) => {
+    const { message } = CopilotSchema.parse(req.body);
+    const result = await answerCopilot(message);
     ResponseUtil.ok(res, result);
   }),
 );

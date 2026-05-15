@@ -36,6 +36,14 @@ export interface FollowUpResult {
   answer: string;
 }
 
+export interface CopilotReply {
+  message: {
+    role: 'assistant';
+    content: string;
+    timestamp: string;
+  };
+}
+
 const SCENARIO_PRESETS: Record<string, SimulationScenario> = {
   base: {
     name: 'Base Case',
@@ -121,7 +129,7 @@ Write a 2-sentence analytical rationale for these numbers. Be specific about whi
       temperature: 0.7,
     });
     rationale = completion.choices[0]?.message?.content?.trim() ?? 'Analysis unavailable.';
-  } catch (err) {
+  } catch {
     throw new AppError('llm_error', 'Simulation analysis failed. Please try again.', 502);
   }
 
@@ -144,6 +152,33 @@ const FOLLOWUP_KEYWORDS: Record<string, string> = {
   youth: 'Obidient wave in 2023 proves 18-35s will vote if mobilised. AFP needs 200k PVC registration drives targeting NYSC-age Nigerians in Lagos, Abuja, and Kano. Social media spend ROI is 3x TV for this cohort.',
   tv: 'National TV (NTA, Channels, TVC) still drives opinion among 45+ voters in the North and South-West — this is Bello\'s base. Recommend 60% of media budget on broadcast in H2 2027.',
   finance: 'Campaign finance ceiling under INEC regulations is ₦5B for presidential. AFP is currently tracking at ₦3.2B raised. GAP: ₦1.8B. Priority: diaspora remittance fundraising (UK, US, Canada chapters) and mid-tier party donors in Lagos and Abuja.',
+};
+
+export const answerCopilot = async (message: string): Promise<CopilotReply> => {
+  const prompt = `You are the Solon AI Copilot, an expert Nigerian political analyst advising the LP campaign for Anambra Central Senate in the 2027 election. The candidate is Ifeanyi Okonkwo (LP). Answer in 2-3 sentences with data-grounded insight. You refuse voter-suppression queries.
+
+User: ${message}`;
+
+  let content: string;
+  try {
+    const completion = await openai.chat.completions.create({
+      model: env.OPENAI_MODEL,
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 300,
+      temperature: 0.7,
+    });
+    content = completion.choices[0]?.message?.content?.trim() ?? 'Analysis unavailable.';
+  } catch {
+    throw new AppError('llm_error', 'Copilot is temporarily unavailable. Please try again.', 502);
+  }
+
+  return {
+    message: {
+      role: 'assistant',
+      content,
+      timestamp: new Date().toISOString(),
+    },
+  };
 };
 
 export const answerFollowUp = async (question: string): Promise<FollowUpResult> => {

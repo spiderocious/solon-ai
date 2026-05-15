@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { SearchBar, SkeletonCard, StatusPill } from '@solon/ui';
+import type { StatusPillVariant } from '@solon/ui';
 import { useAgentsRoster } from '../api/use-agents-roster';
 import type { AgentStatus } from '@shared/types/mock-data.types';
 
 const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tracking-[0.08em]';
 const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
 
-const STATUS_PILL: Record<AgentStatus, { variant: 'ok' | 'warn' | 'alert' | 'neutral'; label: string }> = {
+const STATUS_PILL: Record<AgentStatus, { variant: StatusPillVariant; label: string }> = {
   active: { variant: 'ok', label: 'Active' },
   deployed: { variant: 'ok', label: 'Deployed' },
-  pending: { variant: 'warn', label: 'Pending' },
-  inactive: { variant: 'neutral', label: 'Inactive' },
+  pending: { variant: 'info', label: 'Pending' },
+  inactive: { variant: 'quiet', label: 'Inactive' },
 };
 
 export default function AgentsRosterScreen() {

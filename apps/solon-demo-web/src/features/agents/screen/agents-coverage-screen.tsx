@@ -44,7 +44,7 @@ export default function AgentsCoverageScreen() {
       >
         {[
           { label: 'Total PUs', value: String(totalPUs), color: 'var(--paper)' },
-          { label: 'Covered PUs', value: String(coveredPUs), color: '#7AA386' },
+          { label: 'Covered PUs', value: String(coveredPUs), color: 'var(--forest-300)' },
           { label: 'Overall coverage', value: formatPct(overallRate, 1), color: coverageColor(overallRate) },
           { label: 'Agents deployed', value: String(totalAgents), color: 'var(--paper)' },
         ].map(({ label, value, color }, i) => (

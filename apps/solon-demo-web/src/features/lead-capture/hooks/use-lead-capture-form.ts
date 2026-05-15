@@ -5,19 +5,19 @@ import { DEMO_EP } from '@shared/api/demo-endpoints';
 import type { LeadCapturePayload, LeadCaptureResponse } from '@shared/types/mock-data.types';
 
 interface UseLeadCaptureFormOptions {
-  readonly sessionId: string | null;
-  readonly onSuccess: (leadId: string) => void;
+  sessionId: string | null;
+  onSuccess: (leadId: string) => void;
 }
 
 interface UseLeadCaptureFormResult {
-  readonly form: LeadCapturePayload;
-  readonly setField: <K extends keyof LeadCapturePayload>(key: K, value: string) => void;
-  readonly error: string;
-  readonly loading: boolean;
-  readonly handleSubmit: (e: FormEvent) => void;
+  form: LeadCapturePayload;
+  setField: <K extends keyof LeadCapturePayload>(key: K, value: string) => void;
+  error: string;
+  loading: boolean;
+  handleSubmit: (e: FormEvent) => void;
 }
 
-export function useLeadCaptureForm({ sessionId, onSuccess }: UseLeadCaptureFormOptions): UseLeadCaptureFormResult {
+export function useLeadCaptureForm({ sessionId, onSuccess }: Readonly<UseLeadCaptureFormOptions>): Readonly<UseLeadCaptureFormResult> {
   const [form, setForm] = useState<LeadCapturePayload>({
     name: '', email: '', phone: '', role: '', party: '', state: '',
   });

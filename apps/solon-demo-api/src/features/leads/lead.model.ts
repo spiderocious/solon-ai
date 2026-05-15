@@ -6,6 +6,9 @@ export interface ILead {
   name?: string;
   email?: string;
   phone?: string;
+  role?: string;
+  party?: string;
+  state?: string;
   skipped: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -20,6 +23,9 @@ const LeadSchema = new Schema<ILeadDocument>(
     name: { type: String },
     email: { type: String },
     phone: { type: String },
+    role: { type: String },
+    party: { type: String },
+    state: { type: String },
     skipped: { type: Boolean, required: true, default: false },
   },
   { timestamps: true },

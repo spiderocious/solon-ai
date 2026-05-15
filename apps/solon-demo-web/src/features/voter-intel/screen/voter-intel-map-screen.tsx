@@ -21,7 +21,7 @@ function lpTier(share: number): TierVariant {
 function heatStyle(share: number): { bg: string; border: string; text: string } {
   if (share >= 55) return { bg: '#0F2E22', border: '#14342A', text: 'var(--paper)' };
   if (share >= 45) return { bg: 'var(--forest-50)', border: 'var(--forest-600)', text: 'var(--forest-700)' };
-  if (share >= 35) return { bg: '#FFF3E0', border: 'var(--orange)', text: 'var(--orange)' };
+  if (share >= 35) return { bg: 'var(--orange-soft)', border: 'var(--orange)', text: 'var(--orange)' };
   return { bg: '#FEE2E2', border: 'var(--crit)', text: 'var(--crit)' };
 }
 
@@ -128,7 +128,7 @@ export default function VoterIntelMapScreen() {
                       <span className="font-mono text-[10px]" style={{ color: c.lpShare >= 55 ? 'rgba(255,255,255,0.5)' : 'var(--ink-4)' }}>
                         {formatNumber(c.registeredVoters, true)}
                       </span>
-                      <span className="font-mono text-[10px]" style={{ color: c.lpShareDelta >= 0 ? '#7AA386' : 'var(--orange)' }}>
+                      <span className="font-mono text-[10px]" style={{ color: c.lpShareDelta >= 0 ? 'var(--forest-300)' : 'var(--orange)' }}>
                         {c.lpShareDelta >= 0 ? '+' : ''}{formatPct(c.lpShareDelta, 1)}
                       </span>
                     </div>

@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { SidebarNav, MobileNav } from './SidebarNav';
+import { FeedbackWidget } from './FeedbackWidget';
 
 export function AppLayout() {
   return (
@@ -11,6 +12,7 @@ export function AppLayout() {
           <Outlet />
         </main>
       </div>
+      <FeedbackWidget />
     </div>
   );
 }

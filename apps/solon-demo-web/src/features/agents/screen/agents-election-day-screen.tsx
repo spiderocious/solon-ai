@@ -63,7 +63,7 @@ export default function AgentsElectionDayScreen() {
 
         {/* Mode */}
         <div className="flex items-center gap-2">
-          <StatusPill variant={isElectionDay ? 'alert' : 'warn'} label={isElectionDay ? 'War Room active' : 'Pre-election mode'} />
+          <StatusPill variant={isElectionDay ? 'crit' : 'warn'} label={isElectionDay ? 'War Room active' : 'Pre-election mode'} />
         </div>
 
         {/* Pre-election checklist */}

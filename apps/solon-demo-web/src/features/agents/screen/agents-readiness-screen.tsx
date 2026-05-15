@@ -81,7 +81,7 @@ export default function AgentsReadinessScreen() {
         </div>
 
         {r.readinessScore < 80 && (
-          <div className="rounded-[4px] px-3 py-2.5" style={{ background: '#FFF3E0', border: '1px solid var(--orange)' }}>
+          <div className="rounded-[4px] px-3 py-2.5" style={{ background: 'var(--orange-soft)', border: '1px solid var(--orange)' }}>
             <p className="font-sans text-[12px]" style={{ color: 'var(--orange)' }}>
               {r.totalAgents - r.credentialed} agents still need INEC credentialing before election day.
             </p>

@@ -11,6 +11,8 @@ import { register as registerLeads } from '@features/leads/index.js';
 import { register as registerFeedback } from '@features/feedback/index.js';
 import { register as registerAdmin } from '@features/admin/index.js';
 import { register as registerSimulator } from '@features/simulator/index.js';
+import { register as registerVoterIntel } from '@features/voter-intel/index.js';
+import { register as registerWarRoom } from '@features/war-room/index.js';
 import { errorHandler } from '@middlewares/errorHandler.middleware.js';
 import { requestIdMiddleware } from '@middlewares/requestId.middleware.js';
 import { requestLogMiddleware } from '@middlewares/requestLog.middleware.js';
@@ -32,6 +34,8 @@ const features = [
   registerFeedback,
   registerAdmin,
   registerSimulator,
+  registerVoterIntel,
+  registerWarRoom,
 ];
 
 export const buildApp = (): express.Express => {

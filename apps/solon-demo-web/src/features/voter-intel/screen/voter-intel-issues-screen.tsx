@@ -4,8 +4,8 @@ import { useVoterIssues } from '../api/use-voter-issues';
 const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tracking-[0.08em]';
 const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
 
-const TREND_CONFIG: Record<string, { label: string; variant: 'ok' | 'warn' | 'alert'; arrow: string; color: string }> = {
-  rising: { label: 'Rising', variant: 'alert', arrow: '↑', color: 'var(--crit)' },
+const TREND_CONFIG: Record<string, { label: string; variant: 'ok' | 'warn' | 'crit'; arrow: string; color: string }> = {
+  rising: { label: 'Rising', variant: 'crit', arrow: '↑', color: 'var(--crit)' },
   steady: { label: 'Steady', variant: 'ok', arrow: '→', color: 'var(--ink-3)' },
   falling: { label: 'Falling', variant: 'warn', arrow: '↓', color: 'var(--orange)' },
 };
@@ -56,7 +56,7 @@ export default function VoterIntelIssuesScreen() {
             </thead>
             <tbody>
               {issues.map((issue, idx) => {
-                const tc = TREND_CONFIG[issue.trend] ?? TREND_CONFIG.steady;
+                const tc = (TREND_CONFIG[issue.trend] ?? TREND_CONFIG['steady'])!;
                 return (
                   <tr key={issue.id}>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)', color: 'var(--forest-600)', fontFamily: 'var(--font-mono)', fontSize: 12, width: 32 }}>
