@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { LivePulse, StatusPill, TallyTicker } from '@solon/ui';
 import type { TallySnapshot } from '@solon/ui';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { DEMO_EP, MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { TallySummary, LiveUpdate } from '@shared/types/mock-data.types';
 
@@ -65,7 +65,7 @@ export default function WarRoomLiveScreen() {
   const { sessionId } = useDemoSession();
   const { data: summary } = useQuery<TallySummary>({
     queryKey: ['war-room-tally'],
-    queryFn: () => demoClient.get<TallySummary>(DEMO_EP.WAR_ROOM_TALLY, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<TallySummary>(MOCK_KEY.WARROOM_TALLY, sessionId ?? undefined),
     placeholderData: MOCK_SUMMARY,
     refetchInterval: 30_000,
   });

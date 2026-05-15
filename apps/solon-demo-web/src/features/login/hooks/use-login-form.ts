@@ -49,8 +49,8 @@ export function useLoginForm({ onSuccess }: Readonly<UseLoginFormOptions>): Read
       );
       onSuccess(session.sessionId);
     } catch {
-      // API unavailable — create a client-side session id so demo still works
-      onSuccess(`demo-session-${Date.now()}`);
+      // API unavailable — use a local-only id prefixed so the pinger skips it
+      onSuccess(`local-${Date.now()}`);
     } finally {
       setLoading(false);
     }

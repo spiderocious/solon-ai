@@ -1,7 +1,7 @@
 import { Avatar, Button, SkeletonCard } from '@solon/ui';
 import { useQuery } from '@tanstack/react-query';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { Donor } from '@shared/types/mock-data.types';
 
@@ -30,7 +30,7 @@ export default function FinanceDonorsScreen() {
   const { sessionId } = useDemoSession();
   const { data, isLoading } = useQuery<Donor[]>({
     queryKey: ['finance-donors'],
-    queryFn: () => demoClient.get<Donor[]>(DEMO_EP.FINANCE_DONORS, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<Donor[]>(MOCK_KEY.FINANCE_DONORS, sessionId ?? undefined),
     placeholderData: MOCK,
   });
   const donors = data ?? MOCK;

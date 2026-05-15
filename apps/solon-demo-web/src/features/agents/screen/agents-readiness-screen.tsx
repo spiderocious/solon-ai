@@ -1,22 +1,8 @@
 import { SkeletonCard } from '@solon/ui';
 import { formatPct } from '@shared/helpers/format-pct';
 import { useAgentsReadiness } from '../api/use-agents-readiness';
-import type { AgentReadiness } from '@shared/types/mock-data.types';
 
-const CHECKLIST: { key: keyof AgentReadiness; label: string; subtitle: string }[] = [
-  { key: 'trained', label: 'Training completed', subtitle: 'Solon field agent certification program' },
-  { key: 'credentialed', label: 'INEC credentialing', subtitle: 'Official accreditation from electoral commission' },
-  { key: 'equipped', label: 'Materials distributed', subtitle: 'Tally sheets, phone + data bundle issued' },
-  { key: 'deployed', label: 'Election day deployment', subtitle: 'Active on 20 Feb 2027' },
-];
-
-function readinessColor(score: number): string {
-  if (score >= 80) return 'var(--forest-600)';
-  if (score >= 60) return 'var(--orange)';
-  return 'var(--crit)';
-}
-
-function barColor(pct: number): string {
+function readinessColor(pct: number): string {
   if (pct >= 80) return 'var(--forest-600)';
   if (pct >= 60) return 'var(--orange)';
   return 'var(--crit)';
@@ -36,54 +22,57 @@ export default function AgentsReadinessScreen() {
 
   if (!r) return null;
 
+  const verifiedPct = r.total_agents > 0 ? (r.verified / r.total_agents) * 100 : 0;
+  const readyPct = r.total_agents > 0 ? (r.election_ready / r.total_agents) * 100 : 0;
+  const trainedPct = r.total_agents > 0 ? (r.trained / r.total_agents) * 100 : 0;
+
+  const CHECKLIST = [
+    { key: 'trained' as const, label: 'Training completed', subtitle: 'Solon field agent certification program', count: r.trained, pct: trainedPct },
+    { key: 'verified' as const, label: 'INEC verified', subtitle: 'Official accreditation from electoral commission', count: r.verified, pct: verifiedPct },
+    { key: 'election_ready' as const, label: 'Election day deployment', subtitle: 'Active on 16 Jan 2027', count: r.election_ready, pct: readyPct },
+  ];
+
   return (
-    <div
-      className="flex flex-col md:grid min-h-full"
-      style={{ gridTemplateColumns: '260px 1fr' }}
-    >
+    <div className="flex flex-col md:grid min-h-full" style={{ gridTemplateColumns: '260px 1fr' }}>
       {/* Left — score card */}
       <div className="border-b md:border-b-0 md:border-r p-5 flex flex-col gap-5" style={{ borderColor: 'var(--hair)' }}>
         <div>
           <h2 className="font-serif font-semibold text-[18px]" style={{ color: 'var(--ink)' }}>Readiness</h2>
           <p className="font-serif italic text-[12px] mt-0.5" style={{ color: 'var(--ink-3)' }}>
-            — {r.totalAgents} total agents
+            — {r.total_agents} total agents
           </p>
-        </div>
-
-        {/* Big score */}
-        <div className="rounded-[6px] p-5 flex flex-col items-center" style={{ background: 'var(--sheet)', border: '1px solid var(--hair)' }}>
-          <div className="font-mono text-[9px] uppercase tracking-[0.14em] mb-1" style={{ color: 'var(--ink-4)' }}>Readiness score</div>
-          <div className="font-serif font-bold leading-none" style={{ fontSize: 72, color: readinessColor(r.readinessScore) }}>
-            {r.readinessScore}
-          </div>
-          <div className="font-mono text-[12px]" style={{ color: 'var(--ink-4)' }}>/100</div>
-          <div className="w-full h-2 rounded-full overflow-hidden mt-3" style={{ background: 'var(--hair)' }}>
-            <div className="h-full rounded-full" style={{ width: `${r.readinessScore}%`, background: readinessColor(r.readinessScore) }} />
-          </div>
         </div>
 
         {/* Summary stats */}
         <div className="grid grid-cols-2 gap-3">
           {[
             { label: 'Trained', value: r.trained },
-            { label: 'Credentialed', value: r.credentialed },
-            { label: 'Equipped', value: r.equipped },
-            { label: 'Deployed', value: r.deployed },
+            { label: 'Verified', value: r.verified },
+            { label: 'Election ready', value: r.election_ready },
+            { label: 'Pending', value: r.pending_verification },
           ].map(({ label, value }) => (
             <div key={label} className="rounded-[4px] p-3" style={{ background: 'var(--paper-2)', border: '1px solid var(--hair)' }}>
               <div className="font-mono text-[9px] uppercase" style={{ color: 'var(--ink-4)' }}>{label}</div>
               <div className="font-serif font-semibold text-[20px]" style={{ color: 'var(--ink)' }}>{value}</div>
               <div className="font-mono text-[9px]" style={{ color: 'var(--ink-4)' }}>
-                {formatPct((value / r.totalAgents) * 100, 0)}
+                {formatPct((value / r.total_agents) * 100, 0)}
               </div>
             </div>
           ))}
         </div>
 
-        {r.readinessScore < 80 && (
+        {r.pending_verification > 0 && (
           <div className="rounded-[4px] px-3 py-2.5" style={{ background: 'var(--orange-soft)', border: '1px solid var(--orange)' }}>
             <p className="font-sans text-[12px]" style={{ color: 'var(--orange)' }}>
-              {r.totalAgents - r.credentialed} agents still need INEC credentialing before election day.
+              {r.pending_verification} agents pending INEC verification.
+            </p>
+          </div>
+        )}
+
+        {r.failed_verification > 0 && (
+          <div className="rounded-[4px] px-3 py-2.5" style={{ background: '#FEE2E2', border: '1px solid var(--crit)' }}>
+            <p className="font-sans text-[12px]" style={{ color: 'var(--crit)' }}>
+              {r.failed_verification} agents failed verification — action required.
             </p>
           </div>
         )}
@@ -95,10 +84,8 @@ export default function AgentsReadinessScreen() {
 
         <div className="flex flex-col gap-4">
           {CHECKLIST.map((item) => {
-            const count = r[item.key] as number;
-            const pct = r.totalAgents > 0 ? (count / r.totalAgents) * 100 : 0;
-            const color = barColor(pct);
-            const isComplete = pct >= 95;
+            const color = readinessColor(item.pct);
+            const isComplete = item.pct >= 95;
             return (
               <div
                 key={item.key}
@@ -114,18 +101,18 @@ export default function AgentsReadinessScreen() {
                     <div className="font-serif italic text-[11px]" style={{ color: 'var(--ink-3)' }}>{item.subtitle}</div>
                   </div>
                   <span className="font-mono font-semibold text-[16px]" style={{ color }}>
-                    {formatPct(pct, 0)}
+                    {formatPct(item.pct, 0)}
                   </span>
                 </div>
                 <div className="px-4 py-3">
                   <div className="flex justify-between mb-1.5">
-                    <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>{count} of {r.totalAgents} agents</span>
+                    <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>{item.count} of {r.total_agents} agents</span>
                     <span className="font-mono text-[10px]" style={{ color }}>
-                      {r.totalAgents - count} remaining
+                      {r.total_agents - item.count} remaining
                     </span>
                   </div>
                   <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: 'var(--hair)' }}>
-                    <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: color }} />
+                    <div className="h-full rounded-full transition-all" style={{ width: `${item.pct}%`, background: color }} />
                   </div>
                 </div>
               </div>

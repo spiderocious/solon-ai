@@ -1,7 +1,7 @@
 import { SkeletonCard, StatusPill } from '@solon/ui';
 import { useQuery } from '@tanstack/react-query';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { Expense } from '@shared/types/mock-data.types';
 
@@ -26,7 +26,7 @@ export default function FinanceExpensesScreen() {
   const { sessionId } = useDemoSession();
   const { data, isLoading } = useQuery<Expense[]>({
     queryKey: ['finance-expenses'],
-    queryFn: () => demoClient.get<Expense[]>(DEMO_EP.FINANCE_EXPENSES, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<Expense[]>(MOCK_KEY.FINANCE_EXPENSES, sessionId ?? undefined),
     placeholderData: MOCK,
   });
   const expenses = data ?? MOCK;

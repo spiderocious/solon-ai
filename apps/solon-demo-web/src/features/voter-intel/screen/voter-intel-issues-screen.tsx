@@ -5,14 +5,20 @@ const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tra
 const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
 
 const TREND_CONFIG: Record<string, { label: string; variant: 'ok' | 'warn' | 'crit'; arrow: string; color: string }> = {
-  rising: { label: 'Rising', variant: 'crit', arrow: '↑', color: 'var(--crit)' },
-  steady: { label: 'Steady', variant: 'ok', arrow: '→', color: 'var(--ink-3)' },
+  rising:  { label: 'Rising',  variant: 'crit', arrow: '↑', color: 'var(--crit)' },
+  steady:  { label: 'Steady',  variant: 'ok',   arrow: '→', color: 'var(--ink-3)' },
   falling: { label: 'Falling', variant: 'warn', arrow: '↓', color: 'var(--orange)' },
 };
 
+function formatMentions(n: number): string {
+  if (n >= 1000) return `${(n / 1000).toFixed(0)}k`;
+  return String(n);
+}
+
 export default function VoterIntelIssuesScreen() {
   const { data, isLoading } = useVoterIssues();
-  const issues = data ?? [];
+  const issues = data?.top_issues ?? [];
+  const week = data?.week ?? '';
 
   if (isLoading && !data) {
     return (
@@ -28,7 +34,7 @@ export default function VoterIntelIssuesScreen() {
         <div>
           <h2 className="font-serif font-semibold text-[20px]" style={{ color: 'var(--ink)' }}>Issue monitor</h2>
           <p className="font-serif italic text-[13px] mt-0.5" style={{ color: 'var(--ink-3)' }}>
-            — Anambra Central · salience by source · week of May 5–11
+            — nationwide · week of {week}
           </p>
         </div>
         <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>
@@ -36,18 +42,17 @@ export default function VoterIntelIssuesScreen() {
         </span>
       </div>
 
-      {/* Table */}
       <div className="rounded-[6px] overflow-hidden border mb-6" style={{ borderColor: 'var(--hair)' }}>
         <style>{`.issues-table tbody tr:hover td { background: var(--paper-2); }`}</style>
         <div className="overflow-x-auto">
           <table className="issues-table w-full border-collapse">
             <thead>
               <tr style={{ background: 'var(--paper-2)' }}>
-                {['#', 'Issue', 'Salience', 'Week delta', 'Trend', 'Sources'].map((h, i) => (
+                {['#', 'Issue', 'Mentions', 'Trend', 'Sentiment', 'Sources', 'Suggested response'].map((h, i) => (
                   <th
                     key={h}
                     className={TH_CLS}
-                    style={{ color: 'var(--ink-3)', borderColor: 'var(--hair)', textAlign: i === 2 || i === 3 ? 'right' : 'left' }}
+                    style={{ color: 'var(--ink-3)', borderColor: 'var(--hair)', textAlign: i === 2 ? 'right' : 'left' }}
                   >
                     {h}
                   </th>
@@ -55,54 +60,31 @@ export default function VoterIntelIssuesScreen() {
               </tr>
             </thead>
             <tbody>
-              {issues.map((issue, idx) => {
-                const tc = (TREND_CONFIG[issue.trend] ?? TREND_CONFIG['steady'])!;
+              {issues.map((issue) => {
+                const tc = TREND_CONFIG[issue.trend] ?? TREND_CONFIG['steady']!;
+                const sentimentColor = issue.sentiment_toward_govt === 'negative'
+                  ? 'var(--crit)'
+                  : issue.sentiment_toward_govt === 'positive'
+                    ? 'var(--forest-700)'
+                    : 'var(--ink-3)';
                 return (
-                  <tr key={issue.id}>
+                  <tr key={issue.rank}>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)', color: 'var(--forest-600)', fontFamily: 'var(--font-mono)', fontSize: 12, width: 32 }}>
-                      {String(idx + 1).padStart(2, '0')}
+                      {String(issue.rank).padStart(2, '0')}
                     </td>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
                       <div className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>{issue.name}</div>
-                      {/* Mini sparkline */}
-                      <div className="flex items-end gap-0.5 mt-1.5" style={{ height: 16 }}>
-                        {issue.weekData.map((w, wi) => {
-                          const maxSalience = Math.max(...issue.weekData.map((d) => d.salience));
-                          const barH = Math.max(2, Math.round((w.salience / maxSalience) * 14));
-                          return (
-                            <div
-                              key={wi}
-                              style={{
-                                width: 6,
-                                height: barH,
-                                background: wi === issue.weekData.length - 1 ? 'var(--forest-600)' : 'var(--hair)',
-                                borderRadius: 1,
-                              }}
-                            />
-                          );
-                        })}
-                      </div>
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', textAlign: 'right' }}>
-                      <div className="flex flex-col items-end gap-1">
-                        <span className="font-serif font-bold text-[18px]" style={{ color: 'var(--ink)' }}>
-                          {issue.salience}%
-                        </span>
-                        <div className="w-20 h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--hair)' }}>
-                          <div
-                            className="h-full rounded-full"
-                            style={{ width: `${issue.salience}%`, background: 'var(--forest-600)' }}
-                          />
+                      {issue.quotes[0] && (
+                        <div className="font-serif italic text-[11px] mt-0.5" style={{ color: 'var(--ink-4)' }}>
+                          "{issue.quotes[0]}"
                         </div>
-                      </div>
+                      )}
                     </td>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)', textAlign: 'right' }}>
-                      <span
-                        className="font-mono text-[12px] font-semibold"
-                        style={{ color: issue.delta > 0 ? 'var(--forest-700)' : issue.delta < 0 ? 'var(--orange)' : 'var(--ink-3)' }}
-                      >
-                        {issue.delta > 0 ? '+' : ''}{issue.delta}%
+                      <span className="font-mono font-semibold text-[14px]" style={{ color: 'var(--ink)' }}>
+                        {formatMentions(issue.mentions_this_week)}
                       </span>
+                      <div className="font-mono text-[9px]" style={{ color: 'var(--ink-4)' }}>this week</div>
                     </td>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
                       <div className="flex items-center gap-1.5">
@@ -111,18 +93,26 @@ export default function VoterIntelIssuesScreen() {
                       </div>
                     </td>
                     <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
-                      <div className="flex flex-wrap gap-1">
-                        {issue.sources.map((s) => (
-                          <div key={s.name} className="flex items-center gap-1">
-                            <span
-                              className="px-1.5 py-0.5 font-mono text-[10px] rounded-[3px]"
-                              style={{ background: 'var(--paper-2)', color: 'var(--ink-3)', border: '1px solid var(--hair)' }}
-                            >
-                              {s.name} {s.share}%
-                            </span>
-                          </div>
-                        ))}
+                      <span className="font-mono text-[11px] font-semibold capitalize" style={{ color: sentimentColor }}>
+                        {issue.sentiment_toward_govt}
+                      </span>
+                    </td>
+                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
+                      <div className="space-y-0.5">
+                        <div className="flex items-center gap-1">
+                          <span className="px-1.5 py-0.5 font-mono text-[10px] rounded-[3px]" style={{ background: 'var(--paper-2)', color: 'var(--ink-3)', border: '1px solid var(--hair)' }}>
+                            X/Twitter {issue.source_breakdown.twitter_x_pct}%
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="px-1.5 py-0.5 font-mono text-[10px] rounded-[3px]" style={{ background: 'var(--paper-2)', color: 'var(--ink-3)', border: '1px solid var(--hair)' }}>
+                            Nairaland {issue.source_breakdown.nairaland_pct}%
+                          </span>
+                        </div>
                       </div>
+                    </td>
+                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', maxWidth: 220 }}>
+                      <span className="font-sans text-[11px]" style={{ color: 'var(--ink-3)' }}>{issue.suggested_response}</span>
                     </td>
                   </tr>
                 );
@@ -133,7 +123,7 @@ export default function VoterIntelIssuesScreen() {
       </div>
 
       <p className="font-serif italic text-[12px]" style={{ color: 'var(--ink-4)' }}>
-        Sources — radio call-in, Nairaland, public X, public WhatsApp · Anambra Central · Solon Intelligence
+        Sources — X/Twitter, Nairaland · Nigeria nationwide · Solon Intelligence
       </p>
     </div>
   );

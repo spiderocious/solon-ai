@@ -43,9 +43,8 @@ export function useLeadCaptureForm({ sessionId, onSuccess }: Readonly<UseLeadCap
         sessionId ?? undefined,
       );
       onSuccess(res.leadId);
-    } catch {
-      // API unavailable in demo — proceed anyway
-      onSuccess('demo-lead');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
     } finally {
       setLoading(false);
     }

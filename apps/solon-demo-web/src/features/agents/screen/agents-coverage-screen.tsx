@@ -2,23 +2,14 @@ import { SkeletonCard } from '@solon/ui';
 import { formatPct } from '@shared/helpers/format-pct';
 import { useAgentsCoverage } from '../api/use-agents-coverage';
 
-const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tracking-[0.08em]';
-const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
-
-function coverageColor(rate: number): string {
-  if (rate >= 80) return 'var(--forest-600)';
-  if (rate >= 60) return 'var(--orange)';
+function coverageColor(pct: number): string {
+  if (pct >= 5) return 'var(--forest-600)';
+  if (pct >= 2) return 'var(--orange)';
   return 'var(--crit)';
 }
 
 export default function AgentsCoverageScreen() {
   const { data, isLoading } = useAgentsCoverage();
-  const coverage = data ?? [];
-
-  const totalPUs = coverage.reduce((s, c) => s + c.totalPUs, 0);
-  const coveredPUs = coverage.reduce((s, c) => s + c.coveredPUs, 0);
-  const totalAgents = coverage.reduce((s, c) => s + c.agents, 0);
-  const overallRate = totalPUs > 0 ? (coveredPUs / totalPUs) * 100 : 0;
 
   if (isLoading && !data) {
     return (
@@ -28,12 +19,16 @@ export default function AgentsCoverageScreen() {
     );
   }
 
+  if (!data) return null;
+
+  const coveragePct = data.coverage_pct * 100;
+
   return (
     <div className="p-5 md:p-8">
       <div className="mb-5">
-        <h2 className="font-serif font-semibold text-[20px]" style={{ color: 'var(--ink)' }}>Coverage map</h2>
+        <h2 className="font-serif font-semibold text-[20px]" style={{ color: 'var(--ink)' }}>Coverage overview</h2>
         <p className="font-serif italic text-[13px] mt-0.5" style={{ color: 'var(--ink-3)' }}>
-          — Anambra Central · PU coverage by LGA · {coverage.length} LGAs
+          — nationwide · {data.total_agents} agents · {data.total_pus_covered.toLocaleString()} PUs covered
         </p>
       </div>
 
@@ -43,10 +38,10 @@ export default function AgentsCoverageScreen() {
         style={{ background: 'var(--ink)', border: '1px solid var(--ink)' }}
       >
         {[
-          { label: 'Total PUs', value: String(totalPUs), color: 'var(--paper)' },
-          { label: 'Covered PUs', value: String(coveredPUs), color: 'var(--forest-300)' },
-          { label: 'Overall coverage', value: formatPct(overallRate, 1), color: coverageColor(overallRate) },
-          { label: 'Agents deployed', value: String(totalAgents), color: 'var(--paper)' },
+          { label: 'Total agents', value: String(data.total_agents), color: 'var(--paper)' },
+          { label: 'PUs covered', value: data.total_pus_covered.toLocaleString(), color: 'var(--forest-300)' },
+          { label: 'Nationwide PUs', value: data.total_pus_nationwide.toLocaleString(), color: 'var(--paper)' },
+          { label: 'Coverage', value: formatPct(coveragePct, 1), color: coverageColor(coveragePct) },
         ].map(({ label, value, color }, i) => (
           <div key={label} className="flex items-center gap-3">
             {i > 0 && <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>}
@@ -58,62 +53,45 @@ export default function AgentsCoverageScreen() {
         ))}
       </div>
 
-      {/* Table */}
-      <div className="rounded-[6px] overflow-hidden border" style={{ borderColor: 'var(--hair)' }}>
-        <style>{`.coverage-table tbody tr:hover td { background: var(--paper-2); }`}</style>
-        <div className="overflow-x-auto">
-          <table className="coverage-table w-full border-collapse">
-            <thead>
-              <tr style={{ background: 'var(--paper-2)' }}>
-                {['LGA', 'Agents', 'PUs covered', 'Total PUs', 'Coverage', 'Progress'].map((h, i) => (
-                  <th
-                    key={h}
-                    className={TH_CLS}
-                    style={{ color: 'var(--ink-3)', borderColor: 'var(--hair)', textAlign: i >= 1 && i <= 3 ? 'right' : 'left' }}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {coverage.map((c) => {
-                const color = coverageColor(c.coverageRate);
-                return (
-                  <tr key={c.lga}>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
-                      <span className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>{c.lga}</span>
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-3)' }}>
-                      {c.agents}
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-2)' }}>
-                      {c.coveredPUs}
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-3)' }}>
-                      {c.totalPUs}
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)' }}>
-                      <span className="font-mono font-semibold text-[13px]" style={{ color }}>{formatPct(c.coverageRate, 1)}</span>
-                    </td>
-                    <td className={TD_CLS} style={{ borderColor: 'var(--hair)', minWidth: 120 }}>
-                      <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--hair)' }}>
-                        <div
-                          className="h-full rounded-full"
-                          style={{ width: `${c.coverageRate}%`, background: color }}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      {/* Status grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+        {[
+          { label: 'Verified', value: data.verified, color: 'var(--forest-700)', bg: 'var(--forest-50)', border: 'var(--forest-600)' },
+          { label: 'Election ready', value: data.election_ready, color: 'var(--forest-700)', bg: 'var(--forest-50)', border: 'var(--forest-600)' },
+          { label: 'Pending verification', value: data.pending_verification, color: 'var(--orange)', bg: 'var(--orange-soft)', border: 'var(--orange)' },
+          { label: 'Failed verification', value: data.failed_verification, color: 'var(--crit)', bg: '#FEE2E2', border: 'var(--crit)' },
+        ].map(({ label, value, color, bg, border }) => (
+          <div key={label} className="rounded-[6px] p-4" style={{ background: bg, border: `1px solid ${border}` }}>
+            <div className="font-mono text-[9px] uppercase" style={{ color }}>{label}</div>
+            <div className="font-serif font-bold text-[28px]" style={{ color }}>{value}</div>
+            <div className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>
+              {formatPct((value / data.total_agents) * 100, 0)} of total
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Coverage bar */}
+      <div className="rounded-[6px] p-4" style={{ border: '1px solid var(--hair)' }}>
+        <div className="flex justify-between mb-2">
+          <span className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>Nationwide PU coverage</span>
+          <span className="font-mono font-semibold text-[13px]" style={{ color: coverageColor(coveragePct) }}>
+            {formatPct(coveragePct, 2)}
+          </span>
+        </div>
+        <div className="w-full h-3 rounded-full overflow-hidden" style={{ background: 'var(--hair)' }}>
+          <div
+            className="h-full rounded-full"
+            style={{ width: `${Math.min(coveragePct, 100)}%`, background: coverageColor(coveragePct) }}
+          />
+        </div>
+        <div className="font-mono text-[10px] mt-2" style={{ color: 'var(--ink-4)' }}>
+          {data.total_pus_covered.toLocaleString()} of {data.total_pus_nationwide.toLocaleString()} polling units nationwide
         </div>
       </div>
 
       <p className="font-serif italic text-[12px] mt-4" style={{ color: 'var(--ink-4)' }}>
-        Target: 90% PU coverage by election day · 20 Feb 2027 · Solon Intelligence
+        Target: 5% PU coverage by election day · Jan 2027 · Solon Intelligence
       </p>
     </div>
   );

@@ -22,191 +22,227 @@ export interface LeadCaptureResponse {
   sessionId: string;
 }
 
-// ─── Dashboard ────────────────────────────────────────────────────────────────
+// ─── Dashboard (candidate.profile) ────────────────────────────────────────────
 
-export interface DashboardSummary {
-  candidateName: string;
-  race: string;
-  constituency: string;
-  projectedVoteShare: number;
-  projectedVoteShareDelta: number;
-  confidenceLevel: number;
-  registeredVoters: number;
-  targetTurnout: number;
-  agentsCoverage: number;
-  agentsTotal: number;
-  agentsActive: number;
-  campaignBudgetSpent: number;
-  campaignBudgetTotal: number;
-  topIssues: Array<{ name: string; salience: number; delta: number }>;
-  keyAlerts: Array<{ id: string; severity: 'high' | 'medium' | 'low'; message: string }>;
+export interface CandidateProfile {
+  full_name: string;
+  preferred_name: string;
+  party: string;
+  party_full: string;
+  party_colour: string;
+  office: string;
+  election_year: number;
+  running_mate: string | null;
+  running_mate_label: string;
+  campaign_manager: string;
+  login_email: string;
+  election_date: string;
+  slogan: string;
+  headshot_url: string;
 }
 
-// ─── Simulator ────────────────────────────────────────────────────────────────
+// ─── Simulator (simulator.baseline) ───────────────────────────────────────────
 
-export type TurnoutScenario = 'low' | 'medium' | 'high' | 'custom';
-export type YouthMobilization = 'baseline' | 'moderate' | 'strong';
-
-export interface SimulatorBaseline {
-  raceId: string;
-  raceName: string;
-  constituency: string;
-  candidates: Array<{
-    name: string;
-    party: string;
-    partyColor: string;
-    projectedShare: number;
-  }>;
-  registeredVoters: number;
-  historicalTurnout: number;
-  projectedTurnout: number;
-  confidence: number;
-}
-
-export interface ScenarioParams {
-  turnout: TurnoutScenario;
-  customTurnout?: number;
-  youthMobilization: YouthMobilization;
-  incidentRate: number;
-  weatherImpact: boolean;
-}
-
-export interface ScenarioResult {
-  scenarioId: string;
-  name: string;
-  params: ScenarioParams;
-  candidates: Array<{
-    name: string;
-    party: string;
-    partyColor: string;
-    projectedShare: number;
-    delta: number;
-  }>;
-  projectedTurnout: number;
-  confidence: number;
-  createdAt: string;
-}
-
-export interface CopilotMessage {
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: string;
-}
-
-export interface CopilotResponse {
-  message: CopilotMessage;
-  scenarioSuggestion?: Partial<ScenarioParams>;
-}
-
-// ─── Voter Intel ───────────────────────────────────────────────────────────────
-
-export interface Constituency {
+export interface SimulatorCandidate {
   id: string;
   name: string;
-  lga: string;
-  state: string;
-  registeredVoters: number;
-  lpShare: number;
-  lpShareDelta: number;
-  turnoutRate: number;
-  lat: number;
-  lng: number;
+  party: string;
+  party_colour: string;
+  share: number;
+  margin_of_error: number;
+  confidence: string;
 }
+
+export interface SimulatorTopVariable {
+  rank: number;
+  name: string;
+  impact: string;
+  direction: 'positive' | 'negative' | 'neutral';
+}
+
+export interface SimulatorBaseline {
+  bello_share: number;
+  opposition_share: number;
+  undecided_share: number;
+  turnout_rate: number;
+  swing_states: string[];
+  candidates: SimulatorCandidate[];
+  top_variables: SimulatorTopVariable[];
+}
+
+// ─── Simulator (simulator.saved_scenarios) ────────────────────────────────────
+
+export interface SavedScenario {
+  id: string;
+  name: string;
+  created_at: string;
+  summary: {
+    bello_share: number;
+    apc_share: number;
+    pdp_share: number;
+    lp_share: number;
+  };
+}
+
+// ─── Voter Intel (voter_intelligence.constituency_map) ────────────────────────
+
+export interface ConstituencyState {
+  name: string;
+  zone: string;
+  registered_voters: number;
+  turnout_2023: number;
+  winner_2023: string;
+  afp_tier: string;
+}
+
+export interface ConstituencyMap {
+  states: ConstituencyState[];
+}
+
+// ─── Voter Intel (voter_intelligence.clusters) ────────────────────────────────
 
 export interface VoterCluster {
   id: string;
   name: string;
-  size: number;
-  ageRange: string;
-  lpAffinity: 'strong' | 'leaning' | 'swing' | 'opposed';
-  topIssues: string[];
   description: string;
+  size_millions: number;
+  dominant_states: string[];
+  top_issues: string[];
+  recommended_channel: string;
+  afp_reach_pct: number;
 }
 
-export interface IssueTrend {
-  id: string;
+// ─── Voter Intel (voter_intelligence.issue_monitor) ───────────────────────────
+
+export interface IssueItem {
+  rank: number;
   name: string;
-  salience: number;
-  delta: number;
   trend: 'rising' | 'steady' | 'falling';
-  sources: Array<{ name: string; share: number }>;
-  weekData: Array<{ week: string; salience: number }>;
+  sentiment_toward_govt: 'negative' | 'positive' | 'mixed';
+  mentions_this_week: number;
+  quotes: string[];
+  source_breakdown: {
+    twitter_x_pct: number;
+    nairaland_pct: number;
+  };
+  suggested_response: string;
 }
 
-export interface MessageTemplate {
-  id: string;
-  cluster: string;
-  channel: 'sms' | 'whatsapp' | 'voice';
-  content: string;
-  estimatedReach: number;
-  engagementScore: number;
+export interface IssueMonitor {
+  week: string;
+  top_issues: IssueItem[];
 }
 
-// ─── Agents ────────────────────────────────────────────────────────────────────
+// ─── Agents (agents.readiness) ────────────────────────────────────────────────
 
-export type AgentStatus = 'active' | 'inactive' | 'pending' | 'deployed';
-
-export interface Agent {
+export interface AgentRecord {
   id: string;
   name: string;
   phone: string;
   lga: string;
-  ward: string;
   pu: string;
-  status: AgentStatus;
-  pusCovered: number;
-  lastCheckIn: string | null;
+  verified: boolean;
+  election_ready: boolean;
 }
 
-export interface AgentCoverage {
-  lga: string;
-  totalPUs: number;
-  coveredPUs: number;
-  agents: number;
-  coverageRate: number;
-}
-
-export interface AgentReadiness {
-  totalAgents: number;
+export interface AgentsReadiness {
+  total_agents: number;
+  verified: number;
+  election_ready: number;
   trained: number;
-  credentialed: number;
-  equipped: number;
-  deployed: number;
-  readinessScore: number;
+  pending_verification: number;
+  failed_verification: number;
+  total_pus_covered: number;
+  total_pus_nationwide: number;
+  coverage_pct: number;
+  agents: AgentRecord[];
 }
 
-// ─── Finance ───────────────────────────────────────────────────────────────────
+// ─── Finance (finance.dashboard) ──────────────────────────────────────────────
 
-export interface FinanceSummary {
-  totalBudget: number;
-  totalSpent: number;
-  totalDonated: number;
-  burnRate: number;
-  daysToElection: number;
-  projectedShortfall: number;
-  complianceScore: number;
+export interface SpendCategory {
+  category: string;
+  amount_naira: number;
+  sub_cap_naira: number;
+  pct_of_sub_cap: number;
 }
+
+export interface FinanceDashboard {
+  total_cap_naira: number;
+  total_spent_naira: number;
+  projected_final_naira: number;
+  days_to_next_inec_deadline: number;
+  next_deadline_label: string;
+  spending_by_category: SpendCategory[];
+  alerts: Array<{ type: string; message: string }>;
+}
+
+// ─── Finance (finance.expenses) ───────────────────────────────────────────────
 
 export interface Expense {
   id: string;
-  category: string;
-  description: string;
-  amount: number;
   date: string;
-  approvedBy: string;
-  receipt: boolean;
+  vendor: string;
+  category: string;
+  lga: string;
+  amount_naira: number;
+  status: string;
+  note?: string;
 }
+
+// ─── Finance (finance.donors) ─────────────────────────────────────────────────
 
 export interface Donor {
   id: string;
   name: string;
-  amount: number;
+  amount_naira: number;
   date: string;
-  method: string;
-  verified: boolean;
+  risk_score: 'Low' | 'Medium' | 'High';
+  source: string;
+  flagged?: boolean;
+  flag_reason?: string;
 }
 
-// ─── War Room ──────────────────────────────────────────────────────────────────
+// ─── War Room (warroom.tally) ─────────────────────────────────────────────────
+
+export interface TallyParty {
+  party: string;
+  candidate: string;
+  votes: number;
+  pct: number;
+}
+
+export interface StateSummary {
+  state: string;
+  pus_reporting: number;
+  pus_total: number;
+  afp_pct: number;
+  apc_pct: number;
+  tier: string;
+}
+
+export interface LiveFeedItem {
+  time: string;
+  type: 'result' | 'incident' | 'anomaly';
+  message: string;
+  severity?: number;
+}
+
+export interface WarRoomTally {
+  election_date: string;
+  pus_total: number;
+  pus_reporting: number;
+  coverage_pct: number;
+  last_update: string;
+  running_tally: TallyParty[];
+  state_summary: StateSummary[];
+  incidents_last_hour: number;
+  severity_5_incidents: number;
+  anomaly_flags: number;
+  live_feed: LiveFeedItem[];
+}
+
+// ─── War Room (war-room/live) ─────────────────────────────────────────────────
 
 export interface LiveUpdate {
   id: string;
@@ -218,29 +254,14 @@ export interface LiveUpdate {
   severity?: 'high' | 'medium' | 'low';
 }
 
-export interface TallyEntry {
-  puId: string;
-  puName: string;
-  lga: string;
-  lpVotes: number;
-  apcVotes: number;
-  pdpVotes: number;
-  otherVotes: number;
-  totalVotes: number;
-  accredited: number;
+// ─── Copilot ──────────────────────────────────────────────────────────────────
+
+export interface CopilotMessage {
+  role: 'user' | 'assistant';
+  content: string;
   timestamp: string;
-  status: 'pending' | 'submitted' | 'verified' | 'disputed';
 }
 
-export interface TallySummary {
-  totalPUs: number;
-  reportedPUs: number;
-  verifiedPUs: number;
-  lpTotal: number;
-  apcTotal: number;
-  pdpTotal: number;
-  otherTotal: number;
-  projectedWinner: string;
-  projectedMargin: number;
-  confidence: number;
+export interface CopilotResponse {
+  message: CopilotMessage;
 }

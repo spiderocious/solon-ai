@@ -14,7 +14,7 @@ const CreateLeadSchema = z.object({
   sessionId: z.string().optional(),
   name: z.string().min(1).max(100).optional(),
   email: z.string().email().optional(),
-  phone: z.string().min(7).max(20).optional(),
+  phone: z.string().min(7).max(20).optional().or(z.literal('').transform(() => undefined)),
   role: z.string().max(100).optional(),
   party: z.string().max(100).optional(),
   state: z.string().max(100).optional(),

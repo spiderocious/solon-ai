@@ -1,54 +1,59 @@
 import { useQuery } from '@tanstack/react-query';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { VoterCluster } from '@shared/types/mock-data.types';
 
 const MOCK: VoterCluster[] = [
   {
-    id: 'vc1',
-    name: 'Young urban professionals',
-    size: 42_000,
-    ageRange: '25-34',
-    lpAffinity: 'strong',
-    topIssues: ['Cost of living', 'Manufacturing revival'],
-    description: "Highly educated, tech-savvy. Active on X and WhatsApp. Strong LP affinity due to Obi's digital-economy narrative.",
+    id: 'cluster_1',
+    name: 'Persuadable Urban South-West Youth',
+    description: 'Low turnout history, Lagos + Ibadan + Abeokuta concentrated',
+    size_millions: 4.2,
+    dominant_states: ['Lagos', 'Oyo', 'Ogun'],
+    top_issues: ['Cost of living', 'Unemployment', 'Education quality'],
+    recommended_channel: 'Instagram/TikTok, street activations, NYSC networks',
+    afp_reach_pct: 31,
   },
   {
-    id: 'vc2',
-    name: 'Market traders (Onitsha)',
-    size: 58_000,
-    ageRange: '30-50',
-    lpAffinity: 'leaning',
-    topIssues: ['Naira reform', 'Insecurity'],
-    description: 'Business-minded, economy-focused. Swing toward LP if security messaging is strong. Reachable via Onitsha Main Market networks.',
+    id: 'cluster_2',
+    name: 'Rural North-West Party-Loyal',
+    description: 'High turnout, historically APC/NNPP, mosque network influence',
+    size_millions: 8.7,
+    dominant_states: ['Kano', 'Kaduna', 'Katsina', 'Zamfara'],
+    top_issues: ['Security/banditry', 'Agricultural support', 'Islamic governance'],
+    recommended_channel: 'Traditional rulers, radio (Hausa), mosque announcements',
+    afp_reach_pct: 18,
   },
   {
-    id: 'vc3',
-    name: 'Rural farmers (Ogbaru)',
-    size: 36_000,
-    ageRange: '35-60',
-    lpAffinity: 'swing',
-    topIssues: ['Education funding', 'Insecurity'],
-    description: 'Traditionally APC-leaning but softening. Turnout is the key risk — historically underperforms by 12 pts.',
+    id: 'cluster_3',
+    name: 'South-East Mobilised Opposition',
+    description: 'LP/ADC cross-voters, IPOB-influenced, historically low presidential turnout',
+    size_millions: 3.8,
+    dominant_states: ['Anambra', 'Imo', 'Abia', 'Enugu'],
+    top_issues: ['Igbo presidency', 'Security (IPOB/ESN)', 'Economic marginalisation'],
+    recommended_channel: 'Ohaneze networks, social media, diaspora remittance links',
+    afp_reach_pct: 9,
   },
   {
-    id: 'vc4',
-    name: 'Diaspora returnees',
-    size: 12_000,
-    ageRange: '28-45',
-    lpAffinity: 'strong',
-    topIssues: ['Manufacturing revival', 'Soludo–LP alignment'],
-    description: 'High-value cluster. Influential in social networks and willing to fund grassroots activities.',
+    id: 'cluster_4',
+    name: 'Middle Belt Swing',
+    description: 'Security-sensitive, PDP legacy stronghold, farmer-herder conflict primary driver',
+    size_millions: 5.1,
+    dominant_states: ['Benue', 'Plateau', 'Nasarawa', 'Taraba'],
+    top_issues: ['Farmer-herder conflict', 'Security', 'Infrastructure'],
+    recommended_channel: 'Church networks, community radio, local chieftaincy',
+    afp_reach_pct: 28,
   },
   {
-    id: 'vc5',
-    name: 'APGA loyalists',
-    size: 24_000,
-    ageRange: '40-65',
-    lpAffinity: 'opposed',
-    topIssues: ['Soludo–LP alignment'],
-    description: 'Core APGA base. Not a conversion target but important to neutralize through shared governance messaging.',
+    id: 'cluster_5',
+    name: 'Urban North-Central Professionals',
+    description: 'Economy-first, volatile, Abuja-based civil servants + SME owners',
+    size_millions: 2.3,
+    dominant_states: ['FCT', 'Niger', 'Kogi', 'Kwara'],
+    top_issues: ['Naira stability', 'Business environment', 'Public sector salaries'],
+    recommended_channel: 'LinkedIn, professional associations, business clubs',
+    afp_reach_pct: 42,
   },
 ];
 
@@ -56,7 +61,7 @@ export function useVoterClusters() {
   const { sessionId } = useDemoSession();
   return useQuery<VoterCluster[]>({
     queryKey: ['voter-clusters'],
-    queryFn: () => demoClient.get<VoterCluster[]>(DEMO_EP.VOTER_CLUSTERS, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<VoterCluster[]>(MOCK_KEY.VOTER_INTEL_CLUSTERS, sessionId ?? undefined),
     placeholderData: MOCK,
   });
 }

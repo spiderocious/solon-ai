@@ -22,6 +22,8 @@ export const demoClient = {
     request<T>(path, { method: 'GET', sessionId }),
   post: <T>(path: string, body: unknown, sessionId?: string) =>
     request<T>(path, { method: 'POST', body: JSON.stringify(body), sessionId }),
+  patch: <T>(path: string, body: unknown, sessionId?: string) =>
+    request<T>(path, { method: 'PATCH', body: JSON.stringify(body), sessionId }),
   // GET /mock/:key — response is { data: { key, label, data: <payload> } }
   // outer envelope is unwrapped by request(), then we unwrap the inner .data
   getMock: <T>(key: string, sessionId?: string) =>

@@ -52,7 +52,7 @@ function SessionPinger({ sessionId }: { sessionId: string }) {
     if (location.pathname === lastPath.current) return;
     lastPath.current = location.pathname;
     demoClient
-      .post(DEMO_EP.SESSION_PING(sessionId), { page: location.pathname }, sessionId)
+      .patch(DEMO_EP.SESSION_PING(sessionId), { page: location.pathname }, sessionId)
       .catch(() => undefined);
   }, [location.pathname, sessionId]);
 
@@ -84,7 +84,7 @@ export function DemoSessionProvider({ children }: { children: React.ReactNode })
 
   return (
     <DemoSessionContext.Provider value={{ ...state, login, logout, setLeadId }}>
-      {state.sessionId && state.isAuthenticated && (
+      {state.sessionId && state.isAuthenticated && !state.sessionId.startsWith('local-') && !state.sessionId.startsWith('demo-session-') && (
         <SessionPinger sessionId={state.sessionId} />
       )}
       {children}

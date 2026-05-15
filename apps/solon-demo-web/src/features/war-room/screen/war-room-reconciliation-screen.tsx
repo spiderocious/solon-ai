@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { SkeletonCard, StatusPill } from '@solon/ui';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { TallyEntry } from '@shared/types/mock-data.types';
 
@@ -26,7 +26,7 @@ export default function WarRoomReconciliationScreen() {
   const { sessionId } = useDemoSession();
   const { data, isLoading } = useQuery<TallyEntry[]>({
     queryKey: ['war-room-reconciliation'],
-    queryFn: () => demoClient.get<TallyEntry[]>(DEMO_EP.WAR_ROOM_TALLY, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<TallyEntry[]>(MOCK_KEY.WARROOM_TALLY, sessionId ?? undefined),
     placeholderData: MOCK,
   });
 

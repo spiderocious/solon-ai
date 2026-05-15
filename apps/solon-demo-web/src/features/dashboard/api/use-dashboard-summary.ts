@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { DashboardSummary } from '@shared/types/mock-data.types';
 
@@ -39,7 +39,7 @@ export function useDashboardSummary() {
     queryKey: ['dashboard-summary'],
     queryFn: () =>
       demoClient
-        .get<DashboardSummary>(DEMO_EP.DASHBOARD_SUMMARY, sessionId ?? undefined)
+        .getMock<DashboardSummary>(MOCK_KEY.CANDIDATE_PROFILE, sessionId ?? undefined)
         .catch(() => MOCK),
     initialData: MOCK,
   });

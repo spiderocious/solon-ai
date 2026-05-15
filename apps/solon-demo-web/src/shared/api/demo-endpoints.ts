@@ -53,6 +53,8 @@ export const MOCK_KEY = {
   VOTER_INTEL_CLUSTERS: 'voter_intelligence.clusters',
   VOTER_INTEL_MESSAGES: 'voter_intelligence.message_variants',
   VOTER_INTEL_ISSUES: 'voter_intelligence.issue_monitor',
+  AGENTS_ROSTER: 'agents.roster',
+  AGENTS_COVERAGE: 'agents.coverage',
   AGENTS_READINESS: 'agents.readiness',
   AGENTS_ELECTION_DAY: 'agents.election_day',
   AGENTS_INCIDENTS: 'agents.incidents',

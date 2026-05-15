@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Button, ConfidenceBar, OfficialStamp, SkeletonCard } from '@solon/ui';
 import type { ConfidenceLevel } from '@solon/ui';
 import { demoClient } from '@shared/api/demo-client';
-import { DEMO_EP } from '@shared/api/demo-endpoints';
+import { MOCK_KEY } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { ScenarioResult } from '@shared/types/mock-data.types';
 
@@ -58,7 +58,7 @@ export default function SimulatorSavedScreen() {
   const { sessionId } = useDemoSession();
   const { data, isLoading } = useQuery<ScenarioResult[]>({
     queryKey: ['simulator-scenarios'],
-    queryFn: () => demoClient.get<ScenarioResult[]>(DEMO_EP.SIMULATOR_SCENARIOS, sessionId ?? undefined),
+    queryFn: () => demoClient.getMock<ScenarioResult[]>(MOCK_KEY.SIMULATOR_SAVED_SCENARIOS, sessionId ?? undefined),
     placeholderData: MOCK_SCENARIOS,
   });
 
