@@ -1,18 +1,15 @@
-import { ConfidenceBar, SkeletonCard } from '@solon/ui';
+import { ConfidenceBar } from '@solon/ui';
 import { useSimulatorBaseline } from '../api/use-simulator-baseline';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 export default function SimulatorBaselineScreen() {
-  const { data, isLoading } = useSimulatorBaseline();
+  const { data, isLoading, isError, refetch } = useSimulatorBaseline();
 
-  if (isLoading && !data) {
-    return (
-      <div className="p-6">
-        <SkeletonCard />
-      </div>
-    );
-  }
+  if (isLoading) return <ScreenSkeleton rows={4} />;
+  if (isError || !data) return <ErrorState message="Could not load baseline model." onRetry={() => void refetch()} />;
 
-  const d = data!;
+  const d = data;
   const lead = d.candidates[0];
 
   return (

@@ -23,24 +23,18 @@ function riskColor(score: Donor['risk_score']): { color: string; bg: string; bor
 
 export default function FinanceDonorsScreen() {
   const { sessionId } = useDemoSession();
-  const { data, isLoading } = useQuery<Donor[]>({
+  const { data: donors, isLoading, isError, refetch } = useQuery<Donor[]>({
     queryKey: ['finance-donors'],
     queryFn: () => demoClient.getMock<Donor[]>(MOCK_KEY.FINANCE_DONORS, sessionId ?? undefined),
-    placeholderData: MOCK,
+    retry: 2,
   });
-  const donors = data ?? MOCK;
+
+  if (isLoading) return <ScreenSkeleton rows={4} />;
+  if (isError || !donors) return <ErrorState message="Could not load donor records." onRetry={() => void refetch()} />;
 
   const totalDonated = donors.reduce((s, d) => s + d.amount_naira, 0);
   const flaggedCount = donors.filter((d) => d.flagged).length;
   const highRiskCount = donors.filter((d) => d.risk_score === 'High').length;
-
-  if (isLoading && !data) {
-    return (
-      <div className="p-6 flex flex-col gap-4">
-        {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
 
   return (
     <div className="p-5 md:p-8">

@@ -6,6 +6,7 @@ import { useSimulatorBaseline } from '../../simulator/api/use-simulator-baseline
 import { useVoterIssues } from '../../voter-intel/api/use-voter-issues';
 import { StatCard } from './parts/stat-card';
 import { formatNaira } from '@shared/helpers/format-naira';
+import { ErrorState } from '@shared/components/error-state';
 
 function daysUntil(dateStr: string): number {
   const target = new Date(dateStr).getTime();
@@ -14,18 +15,22 @@ function daysUntil(dateStr: string): number {
 }
 
 export default function DashboardScreen() {
-  const { data: profile } = useDashboardSummary();
+  const { data: profile, isLoading, isError, refetch } = useDashboardSummary();
   const { data: readiness } = useAgentsReadiness();
   const { data: finance } = useFinanceSummary();
   const { data: baseline } = useSimulatorBaseline();
   const { data: issues } = useVoterIssues();
 
-  if (!profile) {
+  if (isLoading) {
     return (
       <div className="p-6 md:p-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
       </div>
     );
+  }
+
+  if (isError || !profile) {
+    return <ErrorState message="Could not load campaign profile." onRetry={() => void refetch()} />;
   }
 
   const afpCandidate = baseline?.candidates.find((c) => c.party === 'AFP');

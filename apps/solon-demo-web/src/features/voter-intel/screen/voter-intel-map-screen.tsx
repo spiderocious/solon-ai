@@ -1,6 +1,8 @@
-import { Button, SkeletonCard } from '@solon/ui';
+import { Button } from '@solon/ui';
 import { formatNumber } from '@shared/helpers/format-number';
 import { useVoterConstituencies } from '../api/use-voter-constituencies';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 const TIER_CONFIG: Record<string, { bg: string; border: string; text: string; label: string }> = {
   'Lean Hold':       { bg: 'var(--forest-50)',   border: 'var(--forest-600)', text: 'var(--forest-700)', label: 'Lean Hold' },
@@ -15,8 +17,12 @@ function tierStyle(tier: string) {
 }
 
 export default function VoterIntelMapScreen() {
-  const { data, isLoading } = useVoterConstituencies();
-  const states = data?.states ?? [];
+  const { data, isLoading, isError, refetch } = useVoterConstituencies();
+
+  if (isLoading) return <ScreenSkeleton rows={5} />;
+  if (isError || !data) return <ErrorState message="Could not load constituency map." onRetry={() => void refetch()} />;
+
+  const states = data.states;
 
   const totalRegistered = states.reduce((s, c) => s + c.registered_voters, 0);
   const holdStates = states.filter((s) => s.afp_tier === 'Lean Hold' || s.afp_tier === 'Strong Hold').length;
@@ -79,12 +85,7 @@ export default function VoterIntelMapScreen() {
           </span>
         </div>
 
-        {isLoading && !data ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
-            {Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)}
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
             {states.map((s) => {
               const cfg = tierStyle(s.afp_tier);
               return (
@@ -119,7 +120,6 @@ export default function VoterIntelMapScreen() {
               );
             })}
           </div>
-        )}
 
         <p className="font-serif italic text-[12px] mt-4" style={{ color: 'var(--ink-4)' }}>
           AFP competitiveness tier by state · 2023 baseline · Solon Intelligence

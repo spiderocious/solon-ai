@@ -6,23 +6,8 @@ import { DEMO_EP } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { CopilotMessage, CopilotResponse } from '@shared/types/mock-data.types';
 
-const MOCK_REPLIES: Record<string, string> = {
-  turnout: "Turnout is projected at 64.2%. Historical data shows a 6-point uplift in years with competitive gubernatorial races — 2027 is expected to follow that pattern.",
-  opponent: "APC's Uchenna Nwosu is projected at 22.1%. His vote base is concentrated in Orumba North and South, but LP has strong inroads there via youth networks.",
-  youth: "Youth mobilization is the single biggest upside lever. A strong mobilization scenario adds +5.2 points to LP's share. The optimal channels are WhatsApp broadcast lists and radio in Nnewi axis.",
-  default: "Based on current projections, LP holds a 25-point lead in Anambra Central. The biggest swing risk is turnout in Ogbaru LGA, which historically underperforms by 12 points.",
-};
-
-function getMockReply(q: string): string {
-  const lower = q.toLowerCase();
-  if (lower.includes('turnout')) return MOCK_REPLIES.turnout!;
-  if (lower.includes('apc') || lower.includes('opponent')) return MOCK_REPLIES.opponent!;
-  if (lower.includes('youth')) return MOCK_REPLIES.youth!;
-  return MOCK_REPLIES.default!;
-}
-
 const COPILOT_TAGS = [
-  'Simulate Soludo backing LP',
+  'AFP path to 50%+1',
   'Project youth turnout +5%',
   'Apply BVAS-failure scenario',
   'Compare 2023 baseline',
@@ -33,7 +18,7 @@ export default function SimulatorCopilotScreen() {
   const [messages, setMessages] = useState<CopilotMessage[]>([
     {
       role: 'assistant',
-      content: "I'm your Solon AI Copilot. Ask me anything about the Anambra Central Senate race — scenarios, risks, opportunities, or voter patterns.",
+      content: "I'm your Solon AI Copilot. Ask me anything about the AFP presidential campaign — scenarios, risks, opportunities, or voter patterns.",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -50,8 +35,8 @@ export default function SimulatorCopilotScreen() {
       setMessages((prev) => [...prev, res.message]);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     },
-    onError: (_, content) => {
-      setMessages((prev) => [...prev, { role: 'assistant', content: getMockReply(content), timestamp: new Date().toISOString() }]);
+    onError: () => {
+      setMessages((prev) => [...prev, { role: 'assistant', content: 'Solon Copilot is temporarily unavailable. Please try again in a moment.', timestamp: new Date().toISOString() }]);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     },
   });

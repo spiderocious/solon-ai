@@ -5,14 +5,10 @@ import { IconCopy, IconCheck } from '@icons';
 import { demoClient } from '@shared/api/demo-client';
 import { DEMO_EP } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
+import { useVoterClusters } from '../api/use-voter-clusters';
 import type { MessageTemplate } from '@shared/types/mock-data.types';
-
-const CLUSTERS = [
-  'Young urban professionals',
-  'Market traders (Onitsha)',
-  'Rural farmers (Ogbaru)',
-  'Diaspora returnees',
-];
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
+import { ErrorState } from '@shared/components/error-state';
 
 const CHANNELS = [
   { value: 'whatsapp', label: 'WhatsApp' },
@@ -20,41 +16,25 @@ const CHANNELS = [
   { value: 'voice', label: 'Voice script' },
 ] as const;
 
-const MOCK_MESSAGES: Record<string, MessageTemplate> = {
-  'Young urban professionals-whatsapp': {
-    id: 'm1', cluster: 'Young urban professionals', channel: 'whatsapp',
-    content: '🇳🇬 Fellow Anambrans — the 2027 election is our chance to reshape our future. Ifeanyi Okonkwo (LP) has a concrete plan for tech hubs and manufacturing revival. Register. Vote. Show up. Forward this to 5 people you trust. — Solon Intelligence',
-    estimatedReach: 38_000, engagementScore: 84,
-  },
-  'Market traders (Onitsha)-sms': {
-    id: 'm2', cluster: 'Market traders (Onitsha)', channel: 'sms',
-    content: 'Onitsha traders: LP candidate Ifeanyi Okonkwo supports market security & naira stability. Vote Feb 2027. Details: solon.ng/anambra',
-    estimatedReach: 52_000, engagementScore: 71,
-  },
-};
-
-function getMockMessage(cluster: string, channel: string): MessageTemplate {
-  const key = `${cluster}-${channel}`;
-  return MOCK_MESSAGES[key] ?? {
-    id: 'mx', cluster, channel: channel as MessageTemplate['channel'],
-    content: `This is a tailored message for ${cluster} delivered via ${channel}. Ifeanyi Okonkwo (LP) stands for your priorities — cost of living relief, security, and economic revival. Your vote matters. Elections: February 2027.`,
-    estimatedReach: 25_000, engagementScore: 68,
-  };
-}
-
 const SCORE_COLOR = (score: number) => score >= 80 ? 'var(--forest-700)' : score >= 60 ? 'var(--ink-2)' : 'var(--orange)';
 
 export default function VoterIntelMessagesScreen() {
   const { sessionId } = useDemoSession();
-  const [cluster, setCluster] = useState<string>(CLUSTERS[0] ?? 'Young urban professionals');
+  const { data: clusters, isLoading: clustersLoading, isError: clustersError, refetch: refetchClusters } = useVoterClusters();
+
   const [channel, setChannel] = useState<'sms' | 'whatsapp' | 'voice'>('whatsapp');
   const [result, setResult] = useState<MessageTemplate | null>(null);
+  const [apiError, setApiError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  const firstCluster = clusters?.[0]?.name ?? '';
+  const [cluster, setCluster] = useState<string>('');
+  const activeCluster = cluster || firstCluster;
+
   const { mutate: generate, isPending } = useMutation({
-    mutationFn: () => demoClient.post<MessageTemplate>(DEMO_EP.VOTER_MESSAGE_GENERATE, { cluster, channel }, sessionId ?? undefined),
-    onSuccess: (res) => setResult(res),
-    onError: () => setResult(getMockMessage(cluster, channel)),
+    mutationFn: () => demoClient.post<MessageTemplate>(DEMO_EP.VOTER_MESSAGE_GENERATE, { cluster: activeCluster, channel }, sessionId ?? undefined),
+    onSuccess: (res) => { setResult(res); setApiError(null); },
+    onError: () => { setApiError('Message generation failed. Please try again.'); },
   });
 
   function handleCopy() {
@@ -63,6 +43,11 @@ export default function VoterIntelMessagesScreen() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
+  }
+
+  if (clustersLoading) return <ScreenSkeleton rows={4} />;
+  if (clustersError || !clusters?.length) {
+    return <ErrorState message="Could not load voter clusters." onRetry={() => void refetchClusters()} />;
   }
 
   return (
@@ -80,9 +65,9 @@ export default function VoterIntelMessagesScreen() {
         </div>
 
         <FieldLabel label="Voter cluster" required>
-          <Select value={cluster} onChange={(e) => setCluster(e.target.value)}>
-            {CLUSTERS.map((c) => (
-              <option key={c} value={c}>{c}</option>
+          <Select value={activeCluster} onChange={(e) => setCluster(e.target.value)}>
+            {clusters.map((c) => (
+              <option key={c.id} value={c.name}>{c.name}</option>
             ))}
           </Select>
         </FieldLabel>
@@ -95,18 +80,16 @@ export default function VoterIntelMessagesScreen() {
           </Select>
         </FieldLabel>
 
-        <Button variant="primary" onClick={() => generate()} disabled={isPending}>
+        <Button variant="primary" onClick={() => generate()} disabled={isPending || !activeCluster}>
           {isPending ? 'Generating…' : 'Generate message'}
         </Button>
 
-        {/* Stats */}
         <div className="rounded-[6px] p-4 mt-2" style={{ background: 'var(--paper-2)', border: '1px solid var(--hair)' }}>
           <div className="font-mono text-[9px] uppercase mb-3" style={{ color: 'var(--ink-4)' }}>Model context</div>
           <div className="space-y-2">
             {[
-              { label: 'Clusters tracked', value: '5' },
-              { label: 'Channels supported', value: '3' },
-              { label: 'Templates generated', value: '47' },
+              { label: 'Clusters tracked', value: String(clusters.length) },
+              { label: 'Channels supported', value: String(CHANNELS.length) },
             ].map(({ label, value }) => (
               <div key={label} className="flex justify-between">
                 <span className="font-mono text-[10px]" style={{ color: 'var(--ink-3)' }}>{label}</span>
@@ -119,21 +102,24 @@ export default function VoterIntelMessagesScreen() {
 
       {/* Right — output */}
       <div className="p-5 md:p-6 flex flex-col gap-4">
-        {!result ? (
+        {apiError && (
+          <div className="rounded-[4px] px-4 py-3" style={{ background: '#FEF2F2', border: '1px solid var(--crit)' }}>
+            <p className="font-sans text-[12px]" style={{ color: 'var(--crit)' }}>{apiError}</p>
+          </div>
+        )}
+
+        {!result && !apiError ? (
           <div className="flex-1 flex flex-col items-center justify-center gap-3 opacity-50">
             <div className="font-serif italic text-[14px]" style={{ color: 'var(--ink-3)' }}>
               Select a cluster and channel, then generate a message.
             </div>
           </div>
-        ) : (
+        ) : result ? (
           <>
-            {/* Result card */}
             <div className="rounded-[6px] overflow-hidden" style={{ border: '1px solid var(--hair)', background: 'var(--sheet)' }}>
               <div className="px-4 py-2.5 flex items-center justify-between border-b" style={{ background: 'var(--paper-2)', borderColor: 'var(--hair)' }}>
                 <div>
-                  <span className="font-mono text-[10px] uppercase" style={{ color: 'var(--ink-3)' }}>
-                    {result.cluster}
-                  </span>
+                  <span className="font-mono text-[10px] uppercase" style={{ color: 'var(--ink-3)' }}>{result.cluster}</span>
                   <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}> · {result.channel}</span>
                 </div>
                 <StatusPill variant="ok" label="Generated" />
@@ -172,18 +158,17 @@ export default function VoterIntelMessagesScreen() {
               </div>
             </div>
 
-            {/* Suggested edits note */}
             <div
               className="rounded-[4px] px-4 py-3"
               style={{ background: 'var(--forest-50)', borderTop: '3px solid var(--forest-600)' }}
             >
               <div className="font-mono text-[9px] uppercase mb-1" style={{ color: 'var(--forest-700)' }}>Solon · message intelligence</div>
               <p className="font-serif italic text-[12px]" style={{ color: 'var(--ink-2)' }}>
-                This message tests best with the {result.cluster} cluster when sent before 18:00 WAT. Engagement score above 80 indicates strong resonance with the top issue: <em>cost of living</em>.
+                This message is tailored for the {result.cluster} cluster via {result.channel}. Engagement score above 80 indicates strong resonance with the cluster's top issues.
               </p>
             </div>
           </>
-        )}
+        ) : null}
       </div>
     </div>
   );

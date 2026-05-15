@@ -1,5 +1,7 @@
-import { OfficialStamp, SkeletonCard } from '@solon/ui';
+import { OfficialStamp } from '@solon/ui';
 import { useFinanceSummary } from '../api/use-finance-summary';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 const COMPLIANCE_ITEMS = [
   { id: 'c1', title: 'Q1 2026 returns filed', subtitle: 'Submitted 10 Apr 2026 · accepted by INEC', status: 'ok' as const },
@@ -23,16 +25,10 @@ const STATUS_STYLE: Record<'ok' | 'pending' | 'warn', { bg: string; border: stri
 };
 
 export default function FinanceComplianceScreen() {
-  const { data, isLoading } = useFinanceSummary();
-  const s = data;
+  const { data: s, isLoading, isError, refetch } = useFinanceSummary();
 
-  if (isLoading && !s) {
-    return (
-      <div className="p-6 flex flex-col gap-4">
-        {Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
+  if (isLoading) return <ScreenSkeleton rows={3} />;
+  if (isError || !s) return <ErrorState message="Could not load compliance data." onRetry={() => void refetch()} />;
 
   const complianceScore = s
     ? Math.round(

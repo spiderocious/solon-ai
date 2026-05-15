@@ -6,12 +6,7 @@ import { DEMO_EP } from '@shared/api/demo-endpoints';
 import { useDemoSession } from '@shared/hooks/use-demo-session';
 import type { CopilotMessage, CopilotResponse } from '@shared/types/mock-data.types';
 
-const MOCK_REPLY = (q: string): string =>
-  q.toLowerCase().includes('incident')
-    ? 'Two low-severity incidents reported: Ogbaru Ward 2 card reader delay (resolved) and Idemili North Ward 4 accreditation queue (being managed). No critical incidents at this time.'
-    : q.toLowerCase().includes('turnout')
-    ? 'Turnout is tracking at 62%, slightly below the 68% target. Recommend activating backup agents in Ogbaru and Ayamelum.'
-    : 'LP is on track for a projected 47.2% share with 74% PU coverage. Gap is widening as Idemili South reports come in.';
+const UNAVAILABLE_REPLY = 'War Room Copilot is temporarily unavailable. Please try again in a moment.';
 
 const SUGGESTED_TAGS = [
   'Incident summary',
@@ -26,7 +21,7 @@ export default function WarRoomCopilotScreen() {
   const [messages, setMessages] = useState<CopilotMessage[]>([
     {
       role: 'assistant',
-      content: "War Room Copilot active. I'm monitoring all 412 PUs in real-time. Ask about incidents, turnout, coverage, or projections.",
+      content: "War Room Copilot active. I'm monitoring nationwide PUs in real-time. Ask about incidents, turnout, coverage, or projections.",
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -43,8 +38,8 @@ export default function WarRoomCopilotScreen() {
       setMessages((prev) => [...prev, res.message]);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     },
-    onError: (_, content) => {
-      setMessages((prev) => [...prev, { role: 'assistant', content: MOCK_REPLY(content), timestamp: new Date().toISOString() }]);
+    onError: () => {
+      setMessages((prev) => [...prev, { role: 'assistant', content: UNAVAILABLE_REPLY, timestamp: new Date().toISOString() }]);
       setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 50);
     },
   });
@@ -64,7 +59,7 @@ export default function WarRoomCopilotScreen() {
       >
         <LivePulse variant="orange" />
         <span className="font-sans font-medium text-[13px]" style={{ color: 'var(--ink)' }}>War Room Copilot</span>
-        <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>— 412 PUs · election day 20 Feb 2027</span>
+        <span className="font-mono text-[10px]" style={{ color: 'var(--ink-4)' }}>— nationwide · election day 16 Jan 2027</span>
       </div>
 
       {/* Messages */}

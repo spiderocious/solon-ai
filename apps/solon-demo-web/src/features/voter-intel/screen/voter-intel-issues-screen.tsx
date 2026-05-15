@@ -1,5 +1,7 @@
-import { SkeletonCard, StatusPill } from '@solon/ui';
+import { StatusPill } from '@solon/ui';
 import { useVoterIssues } from '../api/use-voter-issues';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tracking-[0.08em]';
 const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
@@ -16,17 +18,13 @@ function formatMentions(n: number): string {
 }
 
 export default function VoterIntelIssuesScreen() {
-  const { data, isLoading } = useVoterIssues();
-  const issues = data?.top_issues ?? [];
-  const week = data?.week ?? '';
+  const { data, isLoading, isError, refetch } = useVoterIssues();
 
-  if (isLoading && !data) {
-    return (
-      <div className="p-6 grid grid-cols-1 gap-4">
-        {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
+  if (isLoading) return <ScreenSkeleton rows={5} />;
+  if (isError || !data) return <ErrorState message="Could not load issue monitor." onRetry={() => void refetch()} />;
+
+  const issues = data.top_issues;
+  const week = data.week;
 
   return (
     <div className="p-5 md:p-8">

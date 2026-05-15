@@ -1,5 +1,6 @@
-import { SkeletonCard } from '@solon/ui';
 import { useVoterClusters } from '../api/use-voter-clusters';
+import { ErrorState } from '@shared/components/error-state';
+import { ScreenSkeleton } from '@shared/components/screen-skeleton';
 
 const TH_CLS = 'font-mono text-[10px] uppercase text-left px-3 py-2 border-b tracking-[0.08em]';
 const TD_CLS = 'font-sans text-[13px] px-3 py-3 border-b';
@@ -11,16 +12,10 @@ function reachColor(pct: number): string {
 }
 
 export default function VoterIntelClustersScreen() {
-  const { data, isLoading } = useVoterClusters();
-  const clusters = data ?? [];
+  const { data: clusters, isLoading, isError, refetch } = useVoterClusters();
 
-  if (isLoading && !data) {
-    return (
-      <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        {Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)}
-      </div>
-    );
-  }
+  if (isLoading) return <ScreenSkeleton rows={5} />;
+  if (isError || !clusters) return <ErrorState message="Could not load voter clusters." onRetry={() => void refetch()} />;
 
   return (
     <div className="p-5 md:p-8">
