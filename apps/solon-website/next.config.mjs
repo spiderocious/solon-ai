@@ -15,6 +15,7 @@ const nextConfig = {
       '@solon/ui': path.resolve(__dirname, '../../packages/ui/src/index.ts'),
       '@solon/core': path.resolve(__dirname, '../../packages/core/src/index.ts'),
       '@icons': path.resolve(__dirname, '../../packages/ui/src/icons/index.ts'),
+      '@': path.resolve(__dirname, './src'),
     };
     // NodeNext/ESM convention across the workspace: source code spells out
     // `.js` in import specifiers even when the file on disk is `.ts`/`.tsx`.

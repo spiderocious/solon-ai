@@ -13,9 +13,13 @@
     "allowSyntheticDefaultImports": true,
     "exactOptionalPropertyTypes": false,
     "plugins": [{ "name": "next" }],
+    "resolveJsonModule": true,
     "paths": {
+      "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@components/*": ["./src/components/*"],
+      "@config/*": ["./src/config/*"],
+      "@content/*": ["./src/content/*"],
       "@solon/ui": ["../../packages/ui/src/index.ts"],
       "@solon/ui/*": ["../../packages/ui/src/*"],
       "@solon/core": ["../../packages/core/src/index.ts"],

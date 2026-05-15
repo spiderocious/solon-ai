@@ -2,9 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Paper / background */
+  --paper:   #f5efe0;
+  --paper-2: #ede7d5;
+  --paper-3: #e3dcc9;
+  --sheet:   #faf7f0;
+
+  /* Ink / foreground */
+  --ink:   #1f2024;
+  --ink-2: #3a3c42;
+  --ink-3: #6b6e78;
+  --ink-4: #9a9da8;
+
+  /* Borders */
+  --hair: rgba(0,0,0,0.1);
+
+  /* Forest (AFP green) */
+  --forest-50:  #f0fdf4;
+  --forest-100: #dcfce7;
+  --forest-200: #bbf7d0;
+  --forest-300: #86efac;
+  --forest-400: #4ade80;
+  --forest-500: #22c55e;
+  --forest-600: #16a34a;
+  --forest-700: #15803d;
+  --forest-800: #166534;
+  --forest-900: #14532d;
+
+  /* Orange */
+  --orange:      #ea580c;
+  --orange-soft: #fff7ed;
+  --orange-edge: #fed7aa;
+  --orange-deep: #9a3412;
+
+  /* Critical */
+  --crit:     #dc2626;
+  --crit-bg:  #fef2f2;
+  --crit-edge:#fecaca;
+
+  /* Status */
+  --warn: #d97706;
+  --ok:   #16a34a;
+  --info: #2563eb;
+
+  /* Radius */
+  --r-sharp: 2px;
+  --r-card:  6px;
+  --r-soft:  10px;
+  --r-pill:  999px;
+
+  /* Easing */
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 120ms;
+  --t-med:  220ms;
+  --t-slow: 380ms;
+
+  /* Shadows */
+  --line-1:  0 1px 0 rgba(0,0,0,0.07);
+  --shade-1: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shade-pop: 0 8px 24px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+}
+
 html,
 body {
-  background: #f5efe0;
-  color: #1f2024;
+  background: var(--paper);
+  color: var(--ink);
   font-family: theme('fontFamily.sans');
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--forest-200);
+  color: var(--forest-900);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

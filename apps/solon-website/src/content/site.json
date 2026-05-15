@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "brand": "Solon",
+    "tagline": "Political Intelligence",
+    "links": [
+      { "label": "Features", "href": "#features" },
+      { "label": "Modules", "href": "#modules" },
+      { "label": "See it live", "href": "#live" }
+    ],
+    "cta": "Open demo"
+  },
+  "hero": {
+    "eyebrow": "2027 Nigerian General Election",
+    "headline": "Win with intelligence,\nnot instinct.",
+    "subheadline": "Solon gives presidential campaigns a unified platform for voter simulation, ground coordination, finance compliance, and real-time election-day intelligence.",
+    "cta_primary": "Open the demo",
+    "cta_secondary": "See how it works",
+    "trust_line": "Built for the 2027 cycle · AFP presidential campaign"
+  },
+  "modules": [
+    {
+      "id": "simulator",
+      "label": "Simulator",
+      "eyebrow": "Pre-campaign intelligence",
+      "headline": "Model every scenario before\na single naira is spent.",
+      "description": "Run AI-driven presidential election simulations. Stress-test youth turnout, BVAS failure scenarios, coalition shifts, and opponent surges — and see projected outcomes instantly.",
+      "stats": [
+        { "value": "6", "label": "Parties modelled" },
+        { "value": "±2.1pts", "label": "Margin of error" },
+        { "value": "36+FCT", "label": "States covered" }
+      ]
+    },
+    {
+      "id": "voter-intel",
+      "label": "Voter Intel",
+      "eyebrow": "Data-driven outreach",
+      "headline": "Know your voters before\nyou reach them.",
+      "description": "Segment 93M registered voters into behavioural clusters. Generate tailored WhatsApp, SMS, and voice messages per cluster. Map competitiveness by state in seconds.",
+      "stats": [
+        { "value": "93M", "label": "Registered voters" },
+        { "value": "7", "label": "Voter clusters" },
+        { "value": "3", "label": "Message channels" }
+      ]
+    },
+    {
+      "id": "agents",
+      "label": "Agents",
+      "eyebrow": "Ground force coordination",
+      "headline": "Your agent network,\nalways in view.",
+      "description": "Track verification status, geographic coverage, and readiness scores for thousands of field agents. Spot gaps before election day and close them.",
+      "stats": [
+        { "value": "1,240+", "label": "Agents tracked" },
+        { "value": "774", "label": "LGAs covered" },
+        { "value": "92%", "label": "Election ready" }
+      ]
+    },
+    {
+      "id": "finance",
+      "label": "Finance",
+      "eyebrow": "INEC compliance",
+      "headline": "Campaign spend that stays\ninside the law.",
+      "description": "Monitor total spend against INEC caps in real time. Track disbursements by category, flag approaching limits, and generate compliance reports ahead of every deadline.",
+      "stats": [
+        { "value": "₦5B", "label": "Legal spend cap" },
+        { "value": "12", "label": "Spend categories" },
+        { "value": "0", "label": "Compliance violations" }
+      ]
+    },
+    {
+      "id": "war-room",
+      "label": "War Room",
+      "eyebrow": "Election day command centre",
+      "headline": "Command every polling unit\nfrom one screen.",
+      "description": "Live tally feed, incident tracking, reconciliation alerts, and an AI copilot that answers questions in real time — everything you need on the day that matters most.",
+      "stats": [
+        { "value": "176,000+", "label": "Polling units" },
+        { "value": "<30s", "label": "Update latency" },
+        { "value": "99.9%", "label": "Uptime target" }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "icon": "brain",
+      "headline": "AI at the core",
+      "body": "Every module is powered by large language models trained on Nigerian electoral data — not generic political science."
+    },
+    {
+      "icon": "shield",
+      "headline": "INEC-aware compliance",
+      "body": "Finance limits, deadlines, and reporting requirements are baked in, not bolted on."
+    },
+    {
+      "icon": "map",
+      "headline": "Nigeria-first geography",
+      "body": "36 states, 774 LGAs, 176,000+ polling units — no other platform goes this deep."
+    },
+    {
+      "icon": "bolt",
+      "headline": "Real-time everywhere",
+      "body": "From live tally feeds to agent check-ins, the platform streams data as fast as your team reports it."
+    },
+    {
+      "icon": "lock",
+      "headline": "Campaign-grade security",
+      "body": "End-to-end encryption, session isolation, and audit logs on every sensitive action."
+    },
+    {
+      "icon": "chart",
+      "headline": "Unified command",
+      "body": "One platform, five modules, zero tool-switching. Your team sees the same data at the same time."
+    }
+  ],
+  "cta": {
+    "headline": "Ready to run the smartest\ncampaign in Nigeria?",
+    "body": "The demo is live. Explore every module with real 2027 data — no sign-up required.",
+    "button": "Open the demo app →"
+  },
+  "footer": {
+    "brand": "Solon",
+    "tagline": "Political intelligence for Nigeria's 2027 cycle.",
+    "legal": "© 2026 Solon. Built for the AFP presidential campaign. All electoral data is illustrative."
+  }
+}
