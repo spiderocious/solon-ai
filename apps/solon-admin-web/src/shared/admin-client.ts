@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_DEMO_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+const BASE_URL = import.meta.env.VITE_DEMO_API_BASE_URL;
 const TOKEN_KEY = 'solon_admin_token';
 
 export function getAdminToken(): string | null {

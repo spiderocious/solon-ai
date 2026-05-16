@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { DEMO_ROUTES } from '@solon/core';
 import { Button, FieldLabel, TextInput, Select } from '@solon/ui';
 import { SolonLogo } from '@ui/SolonLogo';
@@ -26,12 +26,14 @@ const NG_STATES = [
 export default function LeadCaptureScreen() {
   const { sessionId, setLeadId } = useDemoSession();
   const navigate = useNavigate();
+  const location = useLocation();
+  const nextPath = new URLSearchParams(location.search).get('next') ?? '';
 
   const { form, setField, error, loading, handleSubmit } = useLeadCaptureForm({
     sessionId,
     onSuccess: (leadId) => {
       setLeadId(leadId);
-      navigate(DEMO_ROUTES.DASHBOARD);
+      navigate(nextPath || DEMO_ROUTES.DASHBOARD);
     },
   });
 

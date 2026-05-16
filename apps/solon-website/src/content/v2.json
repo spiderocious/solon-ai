@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Solon — Command the 2027 Election",
+    "description": "The intelligence platform built for Nigeria's most ambitious campaign. Simulator, voter data, agent coordination, finance compliance, war room."
+  },
+  "nav": {
+    "brand": "Solon",
+    "links": [
+      { "label": "How it works", "href": "#how-it-works" },
+      { "label": "Modules", "href": "#modules" },
+      { "label": "War Room", "href": "#war-room" }
+    ],
+    "cta": "Open demo"
+  },
+  "hero": {
+    "eyebrow": "2027 Nigerian Presidential Election",
+    "headline_1": "Command the",
+    "headline_2": "election.",
+    "headline_italic": "entire",
+    "subheadline": "The only platform that takes a Nigerian campaign from pre-election simulation all the way to election-night command. Built for the AFP 2027 cycle.",
+    "cta_primary": "Open the demo",
+    "cta_secondary": "See how it works"
+  },
+  "ticker": [
+    "93M registered voters",
+    "176,847 polling units",
+    "36 states + FCT",
+    "6 parties modelled",
+    "16 Jan 2027 · election day",
+    "774 LGAs covered",
+    "±2.1pt margin of error",
+    "AFP presidential campaign"
+  ],
+  "how_it_works": {
+    "eyebrow": "Three acts. One platform.",
+    "headline": "Model it. Coordinate it.\nWin it.",
+    "steps": [
+      {
+        "number": "01",
+        "label": "Before the campaign",
+        "headline": "Run every scenario before a single naira is spent.",
+        "body": "The Simulator models AFP's path to 50%+1 across all 36 states. Stress-test BVAS failures, youth turnout swings, coalition shifts. Know your vulnerabilities before your opponents find them."
+      },
+      {
+        "number": "02",
+        "label": "During the campaign",
+        "headline": "Know your voters. Reach them on their terms.",
+        "body": "Segment 93M registered voters into behavioural clusters. Deploy tailored messages on WhatsApp, SMS, and voice. Track agent coverage across 774 LGAs. Keep your spend inside INEC's cap."
+      },
+      {
+        "number": "03",
+        "label": "On election day",
+        "headline": "See everything. React to anything.",
+        "body": "The War Room streams live tally data from 176,847 polling units. Incidents surface in real time. Your AI Copilot answers questions faster than your advisors. You win or you know why you didn't."
+      }
+    ]
+  },
+  "modules": [
+    {
+      "id": "simulator",
+      "number": "01",
+      "label": "Simulator",
+      "eyebrow": "Pre-campaign intelligence",
+      "headline": "Model every scenario\nbefore a single naira is spent.",
+      "body": "AI-driven presidential election modelling across 36 states. Stress-test turnout swings, BVAS failures, coalition collapses. Six-party race. 2023 baseline. Real margins.",
+      "stats": [
+        { "value": "6", "label": "Parties" },
+        { "value": "±2.1pts", "label": "Margin" },
+        { "value": "36+FCT", "label": "States" }
+      ],
+      "path": "/modules/simulator"
+    },
+    {
+      "id": "voter-intel",
+      "number": "02",
+      "label": "Voter Intel",
+      "eyebrow": "Data-driven outreach",
+      "headline": "Know your voters\nbefore you reach them.",
+      "body": "Segment 93M registered voters into behavioural clusters. Generate tailored WhatsApp, SMS, and voice messages. Map competitiveness tier by state in seconds.",
+      "stats": [
+        { "value": "93M", "label": "Voters" },
+        { "value": "7", "label": "Clusters" },
+        { "value": "3", "label": "Channels" }
+      ],
+      "path": "/modules/voter-intel"
+    },
+    {
+      "id": "agents",
+      "number": "03",
+      "label": "Agents",
+      "eyebrow": "Ground force",
+      "headline": "Your agent network,\nalways in view.",
+      "body": "Track verification status, geographic coverage, and readiness scores for thousands of field agents. Spot gaps before election day and close them.",
+      "stats": [
+        { "value": "1,240+", "label": "Agents" },
+        { "value": "774", "label": "LGAs" },
+        { "value": "92%", "label": "Ready" }
+      ],
+      "path": "/modules/agents"
+    },
+    {
+      "id": "finance",
+      "number": "04",
+      "label": "Finance",
+      "eyebrow": "INEC compliance",
+      "headline": "Campaign spend that\nstays inside the law.",
+      "body": "Monitor total spend against INEC caps in real time. Track disbursements by category, flag approaching limits, generate compliance reports.",
+      "stats": [
+        { "value": "₦5B", "label": "Cap" },
+        { "value": "12", "label": "Categories" },
+        { "value": "0", "label": "Violations" }
+      ],
+      "path": "/modules/finance"
+    },
+    {
+      "id": "war-room",
+      "number": "05",
+      "label": "War Room",
+      "eyebrow": "Election day command",
+      "headline": "Command every polling unit\nfrom one screen.",
+      "body": "Live tally feed, incident tracking, reconciliation alerts, AI Copilot. Everything you need on the day that decides everything.",
+      "stats": [
+        { "value": "176k+", "label": "PUs" },
+        { "value": "<30s", "label": "Latency" },
+        { "value": "99.9%", "label": "Uptime" }
+      ],
+      "path": "/modules/war-room"
+    }
+  ],
+  "war_room": {
+    "eyebrow": "16 January 2027",
+    "headline": "The day that\ndecides everything.",
+    "body": "Election day is not the time to figure out your tools. The War Room is a live command centre — streaming tally data, surfacing incidents, and putting an AI analyst in your ear from the moment polls open to the last result called.",
+    "stats": [
+      { "value": "176,847", "label": "Polling units monitored" },
+      { "value": "<30s", "label": "Average update latency" },
+      { "value": "6", "label": "Geo-zones tracked live" }
+    ],
+    "cta": "See the War Room"
+  },
+  "cta": {
+    "eyebrow": "The demo is live",
+    "headline_1": "The 2027 election",
+    "headline_2": "won't wait.",
+    "body": "Explore every module with real data — no sign-up, no sales call, no waiting.",
+    "button": "Open the demo app"
+  },
+  "footer": {
+    "brand": "Solon",
+    "tagline": "Political intelligence for Nigeria's 2027 cycle.",
+    "links": [
+      { "label": "Demo app", "href": "__DEMO__" },
+      { "label": "Contact", "href": "mailto:devferanmi@gmail.com" }
+    ],
+    "legal": "© 2026 Solon. Built for the AFP presidential campaign. All electoral data is illustrative."
+  }
+}

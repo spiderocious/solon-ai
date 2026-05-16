@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_DEMO_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+const BASE_URL = import.meta.env.VITE_DEMO_API_BASE_URL;
 
 async function request<T>(path: string, init?: RequestInit & { sessionId?: string }): Promise<T> {
   const { sessionId, ...fetchInit } = init ?? {};

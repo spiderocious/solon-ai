@@ -81,3 +81,78 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* V2 ticker marquee */
+@keyframes v2-ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.v2-ticker-track {
+  animation: v2-ticker 32s linear infinite;
+  width: max-content;
+}
+
+.v2-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* V2 scroll-reveal — elements start hidden, .v2-revealed makes them show */
+.v2-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.v2-reveal.v2-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance */
+.v2-hero-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.v2-hero-reveal.v2-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* How it works — responsive grid */
+.v2-steps-grid {
+  grid-template-columns: 1fr;
+}
+
+.v2-step-item {
+  border-bottom: 1px solid var(--hair);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 768px) {
+  .v2-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .v2-step-item {
+    border-bottom: none;
+    border-right: 1px solid var(--hair);
+    padding-left: 0;
+    padding-right: 40px;
+  }
+
+  .v2-step-item:not(:first-child) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .v2-step-item:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+}

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { DEMO_ROUTES } from '@solon/core';
 import { AppText, Button, FieldLabel, TextInput } from '@solon/ui';
 import { SolonLogo } from '@ui/SolonLogo';
@@ -6,13 +6,22 @@ import { useDemoSession } from '@shared/hooks/use-demo-session';
 import { useLoginForm } from '../hooks/use-login-form';
 
 export default function LoginScreen() {
-  const { login } = useDemoSession();
+  const { login, leadId } = useDemoSession();
   const navigate = useNavigate();
+  const location = useLocation();
+  const nextPath = new URLSearchParams(location.search).get('next') ?? '';
 
   const { fields, error, loading, handleSubmit, demoAccount } = useLoginForm({
     onSuccess: (sessionId) => {
       login(sessionId, null);
-      navigate(DEMO_ROUTES.LEAD_CAPTURE);
+      if (!leadId) {
+        const dest = nextPath
+          ? `${DEMO_ROUTES.LEAD_CAPTURE}?next=${encodeURIComponent(nextPath)}`
+          : DEMO_ROUTES.LEAD_CAPTURE;
+        navigate(dest);
+      } else {
+        navigate(nextPath || DEMO_ROUTES.DASHBOARD);
+      }
     },
   });
 
